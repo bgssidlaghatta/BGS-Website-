@@ -65,7 +65,7 @@ function NavItem({ item }: { item: NavLink }) {
     >
       <Link
         href={item.href}
-        className="nav-underline relative px-4 py-2 text-sm font-medium text-brand-umber/80 hover:text-white transition-colors duration-300 flex items-center gap-1"
+        className="nav-underline relative px-4 py-2 text-sm font-medium text-brand-umber/80 hover:text-brand-maroon transition-colors duration-300 flex items-center gap-1"
       >
         {item.name}
         {item.subItems && (
@@ -106,7 +106,7 @@ function NavItem({ item }: { item: NavLink }) {
                 >
                   <Link
                     href={subItem.href}
-                    className="block px-4 py-2.5 text-sm text-brand-umber/80 hover:text-white hover:bg-brand-cream transition-all duration-200 hover:pl-5"
+                    className="block px-4 py-2.5 text-sm text-brand-umber/80 hover:text-brand-maroon hover:bg-brand-cream transition-all duration-200 hover:pl-5"
                     onClick={() => setIsOpen(false)}
                   >
                     {subItem.name}
