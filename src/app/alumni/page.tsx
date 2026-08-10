@@ -94,7 +94,7 @@ export default function AlumniPage() {
         <div className="px-6 md:px-12 max-w-7xl mx-auto flex flex-col lg:flex-row gap-16 items-center">
           <div className="lg:w-1/2">
             <Reveal>
-              <h2 className="text-3xl md:text-5xl font-serif font-bold text-brand-maroon mb-6 leading-tight">
+              <h2 className="text-3xl md:text-5xl font-serif font-bold text-white mb-6 leading-tight">
                 Our Pride, Our Legacy.
               </h2>
               <p className="text-brand-umber/70 leading-relaxed mb-6 text-lg">
@@ -106,13 +106,13 @@ export default function AlumniPage() {
               
               <div className="grid grid-cols-2 gap-6 mt-10">
                 <div className="border-l-2 border-brand-saffron pl-4">
-                  <p className="text-4xl font-serif font-bold text-brand-maroon mb-1">
+                  <p className="text-4xl font-serif font-bold text-white mb-1">
                     <AnimatedCounter value={5000} suffix="+" />
                   </p>
                   <p className="text-sm font-semibold uppercase tracking-wider text-brand-umber/50">Global Alumni</p>
                 </div>
                 <div className="border-l-2 border-brand-saffron pl-4">
-                  <p className="text-4xl font-serif font-bold text-brand-maroon mb-1">
+                  <p className="text-4xl font-serif font-bold text-white mb-1">
                     <AnimatedCounter value={20} suffix="+" />
                   </p>
                   <p className="text-sm font-semibold uppercase tracking-wider text-brand-umber/50">Years of Legacy</p>
@@ -132,7 +132,7 @@ export default function AlumniPage() {
                 />
                 <div className="absolute inset-0 bg-brand-maroon/20 mix-blend-multiply" />
               </div>
-              <div className="absolute -bottom-8 -left-8 bg-brand-saffron text-brand-maroon-deep p-8 rounded-xl shadow-xl max-w-xs hidden md:block">
+              <div className="absolute -bottom-8 -left-8 bg-brand-saffron text-white p-8 rounded-xl shadow-xl max-w-xs hidden md:block">
                 <GraduationCap className="w-10 h-10 mb-4 opacity-80" />
                 <p className="font-serif font-bold text-xl leading-tight">Building a network of excellence, together.</p>
               </div>
@@ -149,7 +149,7 @@ export default function AlumniPage() {
               <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-saffron mb-4">
                 Success Stories
               </p>
-              <h2 className="text-3xl md:text-5xl font-serif font-bold text-brand-maroon mb-6">
+              <h2 className="text-3xl md:text-5xl font-serif font-bold text-white mb-6">
                 Meet Our Notable Alumni
               </h2>
               <p className="text-brand-umber/60 leading-relaxed text-lg">
@@ -164,10 +164,10 @@ export default function AlumniPage() {
                 <motion.div key={idx} variants={fadeUp} className="bg-white rounded-2xl p-6 border border-brand-maroon/5 shadow-sm card-lift group">
                   <div className="flex items-center gap-4 mb-6">
                     <div className="w-16 h-16 rounded-full bg-brand-cream flex items-center justify-center shrink-0">
-                      <span className="font-serif text-2xl font-bold text-brand-maroon/20">{alumni.image}</span>
+                      <span className="font-serif text-2xl font-bold text-white/20">{alumni.image}</span>
                     </div>
                     <div>
-                      <h3 className="font-serif font-bold text-brand-maroon text-lg group-hover:text-brand-saffron transition-colors">{alumni.name}</h3>
+                      <h3 className="font-serif font-bold text-white text-lg group-hover:text-brand-saffron transition-colors">{alumni.name}</h3>
                       <p className="text-sm font-medium text-brand-saffron">{alumni.batch}</p>
                     </div>
                   </div>
@@ -212,7 +212,7 @@ export default function AlumniPage() {
             <p className="text-brand-cream/70 mb-10 text-lg max-w-2xl mx-auto leading-relaxed">
               Reconnect with old friends, network with professionals, and stay updated on the latest developments and events at your alma mater. Registration is quick and free.
             </p>
-            <Link href="/contact" className={cn(buttonVariants({ size: "lg" }), "bg-brand-saffron text-brand-maroon-deep hover:bg-white transition-colors shadow-xl group px-8 py-6 text-base btn-ripple")}>
+            <Link href="/contact" className={cn(buttonVariants({ size: "lg" }), "bg-brand-saffron text-white hover:bg-white transition-colors shadow-xl group px-8 py-6 text-base btn-ripple")}>
               Register Now
               <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
             </Link>

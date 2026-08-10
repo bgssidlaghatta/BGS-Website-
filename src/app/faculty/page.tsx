@@ -91,7 +91,7 @@ export default function FacultyPage() {
               <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-saffron mb-4">
                 Department-Wise Directory
               </p>
-              <h2 className="text-3xl md:text-4xl font-serif font-bold text-brand-maroon mb-6">
+              <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-6">
                 Experienced. Dedicated. Accountable.
               </h2>
               <p className="text-brand-umber/60 leading-relaxed">
@@ -111,7 +111,7 @@ export default function FacultyPage() {
                   <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
                     <div>
                       <div className={`h-1 w-16 bg-gradient-to-r ${dept.accent} rounded-full mb-4 line-grow-in`} />
-                      <h3 className="text-2xl md:text-3xl font-serif font-bold text-brand-maroon">{dept.name}</h3>
+                      <h3 className="text-2xl md:text-3xl font-serif font-bold text-white">{dept.name}</h3>
                       <p className="text-sm text-brand-umber/50 mt-2 max-w-md">{dept.desc}</p>
                     </div>
                     <p className="ledger-data text-sm text-brand-umber/30">{dept.staff.length} faculty members</p>
@@ -125,7 +125,7 @@ export default function FacultyPage() {
                           {/* Photo placeholder */}
                           <div className="aspect-[4/5] bg-gradient-to-br from-brand-cream-dark to-brand-cream flex items-center justify-center relative overflow-hidden">
                             <div className="w-16 h-16 rounded-full bg-brand-maroon/5 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
-                              <span className="font-serif text-2xl font-bold text-brand-maroon/15">{member.subject[0]}</span>
+                              <span className="font-serif text-2xl font-bold text-white/15">{member.subject[0]}</span>
                             </div>
                             <div className="absolute bottom-0 left-0 right-0 h-1/4 bg-gradient-to-t from-brand-offwhite to-transparent" />
                           </div>
@@ -150,7 +150,7 @@ export default function FacultyPage() {
       <section className="py-20 bg-brand-offwhite border-y border-brand-maroon/5">
         <div className="px-6 md:px-12 max-w-4xl mx-auto text-center">
           <Reveal>
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-brand-maroon mb-4">
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-4">
               Want to Teach at BGS?
             </h2>
             <p className="text-brand-umber/50 mb-8 text-lg max-w-xl mx-auto">

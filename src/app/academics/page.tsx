@@ -42,7 +42,7 @@ export default function AcademicsPage() {
             <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-saffron mb-4">
               Curriculum Overview
             </p>
-            <h2 className="text-4xl md:text-5xl font-serif font-bold text-brand-maroon mb-6 leading-tight">
+            <h2 className="text-4xl md:text-5xl font-serif font-bold text-white mb-6 leading-tight">
               A Seamless Journey from Play to Purpose
             </h2>
             <p className="text-brand-umber/70 text-lg leading-relaxed max-w-3xl mx-auto mb-16">
@@ -61,7 +61,7 @@ export default function AcademicsPage() {
                 <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-saffron mb-4">
                   Early Years
                 </p>
-                <h2 className="text-3xl md:text-4xl font-serif font-bold text-brand-maroon mb-6">
+                <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-6">
                   Pre-School & Kindergarten
                 </h2>
                 <div className="h-[2px] w-16 bg-brand-saffron mb-8" />
@@ -102,7 +102,7 @@ export default function AcademicsPage() {
                 <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-saffron mb-4">
                   Grades 1 to 5
                 </p>
-                <h2 className="text-3xl md:text-4xl font-serif font-bold text-brand-maroon mb-6">
+                <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-6">
                   Primary School
                 </h2>
                 <div className="h-[2px] w-16 bg-brand-saffron mb-8" />
@@ -143,7 +143,7 @@ export default function AcademicsPage() {
                 <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-saffron mb-4">
                   Grades 6 to 10
                 </p>
-                <h2 className="text-3xl md:text-4xl font-serif font-bold text-brand-maroon mb-6">
+                <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-6">
                   High School
                 </h2>
                 <div className="h-[2px] w-16 bg-brand-saffron mb-8" />
@@ -187,7 +187,7 @@ export default function AcademicsPage() {
               <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-saffron mb-4">
                 Pre-University College
               </p>
-              <h2 className="text-4xl md:text-5xl font-serif font-bold text-brand-maroon mb-6">
+              <h2 className="text-4xl md:text-5xl font-serif font-bold text-white mb-6">
                 Three Streams. One Standard: Excellence.
               </h2>
               <p className="text-brand-umber/50 text-lg leading-relaxed">
@@ -280,7 +280,7 @@ export default function AcademicsPage() {
 
                     <div className="mt-auto pt-6 border-t border-brand-maroon/5">
                       <p className="text-[10px] font-semibold uppercase tracking-widest text-brand-umber/30 mb-1">Career Paths</p>
-                      <p className="text-sm text-brand-maroon font-medium">{stream.ideal}</p>
+                      <p className="text-sm text-white font-medium">{stream.ideal}</p>
                     </div>
                   </div>
 
@@ -304,7 +304,7 @@ export default function AcademicsPage() {
               <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-saffron mb-4">
                 How We Teach
               </p>
-              <h2 className="text-3xl md:text-4xl font-serif font-bold text-brand-maroon">
+              <h2 className="text-3xl md:text-4xl font-serif font-bold text-white">
                 The BGS Method
               </h2>
             </div>
@@ -319,7 +319,7 @@ export default function AcademicsPage() {
               <Reveal key={i} delay={i * 0.1}>
                 <div className="bg-brand-offwhite rounded-2xl p-8 border border-brand-maroon/5 text-center card-lift h-full">
                   <method.icon className="w-8 h-8 text-brand-saffron mx-auto mb-5 icon-hover-rotate" />
-                  <h3 className="font-serif text-lg font-bold text-brand-maroon mb-3">{method.title}</h3>
+                  <h3 className="font-serif text-lg font-bold text-white mb-3">{method.title}</h3>
                   <p className="text-sm text-brand-umber/60 leading-relaxed">{method.desc}</p>
                 </div>
               </Reveal>

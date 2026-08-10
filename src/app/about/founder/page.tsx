@@ -18,7 +18,7 @@ export default function FounderPage() {
               <motion.p variants={fadeUp} className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-saffron mb-6">
                 Our Founder
               </motion.p>
-              <motion.h1 variants={fadeUp} className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-brand-maroon mb-6 leading-tight">
+              <motion.h1 variants={fadeUp} className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-white mb-6 leading-tight">
                 Paramapoojya Jagadguru Padmabhushana
                 <span className="block text-brand-saffron mt-2 text-3xl md:text-4xl lg:text-5xl">
                   Sri Sri Sri Dr. Balagangadharanatha Mahaswamiji
@@ -46,7 +46,7 @@ export default function FounderPage() {
                 </div>
               </div>
               <div className="absolute -bottom-6 -left-6 md:-left-12 bg-white p-6 rounded-2xl shadow-xl border border-brand-maroon/5 z-10 max-w-[280px]">
-                <p className="font-serif font-bold text-brand-maroon text-lg leading-tight italic">
+                <p className="font-serif font-bold text-white text-lg leading-tight italic">
                   &ldquo;Service to mankind is service to God.&rdquo;
                 </p>
               </div>
@@ -61,13 +61,13 @@ export default function FounderPage() {
         <div className="px-6 md:px-12 max-w-4xl mx-auto">
           <Reveal>
             <div className="prose prose-lg md:prose-xl text-brand-umber/70 leading-relaxed mx-auto">
-              <p className="first-letter:text-7xl first-letter:font-serif first-letter:font-bold first-letter:text-brand-maroon first-letter:mr-3 first-letter:float-left">
+              <p className="first-letter:text-7xl first-letter:font-serif first-letter:font-bold first-letter:text-white first-letter:mr-3 first-letter:float-left">
                 The 71st Pontiff of the Sri Adichunchanagiri Math, His Holiness Sri Sri Sri Dr. Balagangadharanatha Mahaswamiji, was a divine incarnation of compassion and progress. He took over the peetha in 1974 at a very young age and immediately recognized that true spiritual awakening must be accompanied by social and educational empowerment.
               </p>
               <p>
                 Under his visionary leadership, the Math underwent a profound transformation from a purely spiritual center into a dynamic hub of social service. He believed that poverty and ignorance could only be eradicated through the light of knowledge and the care of modern healthcare.
               </p>
-              <blockquote className="border-l-4 border-brand-saffron pl-6 my-10 italic text-brand-maroon bg-brand-cream/50 p-6 rounded-r-2xl">
+              <blockquote className="border-l-4 border-brand-saffron pl-6 my-10 italic text-white bg-brand-cream/50 p-6 rounded-r-2xl">
                 His singular vision resulted in the establishment of the Sri Adichunchanagiri Shikshana Trust, which today operates over 500 educational institutions, transforming the lives of over 1.5 lakh students annually.
               </blockquote>
               <p>

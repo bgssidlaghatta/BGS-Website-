@@ -180,7 +180,7 @@ export default function Home() {
                 <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-saffron mb-4">
                   The BGS Difference
                 </p>
-                <h2 className="text-4xl md:text-5xl font-serif font-bold text-brand-maroon mb-6 leading-tight">
+                <h2 className="text-4xl md:text-5xl font-serif font-bold text-white mb-6 leading-tight">
                   Not Just a School. <br />A Launchpad.
                 </h2>
                 <div className="h-[2px] w-16 bg-brand-saffron mb-8 line-grow-in" />
@@ -236,7 +236,7 @@ export default function Home() {
                       </div>
                     </div>
                     <div className="flex-1">
-                      <h3 className="font-serif text-xl font-bold text-brand-maroon mb-3">{pillar.title}</h3>
+                      <h3 className="font-serif text-xl font-bold text-white mb-3">{pillar.title}</h3>
                       <p className="text-brand-umber/60 text-sm leading-relaxed mb-4">{pillar.desc}</p>
                       <div className="flex items-baseline gap-2">
                         <span className="ledger-data text-2xl font-bold text-brand-gold">{pillar.stat}</span>
@@ -326,7 +326,7 @@ export default function Home() {
               <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-saffron mb-4">
                 Infrastructure
               </p>
-              <h2 className="text-4xl md:text-5xl font-serif font-bold text-brand-maroon mb-6">
+              <h2 className="text-4xl md:text-5xl font-serif font-bold text-white mb-6">
                 Built for Serious Learning
               </h2>
               <p className="text-brand-umber/50">
@@ -403,19 +403,19 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             >
-              <Quote className="w-16 h-16 text-brand-maroon/8 mx-auto mb-8" />
+              <Quote className="w-16 h-16 text-white/8 mx-auto mb-8" />
             </motion.div>
-            <blockquote className="font-serif text-2xl md:text-4xl text-brand-maroon leading-snug mb-10">
+            <blockquote className="font-serif text-2xl md:text-4xl text-white leading-snug mb-10">
               &ldquo;My son scored 588 in his PU board exams and cleared CET in his first attempt. 
               The teachers at BGS treated him like their own child. We couldn&apos;t have 
               asked for a better institution.&rdquo;
             </blockquote>
             <div className="flex items-center justify-center gap-4">
               <div className="w-12 h-12 bg-brand-maroon/10 rounded-full flex items-center justify-center">
-                <span className="font-serif font-bold text-brand-maroon">R</span>
+                <span className="font-serif font-bold text-white">R</span>
               </div>
               <div className="text-left">
-                <p className="font-semibold text-brand-maroon text-sm">Ramesh K.</p>
+                <p className="font-semibold text-white text-sm">Ramesh K.</p>
                 <p className="text-xs text-brand-umber/40 ledger-data">Parent · PCMCs, Batch 2024</p>
               </div>
             </div>
