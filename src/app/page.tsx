@@ -39,7 +39,7 @@ const HeroScene = dynamic(() => import("@/components/3d/hero-scene"), {
   ssr: false,
 });
 
-import { ResultPopup } from "@/components/ui/result-popup";
+import { ReviewsSection } from "@/components/ui/reviews";
 
 export default function Home() {
   return (
@@ -395,35 +395,7 @@ export default function Home() {
       <div className="section-divider" />
 
       {/* ════════════════════ TESTIMONIAL ════════════════════ */}
-      <section className="py-28 md:py-36 bg-white relative">
-        <div className="relative z-10 px-6 md:px-12 max-w-4xl mx-auto text-center">
-          <Reveal direction="scale">
-            <motion.div
-              initial={{ scale: 0.5, opacity: 0 }}
-              whileInView={{ scale: 1, opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <Quote className="w-16 h-16 text-brand-maroon/8 mx-auto mb-8" />
-            </motion.div>
-            <blockquote className="font-serif text-2xl md:text-4xl text-brand-maroon leading-snug mb-10">
-              &ldquo;My son scored 588 in his PU board exams and cleared CET in his first attempt. 
-              The teachers at BGS treated him like their own child. We couldn&apos;t have 
-              asked for a better institution.&rdquo;
-            </blockquote>
-            <div className="flex items-center justify-center gap-4">
-              <div className="w-12 h-12 bg-brand-maroon/10 rounded-full flex items-center justify-center">
-                <span className="font-serif font-bold text-brand-maroon">R</span>
-              </div>
-              <div className="text-left">
-                <p className="font-semibold text-brand-maroon text-sm">Ramesh K.</p>
-                <p className="text-xs text-brand-umber/40 ledger-data">Parent · PCMCs, Batch 2024</p>
-              </div>
-            </div>
-            <p className="text-[10px] text-brand-umber/25 mt-8">Real testimonial with consent will replace this representative quote.</p>
-          </Reveal>
-        </div>
-      </section>
+      <ReviewsSection />
 
       {/* ════════════════════ FINAL CTA ════════════════════ */}
       <section className="relative py-32 md:py-40 overflow-hidden">
