@@ -40,10 +40,16 @@ const HeroScene = dynamic(() => import("@/components/3d/hero-scene"), {
 });
 
 import { ReviewsSection } from "@/components/ui/reviews";
+import { ResultPopup } from "@/components/ui/result-popup";
+import { AdmissionsPopup } from "@/components/ui/admissions-popup";
 
 export default function Home() {
   return (
     <>
+      {/* Popups */}
+      <ResultPopup />
+      <AdmissionsPopup />
+
       {/* ════════════════════ HERO ════════════════════ */}
       <section className="relative min-h-screen flex items-center overflow-hidden bg-brand-maroon-deep">
         {/* Fallback Background image */}
@@ -397,47 +403,7 @@ export default function Home() {
       {/* ════════════════════ TESTIMONIAL ════════════════════ */}
       <ReviewsSection />
 
-      {/* ════════════════════ FINAL CTA ════════════════════ */}
-      <section className="relative py-32 md:py-40 overflow-hidden">
-        <Image
-          src="/images/campus-hero.png"
-          alt="BGS campus"
-          fill
-          className="object-cover"
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-brand-maroon-deep/90" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_rgba(232,135,30,0.15)_0%,_transparent_60%)]" />
-        <div className="relative z-10 px-6 md:px-12 max-w-3xl mx-auto text-center">
-          <Reveal>
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-saffron mb-6">
-              Admissions Open
-            </p>
-            <h2 className="text-4xl md:text-6xl font-serif font-bold text-brand-cream mb-8 leading-tight">
-              The Right School Changes Everything.
-            </h2>
-            <p className="text-brand-cream/50 mb-12 text-lg leading-relaxed max-w-xl mx-auto">
-              Admissions are open for LKG through 2nd PU across all streams. 
-              Visit the campus, meet the faculty, or start your application today.
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link href="/contact" className={cn(buttonVariants({ size: "lg" }), "group px-10 py-6 text-base transition-all duration-300 hover:-translate-y-0.5 btn-ripple border border-transparent hover:border-brand-saffron")}>
-                Enquire for Admissions
-                <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-              </Link>
-              <a
-                href="https://wa.me/919901923097"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 px-6 py-4 text-brand-cream/50 hover:text-brand-cream text-sm transition-colors duration-300"
-              >
-                <MessageCircle className="w-4 h-4 text-brand-saffron" />
-                <span className="ledger-data">+91 99019 23097</span>
-              </a>
-            </div>
-          </Reveal>
-        </div>
-      </section>
+
     </>
   );
 }
