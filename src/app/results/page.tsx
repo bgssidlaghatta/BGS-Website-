@@ -12,7 +12,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Reveal, AnimatedCounter, motion, staggerContainer, fadeUp } from "@/lib/animations";
+import { Reveal, StaggerReveal, ParallaxLayer, AnimatedCounter, motion, staggerContainer, fadeUp } from "@/lib/animations";
 import { Trophy, TrendingUp, Award, Medal, ChevronRight, ArrowUpRight } from "lucide-react";
 
 const sslcResults = [
@@ -65,7 +65,7 @@ export default function ResultsPage() {
             { value: 3, suffix: "", label: "PU Streams", icon: Medal, sub: "PCMB · PCMCs · Commerce" },
           ].map((stat, i) => (
             <div key={i} className="py-12 px-6 text-center group">
-              <stat.icon className="w-5 h-5 text-brand-saffron mx-auto mb-3 group-hover:scale-110 transition-transform" />
+              <stat.icon className="w-5 h-5 text-brand-saffron mx-auto mb-3 icon-hover-rotate" />
               <div className="ledger-data text-4xl md:text-5xl font-bold text-brand-maroon mb-2">
                 <AnimatedCounter value={stat.value} suffix={stat.suffix} />
               </div>
@@ -79,61 +79,65 @@ export default function ResultsPage() {
       {/* ════════════════════ RESULTS LINKS ════════════════════ */}
       <section className="py-28 bg-brand-cream paper-texture">
         <div className="px-6 md:px-12 max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-3 gap-8">
-            {/* SSLC Link */}
-            <Reveal delay={0.1}>
-              <Link href="/results/sslc" className="block group h-full">
-                <div className="bg-white rounded-3xl p-10 h-full shadow-xl border-t-4 border-brand-maroon hover:-translate-y-2 transition-all duration-300 relative overflow-hidden">
-                  <div className="absolute right-0 top-0 opacity-5 group-hover:opacity-10 transition-opacity">
-                    <Trophy className="w-32 h-32 -mt-4 -mr-4 text-brand-maroon" />
+          <StaggerReveal staggerDelay={0.1}>
+            <div className="grid md:grid-cols-3 gap-8">
+              {/* SSLC Link */}
+              <motion.div variants={fadeUp} className="h-full">
+                <Link href="/results/sslc" className="block group h-full">
+                  <div className="bg-white rounded-3xl p-10 h-full shadow-xl border-t-4 border-brand-maroon card-lift relative overflow-hidden">
+                    <div className="absolute right-0 top-0 opacity-5 group-hover:opacity-10 transition-opacity">
+                      <Trophy className="w-32 h-32 -mt-4 -mr-4 text-brand-maroon" />
+                    </div>
+                    <h3 className="text-2xl font-serif font-bold text-brand-maroon mb-4">SSLC Board Results</h3>
+                    <p className="text-brand-umber/60 leading-relaxed mb-8">View the remarkable performance of our high school students in the state board examinations.</p>
+                    <div className="flex items-center text-brand-saffron font-bold text-sm uppercase tracking-widest group-hover:text-brand-maroon transition-colors">
+                      View Results <ArrowUpRight className="w-4 h-4 ml-2 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                    </div>
                   </div>
-                  <h3 className="text-2xl font-serif font-bold text-brand-maroon mb-4">SSLC Board Results</h3>
-                  <p className="text-brand-umber/60 leading-relaxed mb-8">View the remarkable performance of our high school students in the state board examinations.</p>
-                  <div className="flex items-center text-brand-saffron font-bold text-sm uppercase tracking-widest group-hover:text-brand-maroon transition-colors">
-                    View Results <ArrowUpRight className="w-4 h-4 ml-2 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                  </div>
-                </div>
-              </Link>
-            </Reveal>
+                </Link>
+              </motion.div>
 
-            {/* PU Link */}
-            <Reveal delay={0.2}>
-              <Link href="/results/pu" className="block group h-full">
-                <div className="bg-brand-maroon-deep rounded-3xl p-10 h-full shadow-xl border-t-4 border-brand-saffron hover:-translate-y-2 transition-all duration-300 relative overflow-hidden">
-                  <div className="absolute right-0 top-0 opacity-5 group-hover:opacity-10 transition-opacity">
-                    <Medal className="w-32 h-32 -mt-4 -mr-4 text-brand-cream" />
+              {/* PU Link */}
+              <motion.div variants={fadeUp} className="h-full">
+                <Link href="/results/pu" className="block group h-full">
+                  <div className="bg-brand-maroon-deep rounded-3xl p-10 h-full shadow-xl border-t-4 border-brand-saffron card-lift relative overflow-hidden">
+                    <div className="absolute right-0 top-0 opacity-5 group-hover:opacity-10 transition-opacity">
+                      <Medal className="w-32 h-32 -mt-4 -mr-4 text-brand-cream" />
+                    </div>
+                    <h3 className="text-2xl font-serif font-bold text-brand-cream mb-4">PU Board Results</h3>
+                    <p className="text-brand-cream/60 leading-relaxed mb-8">Detailed breakdown of our PCMB, PCMCs, and Commerce streams in the Pre-University exams.</p>
+                    <div className="flex items-center text-brand-saffron font-bold text-sm uppercase tracking-widest group-hover:text-white transition-colors">
+                      View Results <ArrowUpRight className="w-4 h-4 ml-2 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                    </div>
                   </div>
-                  <h3 className="text-2xl font-serif font-bold text-brand-cream mb-4">PU Board Results</h3>
-                  <p className="text-brand-cream/60 leading-relaxed mb-8">Detailed breakdown of our PCMB, PCMCs, and Commerce streams in the Pre-University exams.</p>
-                  <div className="flex items-center text-brand-saffron font-bold text-sm uppercase tracking-widest group-hover:text-white transition-colors">
-                    View Results <ArrowUpRight className="w-4 h-4 ml-2 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                  </div>
-                </div>
-              </Link>
-            </Reveal>
+                </Link>
+              </motion.div>
 
-            {/* Competitive Link */}
-            <Reveal delay={0.3}>
-              <Link href="/results/competitive" className="block group h-full">
-                <div className="bg-white rounded-3xl p-10 h-full shadow-xl border-t-4 border-brand-gold hover:-translate-y-2 transition-all duration-300 relative overflow-hidden">
-                  <div className="absolute right-0 top-0 opacity-5 group-hover:opacity-10 transition-opacity">
-                    <TrendingUp className="w-32 h-32 -mt-4 -mr-4 text-brand-gold" />
+              {/* Competitive Link */}
+              <motion.div variants={fadeUp} className="h-full">
+                <Link href="/results/competitive" className="block group h-full">
+                  <div className="bg-white rounded-3xl p-10 h-full shadow-xl border-t-4 border-brand-gold card-lift relative overflow-hidden">
+                    <div className="absolute right-0 top-0 opacity-5 group-hover:opacity-10 transition-opacity">
+                      <TrendingUp className="w-32 h-32 -mt-4 -mr-4 text-brand-gold" />
+                    </div>
+                    <h3 className="text-2xl font-serif font-bold text-brand-maroon mb-4">Entrance Exams</h3>
+                    <p className="text-brand-umber/60 leading-relaxed mb-8">Our track record in national competitive examinations including NEET, CET, and JEE Main.</p>
+                    <div className="flex items-center text-brand-saffron font-bold text-sm uppercase tracking-widest group-hover:text-brand-maroon transition-colors">
+                      View Results <ArrowUpRight className="w-4 h-4 ml-2 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                    </div>
                   </div>
-                  <h3 className="text-2xl font-serif font-bold text-brand-maroon mb-4">Entrance Exams</h3>
-                  <p className="text-brand-umber/60 leading-relaxed mb-8">Our track record in national competitive examinations including NEET, CET, and JEE Main.</p>
-                  <div className="flex items-center text-brand-saffron font-bold text-sm uppercase tracking-widest group-hover:text-brand-maroon transition-colors">
-                    View Results <ArrowUpRight className="w-4 h-4 ml-2 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                  </div>
-                </div>
-              </Link>
-            </Reveal>
-          </div>
+                </Link>
+              </motion.div>
+            </div>
+          </StaggerReveal>
         </div>
       </section>
 
       {/* ════════════════════ CTA ════════════════════ */}
       <section className="relative py-28 overflow-hidden">
-        <Image src="/images/campus-hero.png" alt="BGS campus" fill className="object-cover" sizes="100vw" />
+        <ParallaxLayer speed={0.3} className="absolute inset-0 w-full h-[120%] -top-[10%]">
+          <Image src="/images/campus-hero.png" alt="BGS campus" fill className="object-cover" sizes="100vw" />
+        </ParallaxLayer>
         <div className="absolute inset-0 bg-brand-maroon-deep/90" />
         <div className="relative z-10 px-6 md:px-12 max-w-3xl mx-auto text-center">
           <Reveal>
@@ -144,7 +148,7 @@ export default function ResultsPage() {
               The students on this page were once in your shoes — researching schools, 
               weighing options. They chose BGS. Their results did the rest.
             </p>
-            <Link href="/contact" className={cn(buttonVariants({ size: "lg" }), "group shadow-2xl shadow-primary/30 hover:shadow-primary/50 hover:-translate-y-0.5 transition-all duration-300 mt-6 px-10 py-6 text-base")}>
+            <Link href="/contact" className={cn(buttonVariants({ size: "lg" }), "group shadow-2xl shadow-primary/30 hover:shadow-primary/50 hover:-translate-y-0.5 transition-all duration-300 mt-6 px-10 py-6 text-base btn-ripple")}>
               Start the Admission Process
               <ChevronRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
             </Link>

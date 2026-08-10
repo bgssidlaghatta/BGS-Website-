@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { Reveal, motion, staggerContainer, fadeUp } from "@/lib/animations";
+import { Reveal, StaggerReveal, ParallaxLayer, motion, staggerContainer, fadeUp } from "@/lib/animations";
 import { Atom, Calculator, Briefcase, Beaker, ChevronRight, ArrowRight, CheckCircle, Clock, Target } from "lucide-react";
 
 export default function AcademicsPage() {
@@ -12,14 +12,16 @@ export default function AcademicsPage() {
     <>
       {/* ════════════════════ HERO ════════════════════ */}
       <section className="relative min-h-[60vh] flex items-end overflow-hidden">
-        <Image
-          src="/images/classroom.png"
-          alt="BGS classroom with students learning"
-          fill
-          priority
-          className="object-cover"
-          sizes="100vw"
-        />
+        <ParallaxLayer speed={0.3} className="absolute inset-0 w-full h-[120%] -top-[10%]">
+          <Image
+            src="/images/classroom.png"
+            alt="BGS classroom with students learning"
+            fill
+            priority
+            className="object-cover"
+            sizes="100vw"
+          />
+        </ParallaxLayer>
         <div className="absolute inset-0 bg-gradient-to-t from-brand-maroon-deep via-brand-maroon-deep/60 to-transparent" />
         <div className="relative z-10 px-6 md:px-12 lg:px-20 max-w-7xl mx-auto w-full pb-20 pt-40">
           <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
@@ -83,8 +85,8 @@ export default function AcademicsPage() {
               </div>
             </Reveal>
             <Reveal direction="right">
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl border-2 border-brand-cream-dark aspect-video lg:aspect-square">
-                <Image src="/images/classroom.png" alt="Kindergarten students" fill className="object-cover" />
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl border-2 border-brand-cream-dark aspect-video lg:aspect-square group">
+                <Image src="/images/classroom.png" alt="Kindergarten students" fill className="object-cover group-hover:scale-105 transition-transform duration-700" />
               </div>
             </Reveal>
           </div>
@@ -124,8 +126,8 @@ export default function AcademicsPage() {
               </div>
             </Reveal>
             <Reveal direction="left">
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl border-2 border-brand-cream-dark aspect-video lg:aspect-square">
-                <Image src="/images/library.png" alt="Primary school learning" fill className="object-cover" />
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl border-2 border-brand-cream-dark aspect-video lg:aspect-square group">
+                <Image src="/images/library.png" alt="Primary school learning" fill className="object-cover group-hover:scale-105 transition-transform duration-700" />
               </div>
             </Reveal>
           </div>
@@ -165,8 +167,8 @@ export default function AcademicsPage() {
               </div>
             </Reveal>
             <Reveal direction="right">
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl border-2 border-brand-cream-dark aspect-video lg:aspect-square">
-                <Image src="/images/science-lab.png" alt="High school lab" fill className="object-cover" />
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl border-2 border-brand-cream-dark aspect-video lg:aspect-square group">
+                <Image src="/images/science-lab.png" alt="High school lab" fill className="object-cover group-hover:scale-105 transition-transform duration-700" />
                 <div className="absolute -bottom-6 -left-6 bg-brand-maroon-deep rounded-xl p-6 shadow-2xl hidden sm:block">
                   <p className="ledger-data text-4xl font-bold text-brand-gold mb-1">99%</p>
                   <p className="text-[10px] text-brand-cream/60 uppercase tracking-widest">SSLC Pass Rate</p>
@@ -195,66 +197,66 @@ export default function AcademicsPage() {
             </div>
           </Reveal>
 
-          <div className="grid md:grid-cols-3 gap-6">
-            {[
-              {
-                icon: Atom,
-                name: "PCMB",
-                full: "Physics · Chemistry · Mathematics · Biology",
-                gradient: "from-[#5C1A1B] to-[#3D0F10]",
-                subjects: ["Physics", "Chemistry", "Mathematics", "Biology"],
-                coaching: "NEET + CET",
-                ideal: "Medical, Dental, Pharma, Bio-Sciences, Allied Health",
-                features: [
-                  "Daily NEET-pattern MCQ practice",
-                  "Weekly full-length mock tests",
-                  "Chapter-wise error analysis",
-                  "One-on-one doubt clearing sessions",
-                ],
-                highlight: "100%",
-                highlightLabel: "Board Pass Rate",
-              },
-              {
-                icon: Calculator,
-                name: "PCMCs",
-                full: "Physics · Chemistry · Mathematics · Computer Science",
-                gradient: "from-[#3D0F10] to-[#2B1B12]",
-                subjects: ["Physics", "Chemistry", "Mathematics", "Computer Science"],
-                coaching: "JEE + CET",
-                ideal: "Engineering, IT, Data Science, Technology",
-                features: [
-                  "Integrated CET & JEE preparation",
-                  "Programming fundamentals in CS",
-                  "Advanced problem-solving drills",
-                  "Competitive coding exposure",
-                ],
-                highlight: "98%",
-                highlightLabel: "Top Score",
-              },
-              {
-                icon: Briefcase,
-                name: "Commerce",
-                full: "Accountancy · Business Studies · Economics",
-                gradient: "from-[#5C1A1B] to-[#3D0F10]",
-                subjects: ["Accountancy", "Business Studies", "Economics", "Statistics / Elective"],
-                coaching: "CA Foundation Prep",
-                ideal: "Chartered Accountancy, Finance, MBA, Entrepreneurship",
-                features: [
-                  "Practical accounting exercises",
-                  "Case study based learning",
-                  "Mock financial statement preparation",
-                  "Industry guest lectures",
-                ],
-                highlight: "50+",
-                highlightLabel: "Distinctions",
-              },
-            ].map((stream, i) => (
-              <Reveal key={i} delay={i * 0.12}>
-                <div className="group bg-brand-cream rounded-2xl overflow-hidden border border-brand-maroon/5 hover:shadow-2xl hover:shadow-brand-maroon/10 transition-all duration-500 hover:-translate-y-1 h-full flex flex-col">
+          <StaggerReveal staggerDelay={0.1}>
+            <div className="grid md:grid-cols-3 gap-6">
+              {[
+                {
+                  icon: Atom,
+                  name: "PCMB",
+                  full: "Physics · Chemistry · Mathematics · Biology",
+                  gradient: "from-[#5C1A1B] to-[#3D0F10]",
+                  subjects: ["Physics", "Chemistry", "Mathematics", "Biology"],
+                  coaching: "NEET + CET",
+                  ideal: "Medical, Dental, Pharma, Bio-Sciences, Allied Health",
+                  features: [
+                    "Daily NEET-pattern MCQ practice",
+                    "Weekly full-length mock tests",
+                    "Chapter-wise error analysis",
+                    "One-on-one doubt clearing sessions",
+                  ],
+                  highlight: "100%",
+                  highlightLabel: "Board Pass Rate",
+                },
+                {
+                  icon: Calculator,
+                  name: "PCMCs",
+                  full: "Physics · Chemistry · Mathematics · Computer Science",
+                  gradient: "from-[#3D0F10] to-[#2B1B12]",
+                  subjects: ["Physics", "Chemistry", "Mathematics", "Computer Science"],
+                  coaching: "JEE + CET",
+                  ideal: "Engineering, IT, Data Science, Technology",
+                  features: [
+                    "Integrated CET & JEE preparation",
+                    "Programming fundamentals in CS",
+                    "Advanced problem-solving drills",
+                    "Competitive coding exposure",
+                  ],
+                  highlight: "98%",
+                  highlightLabel: "Top Score",
+                },
+                {
+                  icon: Briefcase,
+                  name: "Commerce",
+                  full: "Accountancy · Business Studies · Economics",
+                  gradient: "from-[#5C1A1B] to-[#3D0F10]",
+                  subjects: ["Accountancy", "Business Studies", "Economics", "Statistics / Elective"],
+                  coaching: "CA Foundation Prep",
+                  ideal: "Chartered Accountancy, Finance, MBA, Entrepreneurship",
+                  features: [
+                    "Practical accounting exercises",
+                    "Case study based learning",
+                    "Mock financial statement preparation",
+                    "Industry guest lectures",
+                  ],
+                  highlight: "50+",
+                  highlightLabel: "Distinctions",
+                },
+              ].map((stream, i) => (
+                <motion.div key={i} variants={fadeUp} className="group bg-brand-cream rounded-2xl overflow-hidden border border-brand-maroon/5 card-lift h-full flex flex-col">
                   {/* Header */}
                   <div className={`bg-gradient-to-br ${stream.gradient} p-8 pb-10 relative`}>
                     <div className="absolute top-0 right-0 w-32 h-32 bg-brand-cream/5 rounded-bl-[80px]" />
-                    <stream.icon className="w-10 h-10 text-brand-saffron mb-4 relative z-10" />
+                    <stream.icon className="w-10 h-10 text-brand-saffron mb-4 relative z-10 icon-hover-rotate" />
                     <h3 className="ledger-data text-4xl font-bold text-brand-cream mb-1 relative z-10">{stream.name}</h3>
                     <p className="text-xs text-brand-cream/30 relative z-10">{stream.full}</p>
                     <div className="absolute -bottom-5 right-8 bg-brand-offwhite px-4 py-2 rounded-lg shadow-lg border border-brand-maroon/5">
@@ -287,10 +289,10 @@ export default function AcademicsPage() {
                     <span className="ledger-data text-3xl font-bold text-brand-gold">{stream.highlight}</span>
                     <span className="text-[10px] font-semibold uppercase tracking-widest text-brand-umber/40">{stream.highlightLabel}</span>
                   </div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
+                </motion.div>
+              ))}
+            </div>
+          </StaggerReveal>
         </div>
       </section>
 
@@ -315,8 +317,8 @@ export default function AcademicsPage() {
               { icon: Beaker, title: "Hands-On Practicals", desc: "Daily lab sessions — not just during exams. Students learn by doing, building intuition that no amount of theory reading can replace." },
             ].map((method, i) => (
               <Reveal key={i} delay={i * 0.1}>
-                <div className="bg-brand-offwhite rounded-2xl p-8 border border-brand-maroon/5 text-center hover:shadow-lg transition-shadow h-full">
-                  <method.icon className="w-8 h-8 text-brand-saffron mx-auto mb-5" />
+                <div className="bg-brand-offwhite rounded-2xl p-8 border border-brand-maroon/5 text-center card-lift h-full">
+                  <method.icon className="w-8 h-8 text-brand-saffron mx-auto mb-5 icon-hover-rotate" />
                   <h3 className="font-serif text-lg font-bold text-brand-maroon mb-3">{method.title}</h3>
                   <p className="text-sm text-brand-umber/60 leading-relaxed">{method.desc}</p>
                 </div>
@@ -339,7 +341,7 @@ export default function AcademicsPage() {
               Our academic counsellors can help you choose the right program based on your child&apos;s 
               strengths and career goals. No pressure, no hard sell — just honest guidance.
             </p>
-            <Link href="/contact" className={cn(buttonVariants({ size: "lg" }), "group shadow-2xl shadow-primary/30 hover:shadow-primary/50 hover:-translate-y-0.5 transition-all duration-300 mt-6 px-10 py-6 text-base")}>
+            <Link href="/contact" className={cn(buttonVariants({ size: "lg" }), "group shadow-2xl shadow-primary/30 hover:shadow-primary/50 hover:-translate-y-0.5 transition-all duration-300 mt-6 px-10 py-6 text-base btn-ripple")}>
               Talk to a Counsellor
               <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
             </Link>

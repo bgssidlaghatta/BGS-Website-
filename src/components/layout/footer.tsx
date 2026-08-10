@@ -1,8 +1,11 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import { MapPin, Phone, Mail, ArrowUpRight } from "lucide-react";
+import { MapPin, Phone, Mail, ArrowUpRight, MessageCircle } from "lucide-react";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { Reveal, StaggerReveal, StaggerItem } from "@/lib/animations";
 
 export function Footer() {
   return (
@@ -12,9 +15,9 @@ export function Footer() {
 
       {/* Main footer grid */}
       <div className="px-6 md:px-12 max-w-7xl mx-auto pt-20 pb-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8">
+        <StaggerReveal className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8">
           {/* Brand column */}
-          <div className="lg:col-span-4">
+          <StaggerItem className="lg:col-span-4">
             <div className="flex items-center gap-3 mb-6">
               <div className="relative w-16 h-16 bg-white rounded-full shadow-lg overflow-hidden border-2 border-brand-cream">
                 <Image
@@ -27,7 +30,7 @@ export function Footer() {
               <div>
               <p className="font-serif font-bold text-lg text-brand-cream leading-tight">BGS Public School</p>
               <p className="text-[11px] font-medium text-brand-saffron uppercase tracking-[0.2em] mb-3">& PU College</p>
-              <p className="text-xs font-semibold text-brand-cream/80 italic tracking-wide">"Come to Learn, Go to Serve"</p>
+              <p className="text-xs font-semibold text-brand-cream/80 italic tracking-wide">&quot;Come to Learn, Go to Serve&quot;</p>
             </div>
           </div>
           <p className="text-brand-cream/60 text-sm leading-relaxed max-w-xs mb-8">
@@ -37,10 +40,10 @@ export function Footer() {
               <MapPin className="w-4 h-4 shrink-0" />
               <address className="not-italic">Sidlaghatta, Karnataka, India</address>
             </div>
-          </div>
+          </StaggerItem>
 
           {/* Quick Links */}
-          <div className="lg:col-span-2 lg:col-start-6">
+          <StaggerItem className="lg:col-span-2 lg:col-start-6">
             <h4 className="text-xs font-semibold uppercase tracking-[0.25em] text-brand-saffron mb-6">Navigate</h4>
             <ul className="space-y-3">
               {[
@@ -58,39 +61,39 @@ export function Footer() {
                     className="text-sm text-brand-cream/60 hover:text-brand-saffron transition-colors duration-300 inline-flex items-center gap-1 group"
                   >
                     {link.name}
-                    <ArrowUpRight className="w-3 h-3 opacity-0 -translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300" />
+                    <ArrowUpRight className="w-3 h-3 opacity-0 -translate-y-1 translate-x-0 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0.5 transition-all duration-300" />
                   </Link>
                 </li>
               ))}
             </ul>
-          </div>
+          </StaggerItem>
 
           {/* Programs */}
-          <div className="lg:col-span-2">
+          <StaggerItem className="lg:col-span-2">
             <h4 className="text-xs font-semibold uppercase tracking-[0.25em] text-brand-saffron mb-6">Programs</h4>
             <ul className="space-y-3">
               {["School (LKG–10th)", "PU — PCMB", "PU — PCMCs", "PU — Commerce"].map((item) => (
                 <li key={item} className="text-sm text-brand-cream/60">{item}</li>
               ))}
             </ul>
-          </div>
+          </StaggerItem>
 
           {/* Contact */}
-          <div className="lg:col-span-4">
+          <StaggerItem className="lg:col-span-4">
             <h4 className="text-xs font-semibold uppercase tracking-[0.25em] text-brand-saffron mb-6">Get in Touch</h4>
             <div className="space-y-4 mb-8">
-              <a href="tel:+910000000000" className="flex items-center gap-3 text-sm text-brand-cream/60 hover:text-brand-cream transition-colors">
-                <Phone className="w-4 h-4 text-brand-saffron" /> +91 00000 00000
+              <a href="https://wa.me/919901923097" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-sm text-brand-cream/60 hover:text-brand-cream transition-colors duration-200">
+                <MessageCircle className="w-4 h-4 text-brand-saffron" /> +91 99019 23097
               </a>
-              <a href="mailto:info@bgssidlaghatta.edu.in" className="flex items-center gap-3 text-sm text-brand-cream/60 hover:text-brand-cream transition-colors">
+              <a href="mailto:info@bgssidlaghatta.edu.in" className="flex items-center gap-3 text-sm text-brand-cream/60 hover:text-brand-cream transition-colors duration-200">
                 <Mail className="w-4 h-4 text-brand-saffron" /> info@bgssidlaghatta.edu.in
               </a>
             </div>
-            <Link href="/contact" className={cn(buttonVariants({ size: "lg" }), "shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-0.5")}>
+            <Link href="/contact" className={cn(buttonVariants({ size: "lg" }), "shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-0.5 btn-ripple")}>
               Enquire for Admission
             </Link>
-          </div>
-        </div>
+          </StaggerItem>
+        </StaggerReveal>
       </div>
 
       {/* Bottom bar */}

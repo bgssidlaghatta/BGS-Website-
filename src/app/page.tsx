@@ -8,6 +8,9 @@ import { Badge } from "@/components/ui/badge";
 import {
   Reveal,
   AnimatedCounter,
+  ImageReveal,
+  StaggerReveal,
+  StaggerItem,
   motion,
   staggerContainer,
   fadeUp,
@@ -21,6 +24,7 @@ import {
   Dumbbell,
   ArrowRight,
   Phone,
+  MessageCircle,
   Star,
   ChevronRight,
   Quote,
@@ -110,16 +114,18 @@ export default function Home() {
               variants={fadeUp}
               className="flex flex-col sm:flex-row items-start gap-4"
             >
-              <Link href="/contact" className={cn(buttonVariants({ size: "lg" }), "group px-8 py-6 text-base shadow-2xl shadow-primary/30 hover:shadow-primary/50 hover:-translate-y-0.5 transition-all duration-300")}>
+              <Link href="/contact" className={cn(buttonVariants({ size: "lg" }), "group px-8 py-6 text-base hover:-translate-y-0.5 transition-all duration-300 btn-ripple border border-transparent hover:border-brand-saffron")}>
                 Start Your Admission
                 <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
               </Link>
               <a
-                href="tel:+910000000000"
-                className="flex items-center gap-3 px-6 py-4 text-brand-cream/50 hover:text-brand-cream text-sm transition-colors border border-brand-cream/10 rounded-xl hover:border-brand-cream/20"
+                href="https://wa.me/919901923097"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 px-6 py-4 text-brand-cream/50 hover:text-brand-cream text-sm transition-colors border border-brand-cream/10 rounded-xl hover:border-brand-cream/20 hover:bg-brand-cream/5 duration-300"
               >
-                <Phone className="w-4 h-4 text-brand-saffron" />
-                <span className="ledger-data">+91 00000 00000</span>
+                <MessageCircle className="w-4 h-4 text-brand-saffron" />
+                <span className="ledger-data">+91 99019 23097</span>
               </a>
             </motion.div>
           </motion.div>
@@ -151,19 +157,21 @@ export default function Home() {
             { value: 50, suffix: "+", label: "Distinctions", sub: "Across All Streams" },
             { value: 25, suffix: "+", label: "Years of Trust", sub: "Since Founding" },
           ].map((stat, i) => (
-            <div key={i} className="py-10 md:py-14 px-4 md:px-8 text-center group">
-              <div className="ledger-data text-3xl md:text-5xl font-bold text-brand-cream mb-2">
-                <AnimatedCounter value={stat.value} suffix={stat.suffix} />
+            <Reveal key={i} delay={i * 0.1}>
+              <div className="py-10 md:py-14 px-4 md:px-8 text-center group">
+                <div className="ledger-data text-3xl md:text-5xl font-bold text-brand-cream mb-2">
+                  <AnimatedCounter value={stat.value} suffix={stat.suffix} />
+                </div>
+                <p className="text-[11px] font-semibold text-brand-cream/60 uppercase tracking-widest">{stat.label}</p>
+                <p className="text-[10px] text-brand-cream/30 mt-1 ledger-data">{stat.sub}</p>
               </div>
-              <p className="text-[11px] font-semibold text-brand-cream/60 uppercase tracking-widest">{stat.label}</p>
-              <p className="text-[10px] text-brand-cream/30 mt-1 ledger-data">{stat.sub}</p>
-            </div>
+            </Reveal>
           ))}
         </div>
       </section>
 
       {/* ════════════════════ WHY BGS — editorial layout ════════════════════ */}
-      <section className="py-28 md:py-36 bg-brand-cream paper-texture">
+      <section className="py-36 md:py-48 bg-white">
         <div className="relative z-10 px-6 md:px-12 max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-12 gap-16 items-start">
             {/* Left — section intro */}
@@ -175,7 +183,7 @@ export default function Home() {
                 <h2 className="text-4xl md:text-5xl font-serif font-bold text-brand-maroon mb-6 leading-tight">
                   Not Just a School. <br />A Launchpad.
                 </h2>
-                <div className="h-[2px] w-16 bg-brand-saffron mb-8" />
+                <div className="h-[2px] w-16 bg-brand-saffron mb-8 line-grow-in" />
                 <p className="text-brand-umber/60 text-lg leading-relaxed mb-8">
                   Parents don&apos;t choose BGS because of brochures. They choose us because 
                   their neighbour&apos;s child scored 590/600 here, because our teachers stay after 
@@ -221,10 +229,10 @@ export default function Home() {
                 },
               ].map((pillar, i) => (
                 <Reveal key={i} delay={i * 0.08}>
-                  <div className="group flex gap-6 bg-brand-offwhite rounded-2xl p-8 border border-brand-maroon/5 hover:border-brand-saffron/20 transition-all duration-500 hover:shadow-xl hover:shadow-brand-maroon/5">
+                  <div className="group flex gap-6 bg-white p-8 border-b border-border hover:border-brand-saffron/40 transition-all duration-500">
                     <div className="shrink-0 hidden md:block">
                       <div className="w-14 h-14 rounded-xl bg-brand-maroon/5 flex items-center justify-center text-brand-saffron group-hover:bg-brand-saffron/10 transition-colors duration-300">
-                        <pillar.icon className="w-7 h-7" />
+                        <pillar.icon className="w-7 h-7 icon-hover-rotate" />
                       </div>
                     </div>
                     <div className="flex-1">
@@ -247,7 +255,7 @@ export default function Home() {
       <section className="relative overflow-hidden">
         <div className="grid lg:grid-cols-2 min-h-[700px]">
           {/* Image half */}
-          <div className="relative h-[400px] lg:h-auto">
+          <ImageReveal className="relative h-[400px] lg:h-auto">
             <Image
               src="/images/classroom.png"
               alt="BGS students in classroom"
@@ -256,7 +264,7 @@ export default function Home() {
               sizes="50vw"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-transparent to-brand-maroon-deep/30 lg:hidden" />
-          </div>
+          </ImageReveal>
 
           {/* Content half */}
           <div className="bg-brand-maroon-deep px-8 md:px-16 py-20 flex items-center relative">
@@ -269,7 +277,7 @@ export default function Home() {
                 <h2 className="text-3xl md:text-4xl font-serif font-bold text-brand-cream mb-6 leading-tight">
                   A Seamless Journey from LKG to Career-Ready
                 </h2>
-                <div className="h-[2px] w-12 bg-brand-saffron mb-8" />
+                <div className="h-[2px] w-12 bg-brand-saffron mb-8 line-grow-in" />
 
                 <div className="space-y-6 mb-10">
                   <div className="flex gap-4">
@@ -290,7 +298,7 @@ export default function Home() {
                           { name: "PCMCs", sub: "Engineering / IT" },
                           { name: "Commerce", sub: "Business / CA" },
                         ].map((s) => (
-                          <div key={s.name} className="px-4 py-3 bg-brand-cream/5 border border-brand-cream/10 rounded-xl hover:border-brand-saffron/30 transition-colors cursor-default">
+                          <div key={s.name} className="px-4 py-3 bg-brand-cream/5 border border-brand-cream/10 rounded-xl hover:border-brand-saffron/30 hover:bg-brand-cream/8 transition-all duration-300 cursor-default">
                             <span className="ledger-data text-base font-bold text-brand-cream block">{s.name}</span>
                             <span className="text-[9px] text-brand-cream/30 uppercase tracking-wider">{s.sub}</span>
                           </div>
@@ -300,7 +308,7 @@ export default function Home() {
                   </div>
                 </div>
 
-                <Link href="/academics" className={cn(buttonVariants({ size: "lg" }), "group shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-0.5 mt-4")}>
+                <Link href="/academics" className={cn(buttonVariants({ size: "lg" }), "group transition-all duration-300 hover:-translate-y-0.5 mt-4 btn-ripple border border-transparent hover:border-brand-saffron")}>
                   See Full Curriculum
                   <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                 </Link>
@@ -328,67 +336,75 @@ export default function Home() {
             </div>
           </Reveal>
 
-          {/* Bento grid */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
             {/* Large — Science Lab */}
-            <Reveal className="col-span-2 row-span-2">
-              <div className="relative h-full min-h-[400px] rounded-2xl overflow-hidden group">
+            <ImageReveal className="col-span-2 row-span-2">
+              <div className="relative h-full min-h-[400px] overflow-hidden group">
                 <Image src="/images/science-lab.png" alt="BGS science laboratory" fill className="object-cover group-hover:scale-105 transition-transform duration-700" sizes="50vw" />
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-maroon-deep/90 via-brand-maroon-deep/20 to-transparent" />
-                <div className="absolute bottom-0 left-0 p-8 z-10">
-                  <FlaskConical className="w-8 h-8 text-brand-saffron mb-3" />
+                <div className="absolute bottom-0 left-0 p-8 z-10 border-l-4 border-brand-saffron ml-4 mb-4">
                   <h3 className="font-serif text-2xl font-bold text-brand-cream mb-1">Science Laboratories</h3>
-                  <p className="text-sm text-brand-cream/50 max-w-xs">Fully equipped Physics, Chemistry & Biology labs with daily practical sessions.</p>
+                  <p className="text-sm text-brand-cream/70 max-w-xs">Fully equipped Physics, Chemistry & Biology labs with daily practical sessions.</p>
                 </div>
               </div>
-            </Reveal>
+            </ImageReveal>
 
             {/* Computer Lab */}
-            <Reveal delay={0.1}>
+            <ImageReveal delay={0.1}>
               <div className="relative aspect-square rounded-2xl overflow-hidden group">
                 <Image src="/images/computer-lab.png" alt="BGS computer laboratory" fill className="object-cover group-hover:scale-105 transition-transform duration-700" sizes="25vw" />
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-maroon-deep/80 to-transparent" />
                 <div className="absolute bottom-0 left-0 p-5 z-10">
-                  <Monitor className="w-6 h-6 text-brand-saffron mb-2" />
+                  <Monitor className="w-6 h-6 text-brand-saffron mb-2 icon-hover-rotate" />
                   <h3 className="font-serif text-base font-bold text-brand-cream">Computer Lab</h3>
                 </div>
               </div>
-            </Reveal>
+            </ImageReveal>
 
             {/* Library */}
-            <Reveal delay={0.15}>
+            <ImageReveal delay={0.15}>
               <div className="relative aspect-square rounded-2xl overflow-hidden group">
                 <Image src="/images/library.png" alt="BGS school library" fill className="object-cover group-hover:scale-105 transition-transform duration-700" sizes="25vw" />
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-maroon-deep/80 to-transparent" />
                 <div className="absolute bottom-0 left-0 p-5 z-10">
-                  <Library className="w-6 h-6 text-brand-saffron mb-2" />
+                  <Library className="w-6 h-6 text-brand-saffron mb-2 icon-hover-rotate" />
                   <h3 className="font-serif text-base font-bold text-brand-cream">Library</h3>
                   <p className="text-[11px] text-brand-cream/40">5,000+ books</p>
                 </div>
               </div>
-            </Reveal>
+            </ImageReveal>
 
             {/* Sports */}
-            <Reveal delay={0.2} className="col-span-2">
+            <ImageReveal delay={0.2} className="col-span-2">
               <div className="relative h-48 md:h-56 rounded-2xl overflow-hidden group">
                 <Image src="/images/sports-ground.png" alt="BGS sports ground" fill className="object-cover group-hover:scale-105 transition-transform duration-700" sizes="50vw" />
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-maroon-deep/80 to-transparent" />
                 <div className="absolute bottom-0 left-0 p-6 z-10">
-                  <Dumbbell className="w-6 h-6 text-brand-saffron mb-2" />
+                  <Dumbbell className="w-6 h-6 text-brand-saffron mb-2 icon-hover-rotate" />
                   <h3 className="font-serif text-lg font-bold text-brand-cream">Sports & Athletics</h3>
                   <p className="text-xs text-brand-cream/40">Cricket, basketball, athletics — indoor & outdoor facilities</p>
                 </div>
               </div>
-            </Reveal>
+            </ImageReveal>
           </div>
         </div>
       </section>
 
+      {/* Section Divider */}
+      <div className="section-divider" />
+
       {/* ════════════════════ TESTIMONIAL ════════════════════ */}
-      <section className="py-28 md:py-36 bg-brand-cream paper-texture relative">
+      <section className="py-28 md:py-36 bg-white relative">
         <div className="relative z-10 px-6 md:px-12 max-w-4xl mx-auto text-center">
-          <Reveal>
-            <Quote className="w-16 h-16 text-brand-maroon/8 mx-auto mb-8" />
+          <Reveal direction="scale">
+            <motion.div
+              initial={{ scale: 0.5, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <Quote className="w-16 h-16 text-brand-maroon/8 mx-auto mb-8" />
+            </motion.div>
             <blockquote className="font-serif text-2xl md:text-4xl text-brand-maroon leading-snug mb-10">
               &ldquo;My son scored 588 in his PU board exams and cleared CET in his first attempt. 
               The teachers at BGS treated him like their own child. We couldn&apos;t have 
@@ -432,16 +448,18 @@ export default function Home() {
               Visit the campus, meet the faculty, or start your application today.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link href="/contact" className={cn(buttonVariants({ size: "lg" }), "group px-10 py-6 text-base shadow-2xl shadow-primary/30 hover:shadow-primary/50 hover:-translate-y-0.5 transition-all duration-300")}>
+              <Link href="/contact" className={cn(buttonVariants({ size: "lg" }), "group px-10 py-6 text-base transition-all duration-300 hover:-translate-y-0.5 btn-ripple border border-transparent hover:border-brand-saffron")}>
                 Enquire for Admissions
                 <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
               </Link>
               <a
-                href="tel:+910000000000"
-                className="flex items-center gap-2 px-6 py-4 text-brand-cream/50 hover:text-brand-cream text-sm transition-colors"
+                href="https://wa.me/919901923097"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-6 py-4 text-brand-cream/50 hover:text-brand-cream text-sm transition-colors duration-300"
               >
-                <Phone className="w-4 h-4 text-brand-saffron" />
-                <span className="ledger-data">+91 00000 00000</span>
+                <MessageCircle className="w-4 h-4 text-brand-saffron" />
+                <span className="ledger-data">+91 99019 23097</span>
               </a>
             </div>
           </Reveal>

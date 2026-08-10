@@ -10,14 +10,14 @@
   --color-brand-maroon-deep: #3D0F10;
   --color-brand-saffron: #E8871E;
   --color-brand-saffron-light: #F5A84B;
-  --color-brand-cream: #FBF3E7;
-  --color-brand-cream-dark: #F0E4D0;
-  --color-brand-gold: #F2B705;
-  --color-brand-umber: #2B1B12;
-  --color-brand-offwhite: #FFFDF9;
+  --color-brand-cream: #FAFAFA;
+  --color-brand-cream-dark: #F3F4F6;
+  --color-brand-gold: #D97706; /* Refined gold */
+  --color-brand-umber: #111827; /* Near black instead of brown */
+  --color-brand-offwhite: #FFFFFF;
 
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-serif: var(--font-fraunces), ui-serif, Georgia, serif;
+  --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-cormorant), ui-serif, Georgia, serif;
   --font-mono: var(--font-space-grotesk), ui-monospace, SFMono-Regular, monospace;
 }
 
@@ -42,18 +42,11 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: -0.02em;
 }
 
-/* ── Paper texture overlay ── */
+/* ── Paper texture overlay (Removed for Premium Clean Look) ── */
 .paper-texture {
   position: relative;
 }
-.paper-texture::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-  pointer-events: none;
-  z-index: 1;
-}
+/* Removed pseudo-element noise to keep background pure */
 
 /* ── Ornamental Divider ── */
 .ornament-divider {
@@ -91,13 +84,172 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--color-brand-maroon-deep);
 }
 
-/* ── Reduced motion ── */
+/* ══════════════════ Animation Keyframes ══════════════════ */
+
+/* Floating shapes — very slow drift for decorative orbs */
+@keyframes float-slow {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(15px, -20px) scale(1.02); }
+  50% { transform: translate(-10px, 15px) scale(0.98); }
+  75% { transform: translate(20px, 10px) scale(1.01); }
+}
+
+@keyframes float-slower {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(-20px, 15px) scale(1.03); }
+  66% { transform: translate(15px, -10px) scale(0.97); }
+}
+
+@keyframes float-medium {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(10px, -15px); }
+}
+
+.animate-float-slow { animation: float-slow 25s ease-in-out infinite; }
+.animate-float-slower { animation: float-slower 35s ease-in-out infinite; }
+.animate-float-medium { animation: float-medium 20s ease-in-out infinite; }
+
+/* Shimmer — subtle light sweep for loading/skeleton */
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Pulse glow — removed for premium look */
+
+/* Gradient border shift */
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Line grow — for animated dividers */
+@keyframes line-grow {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+/* ══════════════════ Animation Utility Classes ══════════════════ */
+
+/* Card lift — Ultra-refined subtle lift */
+.card-lift {
+  transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 300ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+.card-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+}
+.card-lift:active {
+  transform: translateY(0) scale(0.99);
+}
+
+/* Button ripple — CSS-only ripple on click */
+.btn-ripple {
+  position: relative;
+  overflow: hidden;
+}
+.btn-ripple::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at var(--ripple-x, 50%) var(--ripple-y, 50%), rgba(255,255,255,0.3) 0%, transparent 60%);
+  transform: scale(0);
+  opacity: 0;
+  transition: transform 500ms cubic-bezier(0.22, 1, 0.36, 1), opacity 300ms ease;
+  pointer-events: none;
+}
+.btn-ripple:active::after {
+  transform: scale(2.5);
+  opacity: 1;
+  transition: transform 0ms, opacity 0ms;
+}
+
+/* Pulse glow utility removed */
+
+/* Shimmer utility — apply to a relative-positioned container */
+.animate-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.animate-shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+  animation: shimmer 2.5s ease-in-out infinite;
+}
+
+/* Section divider — animated gradient line */
+.section-divider {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-brand-saffron), transparent);
+  transform-origin: center;
+  opacity: 0.3;
+}
+
+/* Animated gradient line that grows on scroll-into-view */
+.line-grow-in {
+  transform-origin: left;
+  animation: line-grow 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Form focus enhancements */
+input:focus, textarea:focus, select:focus,
+[data-slot="select-trigger"]:focus {
+  transition: border-color 200ms ease, box-shadow 200ms ease;
+}
+input:focus, textarea:focus {
+  box-shadow: 0 0 0 3px rgba(232, 135, 30, 0.1);
+}
+
+/* Icon hover rotate */
+.icon-hover-rotate {
+  transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.group:hover .icon-hover-rotate,
+.icon-hover-rotate:hover {
+  transform: rotate(8deg) scale(1.1);
+}
+
+/* Nav link animated underline (enhanced) */
+.nav-underline {
+  position: relative;
+}
+.nav-underline::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--color-brand-saffron);
+  transform: translateX(-50%);
+  transition: width 300ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.nav-underline:hover::after {
+  width: 70%;
+}
+
+/* ══════════════════ Reduced Motion ══════════════════ */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+  .card-lift:hover {
+    transform: none;
+  }
+  .animate-float-slow,
+  .animate-float-slower,
+  .animate-float-medium,
+  .animate-pulse-glow,
+  .animate-shimmer::after {
+    animation: none !important;
   }
 }
 
@@ -152,71 +304,71 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 :root {
-  --background: #FBF3E7;
-  --foreground: #2B1B12;
-  --card: #FFFDF9;
-  --card-foreground: #2B1B12;
-  --popover: #FFFDF9;
-  --popover-foreground: #2B1B12;
+  --background: #FFFFFF;
+  --foreground: #111827;
+  --card: #FFFFFF;
+  --card-foreground: #111827;
+  --popover: #FFFFFF;
+  --popover-foreground: #111827;
   --primary: #E8871E;
-  --primary-foreground: #FFFDF9;
+  --primary-foreground: #FFFFFF;
   --secondary: #5C1A1B;
-  --secondary-foreground: #FBF3E7;
-  --muted: #F0E4D0;
+  --secondary-foreground: #FFFFFF;
+  --muted: #F3F4F6;
   --muted-foreground: #5C1A1B;
-  --accent: #F0E4D0;
+  --accent: #F3F4F6;
   --accent-foreground: #5C1A1B;
   --destructive: oklch(0.577 0.245 27.325);
-  --border: #E8871E33; /* Saffron at 20% opacity */
-  --input: #E8871E33;
+  --border: #E5E7EB; /* Crisp neutral border */
+  --input: #E5E7EB;
   --ring: #E8871E;
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
-  --radius: 0.625rem;
-  --sidebar: #FFFDF9;
-  --sidebar-foreground: #2B1B12;
+  --radius: 0; /* Sharp corners for premium feel */
+  --sidebar: #FFFFFF;
+  --sidebar-foreground: #111827;
   --sidebar-primary: #E8871E;
-  --sidebar-primary-foreground: #FFFDF9;
-  --sidebar-accent: #F0E4D0;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #F3F4F6;
   --sidebar-accent-foreground: #5C1A1B;
-  --sidebar-border: #E8871E33;
+  --sidebar-border: #E5E7EB;
   --sidebar-ring: #E8871E;
 }
 
 .dark {
-  --background: #2B1B12;
-  --foreground: #FBF3E7;
-  --card: #3D0F10;
-  --card-foreground: #FBF3E7;
-  --popover: #3D0F10;
-  --popover-foreground: #FBF3E7;
+  --background: #0C0A09;
+  --foreground: #FAFAFA;
+  --card: #1C1917;
+  --card-foreground: #FAFAFA;
+  --popover: #1C1917;
+  --popover-foreground: #FAFAFA;
   --primary: #E8871E;
-  --primary-foreground: #FFFDF9;
+  --primary-foreground: #FFFFFF;
   --secondary: #5C1A1B;
-  --secondary-foreground: #FBF3E7;
-  --muted: #3D0F10;
-  --muted-foreground: #F0E4D0;
-  --accent: #3D0F10;
-  --accent-foreground: #FBF3E7;
+  --secondary-foreground: #FAFAFA;
+  --muted: #292524;
+  --muted-foreground: #A8A29E;
+  --accent: #292524;
+  --accent-foreground: #FAFAFA;
   --destructive: oklch(0.704 0.191 22.216);
-  --border: #E8871E33;
-  --input: #E8871E33;
+  --border: #292524;
+  --input: #292524;
   --ring: #E8871E;
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
-  --sidebar: #2B1B12;
-  --sidebar-foreground: #FBF3E7;
+  --sidebar: #0C0A09;
+  --sidebar-foreground: #FAFAFA;
   --sidebar-primary: #E8871E;
-  --sidebar-primary-foreground: #FFFDF9;
-  --sidebar-accent: #3D0F10;
-  --sidebar-accent-foreground: #FBF3E7;
-  --sidebar-border: #E8871E33;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #292524;
+  --sidebar-accent-foreground: #FAFAFA;
+  --sidebar-border: #292524;
   --sidebar-ring: #E8871E;
 }
 

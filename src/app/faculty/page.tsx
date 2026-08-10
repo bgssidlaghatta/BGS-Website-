@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { Reveal, motion, staggerContainer, fadeUp } from "@/lib/animations";
+import { Reveal, StaggerReveal, ParallaxLayer, motion, staggerContainer, fadeUp } from "@/lib/animations";
 import { ChevronRight, ArrowRight } from "lucide-react";
 
 const departments = [
@@ -60,14 +60,16 @@ export default function FacultyPage() {
     <>
       {/* ════════════════════ HERO ════════════════════ */}
       <section className="relative min-h-[60vh] flex items-end overflow-hidden">
-        <Image
-          src="/images/classroom.png"
-          alt="BGS classroom with teacher and students"
-          fill
-          priority
-          className="object-cover"
-          sizes="100vw"
-        />
+        <ParallaxLayer speed={0.3} className="absolute inset-0 w-full h-[120%] -top-[10%]">
+          <Image
+            src="/images/classroom.png"
+            alt="BGS classroom with teacher and students"
+            fill
+            priority
+            className="object-cover"
+            sizes="100vw"
+          />
+        </ParallaxLayer>
         <div className="absolute inset-0 bg-gradient-to-t from-brand-maroon-deep via-brand-maroon-deep/60 to-transparent" />
         <div className="relative z-10 px-6 md:px-12 lg:px-20 max-w-7xl mx-auto w-full pb-20 pt-40">
           <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
@@ -108,7 +110,7 @@ export default function FacultyPage() {
                   {/* Department header */}
                   <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
                     <div>
-                      <div className={`h-1 w-16 bg-gradient-to-r ${dept.accent} rounded-full mb-4`} />
+                      <div className={`h-1 w-16 bg-gradient-to-r ${dept.accent} rounded-full mb-4 line-grow-in`} />
                       <h3 className="text-2xl md:text-3xl font-serif font-bold text-brand-maroon">{dept.name}</h3>
                       <p className="text-sm text-brand-umber/50 mt-2 max-w-md">{dept.desc}</p>
                     </div>
@@ -116,25 +118,27 @@ export default function FacultyPage() {
                   </div>
 
                   {/* Staff grid */}
-                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-                    {dept.staff.map((member, mi) => (
-                      <div key={mi} className="group bg-brand-offwhite rounded-2xl overflow-hidden border border-brand-maroon/5 hover:border-brand-saffron/20 hover:shadow-lg transition-all duration-500 hover:-translate-y-1">
-                        {/* Photo placeholder */}
-                        <div className="aspect-[4/5] bg-gradient-to-br from-brand-cream-dark to-brand-cream flex items-center justify-center relative overflow-hidden">
-                          <div className="w-16 h-16 rounded-full bg-brand-maroon/5 flex items-center justify-center">
-                            <span className="font-serif text-2xl font-bold text-brand-maroon/15">{member.subject[0]}</span>
+                  <StaggerReveal staggerDelay={0.06}>
+                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                      {dept.staff.map((member, mi) => (
+                        <motion.div key={mi} variants={fadeUp} className="group bg-brand-offwhite rounded-2xl overflow-hidden border border-brand-maroon/5 hover:border-brand-saffron/20 card-lift">
+                          {/* Photo placeholder */}
+                          <div className="aspect-[4/5] bg-gradient-to-br from-brand-cream-dark to-brand-cream flex items-center justify-center relative overflow-hidden">
+                            <div className="w-16 h-16 rounded-full bg-brand-maroon/5 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                              <span className="font-serif text-2xl font-bold text-brand-maroon/15">{member.subject[0]}</span>
+                            </div>
+                            <div className="absolute bottom-0 left-0 right-0 h-1/4 bg-gradient-to-t from-brand-offwhite to-transparent" />
                           </div>
-                          <div className="absolute bottom-0 left-0 right-0 h-1/4 bg-gradient-to-t from-brand-offwhite to-transparent" />
-                        </div>
-                        {/* Info */}
-                        <div className="p-4">
-                          <p className="text-xs font-bold text-brand-saffron mb-1">{member.subject}</p>
-                          <p className="text-[11px] text-brand-umber/50 ledger-data mb-0.5">{member.qual}</p>
-                          <p className="text-[10px] text-brand-umber/30 ledger-data">{member.exp}</p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
+                          {/* Info */}
+                          <div className="p-4">
+                            <p className="text-xs font-bold text-brand-saffron mb-1">{member.subject}</p>
+                            <p className="text-[11px] text-brand-umber/50 ledger-data mb-0.5">{member.qual}</p>
+                            <p className="text-[10px] text-brand-umber/30 ledger-data">{member.exp}</p>
+                          </div>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </StaggerReveal>
                 </div>
               </Reveal>
             ))}
@@ -153,7 +157,7 @@ export default function FacultyPage() {
               We&apos;re always looking for passionate educators who believe teaching is about 
               changing lives, not just covering syllabus. If that&apos;s you, let&apos;s talk.
             </p>
-            <Link href="/contact" className={cn(buttonVariants({ size: "lg", variant: "secondary" }), "group shadow-xl hover:shadow-2xl hover:-translate-y-0.5 transition-all duration-300 mt-6 px-10 py-6 text-base")}>
+            <Link href="/contact" className={cn(buttonVariants({ size: "lg", variant: "secondary" }), "group shadow-xl hover:shadow-2xl hover:-translate-y-0.5 transition-all duration-300 mt-6 px-10 py-6 text-base btn-ripple")}>
               Apply for a Teaching Position
               <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
             </Link>

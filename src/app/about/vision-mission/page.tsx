@@ -27,45 +27,73 @@ export default function VisionMissionPage() {
         </div>
       </section>
 
-      {/* ════════════════════ VISION & MISSION CARDS ════════════════════ */}
-      <section className="py-28 bg-brand-cream paper-texture border-b border-brand-maroon/10">
-        <div className="px-6 md:px-12 max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-12 lg:gap-20">
+      {/* ════════════════════ VISION & MISSION SECTION ════════════════════ */}
+      <section className="relative bg-brand-cream paper-texture py-24 md:py-32 lg:pb-48 overflow-hidden">
+        {/* Subtle background decoration */}
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-brand-saffron/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3" />
+        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-brand-maroon/5 rounded-full blur-3xl translate-y-1/3 -translate-x-1/4" />
+
+        <div className="px-6 md:px-12 max-w-7xl mx-auto relative z-10">
+          <div className="flex flex-col lg:flex-row gap-16 lg:gap-12 xl:gap-24 items-center">
+            
             {/* Vision */}
-            <Reveal>
-              <div className="group relative bg-white rounded-3xl p-10 md:p-14 shadow-2xl shadow-brand-maroon/5 border-t-4 border-brand-gold hover:-translate-y-2 transition-all duration-500 overflow-hidden">
-                <div className="absolute -right-10 -top-10 opacity-5 group-hover:opacity-10 transition-opacity">
-                  <Compass className="w-64 h-64 text-brand-maroon" />
-                </div>
+            <Reveal className="flex-1 w-full relative">
+              {/* Shadow backdrop */}
+              <div className="absolute inset-0 bg-gradient-to-br from-brand-maroon/10 to-transparent rounded-[2.5rem] transform -rotate-2 scale-105 hidden md:block" />
+              
+              <div className="relative bg-white rounded-[2.5rem] p-10 md:p-14 lg:p-16 shadow-[0_20px_60px_rgba(107,33,39,0.06)] border border-brand-maroon/5 overflow-hidden group">
+                <div className="absolute right-0 top-0 w-72 h-72 bg-gradient-to-bl from-brand-maroon/[0.03] to-transparent rounded-bl-full transform translate-x-1/4 -translate-y-1/4 group-hover:scale-110 transition-transform duration-700 ease-out" />
+                
                 <div className="relative z-10">
-                  <div className="w-16 h-16 rounded-2xl bg-brand-cream flex items-center justify-center mb-8 shadow-inner border border-brand-maroon/10">
-                    <Compass className="w-8 h-8 text-brand-gold" />
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-6 mb-8 md:mb-10">
+                    <div className="w-20 h-20 shrink-0 rounded-2xl bg-gradient-to-br from-brand-cream to-white flex items-center justify-center shadow-lg border border-brand-maroon/5 transform -rotate-6 group-hover:rotate-0 transition-transform duration-500">
+                      <Compass className="w-10 h-10 text-brand-gold" />
+                    </div>
+                    <h2 className="text-4xl md:text-5xl font-serif font-bold text-brand-maroon tracking-tight">Our Vision</h2>
                   </div>
-                  <h2 className="text-4xl font-serif font-bold text-brand-maroon mb-6">Our Vision</h2>
-                  <p className="text-lg text-brand-umber/70 leading-relaxed font-medium">
-                    To be the institution that parents in Karnataka trust by reputation alone — where the mark sheet, the character, and the confidence of every graduate speaks for itself. We aim to nurture young minds into global citizens with a strong foundation in Indian values.
+                  
+                  <p className="text-2xl md:text-3xl text-brand-umber/90 leading-snug font-serif mb-8">
+                    To be the institution that parents in Karnataka trust by <span className="italic text-brand-saffron">reputation alone</span>.
+                  </p>
+                  
+                  <div className="h-px w-24 bg-gradient-to-r from-brand-saffron to-transparent my-8" />
+                  
+                  <p className="text-lg md:text-xl text-brand-umber/70 leading-relaxed font-light">
+                    Where the mark sheet, the character, and the confidence of every graduate speaks for itself. We aim to nurture young minds into global citizens with a strong foundation in Indian values.
                   </p>
                 </div>
               </div>
             </Reveal>
 
             {/* Mission */}
-            <Reveal delay={0.2}>
-              <div className="group relative bg-brand-maroon-deep rounded-3xl p-10 md:p-14 shadow-2xl shadow-brand-maroon/20 border-t-4 border-brand-saffron hover:-translate-y-2 transition-all duration-500 overflow-hidden">
-                <div className="absolute -right-10 -top-10 opacity-5 group-hover:opacity-10 transition-opacity">
-                  <Target className="w-64 h-64 text-brand-cream" />
-                </div>
+            <Reveal delay={0.2} className="flex-1 w-full relative lg:translate-y-32">
+              {/* Shadow backdrop */}
+              <div className="absolute inset-0 bg-gradient-to-br from-brand-saffron/30 to-transparent rounded-[2.5rem] transform rotate-2 scale-105 hidden md:block" />
+              
+              <div className="relative bg-brand-maroon-deep rounded-[2.5rem] p-10 md:p-14 lg:p-16 shadow-[0_20px_60px_rgba(242,183,5,0.15)] border border-brand-saffron/20 overflow-hidden group">
+                <div className="absolute left-0 bottom-0 w-72 h-72 bg-gradient-to-tr from-brand-saffron/10 to-transparent rounded-tr-full transform -translate-x-1/4 translate-y-1/4 group-hover:scale-110 transition-transform duration-700 ease-out" />
+                
                 <div className="relative z-10">
-                  <div className="w-16 h-16 rounded-2xl bg-brand-maroon flex items-center justify-center mb-8 shadow-inner border border-brand-cream/10">
-                    <Target className="w-8 h-8 text-brand-saffron" />
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-6 mb-8 md:mb-10">
+                    <div className="w-20 h-20 shrink-0 rounded-2xl bg-gradient-to-br from-brand-saffron to-[#f59e0b] flex items-center justify-center shadow-lg shadow-brand-saffron/20 transform rotate-6 group-hover:rotate-0 transition-transform duration-500">
+                      <Target className="w-10 h-10 text-brand-maroon-deep" />
+                    </div>
+                    <h2 className="text-4xl md:text-5xl font-serif font-bold text-brand-cream tracking-tight">Our Mission</h2>
                   </div>
-                  <h2 className="text-4xl font-serif font-bold text-brand-cream mb-6">Our Mission</h2>
-                  <p className="text-lg text-brand-cream/70 leading-relaxed font-medium">
-                    To produce students who don&apos;t just pass exams but dominate them. Through integrated competitive coaching, relentless practice, and personal accountability from every teacher, we strive to unlock the highest potential in every student, regardless of their background.
+                  
+                  <p className="text-2xl md:text-3xl text-brand-cream leading-snug font-serif mb-8">
+                    To produce students who don&apos;t just pass exams but <span className="italic text-brand-saffron">dominate them</span>.
+                  </p>
+                  
+                  <div className="h-px w-24 bg-gradient-to-r from-brand-saffron to-transparent my-8 opacity-50" />
+                  
+                  <p className="text-lg md:text-xl text-brand-cream/70 leading-relaxed font-light">
+                    Through integrated competitive coaching, relentless practice, and personal accountability from every teacher, we strive to unlock the highest potential in every student, regardless of their background.
                   </p>
                 </div>
               </div>
             </Reveal>
+
           </div>
         </div>
       </section>

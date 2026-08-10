@@ -62,7 +62,7 @@ export default function PrivacyPage() {
             <p className="font-semibold text-brand-maroon mb-1">BGS Public School & PU College</p>
             <p className="text-sm mb-1">Jnanankura Campus, Hanumanthapura Gate</p>
             <p className="text-sm mb-1">Sidlaghatta - 562 105, Karnataka</p>
-            <p className="text-sm mt-3 font-semibold">Phone: <span className="font-normal">9742668712, 9666930918</span></p>
+            <p className="text-sm mt-3 font-semibold">WhatsApp: <span className="font-normal">99019 23097</span></p>
           </div>
         </div>
       </div>

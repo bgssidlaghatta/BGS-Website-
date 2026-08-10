@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { Reveal, motion, staggerContainer, fadeUp } from "@/lib/animations";
+import { Reveal, StaggerReveal, ParallaxLayer, motion, staggerContainer, fadeUp, AnimatedCounter } from "@/lib/animations";
 import { ArrowRight, GraduationCap, MapPin, Briefcase } from "lucide-react";
 
 const alumniData = [
@@ -63,14 +63,16 @@ export default function AlumniPage() {
     <>
       {/* ════════════════════ HERO ════════════════════ */}
       <section className="relative min-h-[60vh] flex items-end overflow-hidden">
-        <Image
-          src="/images/campus-hero.png"
-          alt="BGS Campus"
-          fill
-          priority
-          className="object-cover object-center"
-          sizes="100vw"
-        />
+        <ParallaxLayer speed={0.3} className="absolute inset-0 w-full h-[120%] -top-[10%]">
+          <Image
+            src="/images/campus-hero.png"
+            alt="BGS Campus"
+            fill
+            priority
+            className="object-cover object-center"
+            sizes="100vw"
+          />
+        </ParallaxLayer>
         <div className="absolute inset-0 bg-gradient-to-t from-brand-maroon-deep via-brand-maroon-deep/70 to-brand-maroon-deep/30" />
         <div className="relative z-10 px-6 md:px-12 lg:px-20 max-w-7xl mx-auto w-full pb-20 pt-40">
           <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
@@ -104,11 +106,15 @@ export default function AlumniPage() {
               
               <div className="grid grid-cols-2 gap-6 mt-10">
                 <div className="border-l-2 border-brand-saffron pl-4">
-                  <p className="text-4xl font-serif font-bold text-brand-maroon mb-1">5,000+</p>
+                  <p className="text-4xl font-serif font-bold text-brand-maroon mb-1">
+                    <AnimatedCounter value={5000} suffix="+" />
+                  </p>
                   <p className="text-sm font-semibold uppercase tracking-wider text-brand-umber/50">Global Alumni</p>
                 </div>
                 <div className="border-l-2 border-brand-saffron pl-4">
-                  <p className="text-4xl font-serif font-bold text-brand-maroon mb-1">20+</p>
+                  <p className="text-4xl font-serif font-bold text-brand-maroon mb-1">
+                    <AnimatedCounter value={20} suffix="+" />
+                  </p>
                   <p className="text-sm font-semibold uppercase tracking-wider text-brand-umber/50">Years of Legacy</p>
                 </div>
               </div>
@@ -152,10 +158,10 @@ export default function AlumniPage() {
             </div>
           </Reveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {alumniData.map((alumni, idx) => (
-              <Reveal key={idx} delay={idx * 100}>
-                <div className="bg-white rounded-2xl p-6 border border-brand-maroon/5 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
+          <StaggerReveal staggerDelay={0.08}>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {alumniData.map((alumni, idx) => (
+                <motion.div key={idx} variants={fadeUp} className="bg-white rounded-2xl p-6 border border-brand-maroon/5 shadow-sm card-lift group">
                   <div className="flex items-center gap-4 mb-6">
                     <div className="w-16 h-16 rounded-full bg-brand-cream flex items-center justify-center shrink-0">
                       <span className="font-serif text-2xl font-bold text-brand-maroon/20">{alumni.image}</span>
@@ -179,10 +185,10 @@ export default function AlumniPage() {
                       <p className="text-sm text-brand-umber/70">{alumni.location}</p>
                     </div>
                   </div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
+                </motion.div>
+              ))}
+            </div>
+          </StaggerReveal>
           
           <Reveal>
             <div className="mt-16 text-center">
@@ -206,7 +212,7 @@ export default function AlumniPage() {
             <p className="text-brand-cream/70 mb-10 text-lg max-w-2xl mx-auto leading-relaxed">
               Reconnect with old friends, network with professionals, and stay updated on the latest developments and events at your alma mater. Registration is quick and free.
             </p>
-            <Link href="/contact" className={cn(buttonVariants({ size: "lg" }), "bg-brand-saffron text-brand-maroon-deep hover:bg-white transition-colors shadow-xl group px-8 py-6 text-base")}>
+            <Link href="/contact" className={cn(buttonVariants({ size: "lg" }), "bg-brand-saffron text-brand-maroon-deep hover:bg-white transition-colors shadow-xl group px-8 py-6 text-base btn-ripple")}>
               Register Now
               <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
             </Link>

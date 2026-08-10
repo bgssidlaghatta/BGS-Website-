@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Reveal, motion, staggerContainer, fadeUp } from "@/lib/animations";
+import { Reveal, StaggerReveal, ParallaxLayer, motion, staggerContainer, fadeUp } from "@/lib/animations";
 import { MapPin, Phone, Mail, Clock, MessageCircle, Send } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -14,14 +14,16 @@ export default function ContactPage() {
     <>
       {/* ════════════════════ HERO ════════════════════ */}
       <section className="relative min-h-[50vh] flex items-end overflow-hidden">
-        <Image
-          src="/images/campus-hero.png"
-          alt="BGS campus entrance"
-          fill
-          priority
-          className="object-cover"
-          sizes="100vw"
-        />
+        <ParallaxLayer speed={0.3} className="absolute inset-0 w-full h-[120%] -top-[10%]">
+          <Image
+            src="/images/campus-hero.png"
+            alt="BGS campus entrance"
+            fill
+            priority
+            className="object-cover"
+            sizes="100vw"
+          />
+        </ParallaxLayer>
         <div className="absolute inset-0 bg-gradient-to-t from-brand-maroon-deep via-brand-maroon-deep/70 to-brand-maroon-deep/30" />
         <div className="relative z-10 px-6 md:px-12 lg:px-20 max-w-7xl mx-auto w-full pb-16 pt-36">
           <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
@@ -37,22 +39,20 @@ export default function ContactPage() {
 
       {/* ════════════════════ CONTACT CARDS ════════════════════ */}
       <section className="relative -mt-8 z-20 px-6 md:px-12">
-        <div className="max-w-5xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-3">
-          {[
-            { icon: MapPin, label: "Campus", value: "Sidlaghatta, Karnataka", href: "#map" },
-            { icon: Phone, label: "Call", value: "+91 00000 00000", href: "tel:+910000000000" },
-            { icon: Mail, label: "Email", value: "info@bgssidlaghatta.edu.in", href: "mailto:info@bgssidlaghatta.edu.in" },
-            { icon: MessageCircle, label: "WhatsApp", value: "Quick Response", href: "https://wa.me/910000000000" },
-          ].map((c, i) => (
-            <Reveal key={i} delay={i * 0.06}>
-              <a href={c.href} className="group block bg-brand-offwhite rounded-xl p-5 border border-brand-maroon/5 hover:border-brand-saffron/20 hover:shadow-lg transition-all duration-500 hover:-translate-y-0.5 text-center">
-                <c.icon className="w-5 h-5 text-brand-saffron mx-auto mb-3 group-hover:scale-110 transition-transform" />
+          <StaggerReveal staggerDelay={0.06} className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+            {[
+              { icon: MapPin, label: "Campus", value: "Sidlaghatta, Karnataka", href: "#map" },
+              { icon: MessageCircle, label: "WhatsApp", value: "+91 99019 23097", href: "https://wa.me/919901923097" },
+              { icon: Mail, label: "Email", value: "info@bgssidlaghatta.edu.in", href: "mailto:info@bgssidlaghatta.edu.in" },
+              { icon: Clock, label: "Working Hours", value: "Mon-Sat, 9AM-5PM", href: "#" },
+            ].map((c, i) => (
+              <motion.a variants={fadeUp} key={i} href={c.href} className="group block bg-brand-offwhite rounded-xl p-5 border border-brand-maroon/5 hover:border-brand-saffron/20 card-lift text-center">
+                <c.icon className="w-5 h-5 text-brand-saffron mx-auto mb-3 icon-hover-rotate" />
                 <p className="text-[10px] font-semibold uppercase tracking-widest text-brand-umber/30 mb-1">{c.label}</p>
                 <p className="font-semibold text-brand-maroon text-xs leading-tight">{c.value}</p>
-              </a>
-            </Reveal>
-          ))}
-        </div>
+              </motion.a>
+            ))}
+          </StaggerReveal>
       </section>
 
       {/* ════════════════════ FORM + SIDE INFO ════════════════════ */}
@@ -103,7 +103,7 @@ export default function ContactPage() {
                         id="phone"
                         type="tel"
                         className="h-12 bg-white ledger-data"
-                        placeholder="+91 00000 00000"
+                        placeholder="+91 99019 23097"
                       />
                     </div>
 
@@ -156,7 +156,7 @@ export default function ContactPage() {
                     <Button
                       type="button"
                       size="lg"
-                      className="w-full h-14 group shadow-lg shadow-primary/20 hover:shadow-primary/40 hover:-translate-y-0.5 transition-all duration-300 text-base mt-2"
+                      className="w-full h-14 group shadow-lg shadow-primary/20 hover:shadow-primary/40 hover:-translate-y-0.5 transition-all duration-300 text-base mt-2 btn-ripple"
                     >
                       Submit Inquiry
                       <Send className="w-4 h-4 ml-2 group-hover:translate-x-1 group-hover:-translate-y-0.5 transition-transform" />
@@ -194,14 +194,14 @@ export default function ContactPage() {
                 <Reveal direction="right" delay={0.1}>
                   <div className="bg-brand-maroon-deep rounded-2xl p-8 text-brand-cream relative overflow-hidden">
                     <div className="absolute top-0 right-0 w-24 h-24 bg-brand-saffron/10 rounded-bl-[60px]" />
-                    <MessageCircle className="w-8 h-8 text-brand-saffron mb-4 relative z-10" />
+                    <MessageCircle className="w-8 h-8 text-brand-saffron mb-4 relative z-10 animate-pulse-glow rounded-full" />
                     <h3 className="font-serif text-xl font-bold text-brand-cream mb-3 relative z-10">Prefer WhatsApp?</h3>
                     <p className="text-sm text-brand-cream/50 mb-6 leading-relaxed relative z-10">
                       Most parents find WhatsApp quicker. Our admissions team typically 
                       responds within an hour during office hours.
                     </p>
                     <a
-                      href="https://wa.me/910000000000"
+                      href="https://wa.me/919901923097"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 px-6 py-3 bg-[#25D366] text-white text-sm font-semibold rounded-lg hover:bg-[#20BD5A] transition-colors shadow-lg shadow-[#25D366]/20 relative z-10"
@@ -217,7 +217,7 @@ export default function ContactPage() {
                     <h3 className="font-serif text-lg font-bold text-brand-maroon mb-3">Campus Visit</h3>
                     <p className="text-sm text-brand-umber/50 leading-relaxed">
                       We encourage every parent to visit the campus before making a decision. 
-                      Walk through the labs, sit in on a class, meet the teachers. Call us to 
+                      Walk through the labs, sit in on a class, meet the teachers. Message us on WhatsApp to 
                       schedule a visit at your convenience.
                     </p>
                   </div>

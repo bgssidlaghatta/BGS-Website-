@@ -1,20 +1,21 @@
 import type { Metadata } from "next";
-import { Inter, Fraunces, Space_Grotesk, Geist } from "next/font/google";
+import { DM_Sans, Cormorant_Garamond, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
+import { ScrollProgress } from "@/components/layout/scroll-progress";
+import { BackToTop } from "@/components/layout/back-to-top";
 import { cn } from "@/lib/utils";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
-
-const inter = Inter({
-  variable: "--font-inter",
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
   subsets: ["latin"],
 });
 
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
+const cormorant = Cormorant_Garamond({
+  variable: "--font-cormorant",
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
 });
 
 const spaceGrotesk = Space_Grotesk({
@@ -50,12 +51,14 @@ export default function RootLayout({
     <html
       lang="en"
       data-scroll-behavior="smooth"
-      className={cn("h-full", "antialiased", "scroll-smooth", inter.variable, fraunces.variable, spaceGrotesk.variable, "font-sans", geist.variable)}
+      className={cn("h-full", "antialiased", "scroll-smooth", dmSans.variable, cormorant.variable, spaceGrotesk.variable, "font-sans")}
     >
       <body className="min-h-full flex flex-col">
+        <ScrollProgress />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
+        <BackToTop />
       </body>
     </html>
   );

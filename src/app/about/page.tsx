@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Reveal, AnimatedCounter, motion, staggerContainer, fadeUp } from "@/lib/animations";
+import { Reveal, StaggerReveal, ParallaxLayer, motion, staggerContainer, fadeUp } from "@/lib/animations";
 import { History, Target, Compass, Award, Shield, ChevronRight, Users, BookOpen } from "lucide-react";
 
 export default function AboutPage() {
@@ -10,14 +10,16 @@ export default function AboutPage() {
     <>
       {/* ════════════════════ HERO — full-bleed with image ════════════════════ */}
       <section className="relative min-h-[70vh] flex items-end overflow-hidden">
-        <Image
-          src="/images/campus-hero.png"
-          alt="BGS Public School & PU College campus"
-          fill
-          priority
-          className="object-cover"
-          sizes="100vw"
-        />
+        <ParallaxLayer speed={0.3} className="absolute inset-0 w-full h-[120%] -top-[10%]">
+          <Image
+            src="/images/campus-hero.png"
+            alt="BGS Public School & PU College campus"
+            fill
+            priority
+            className="object-cover"
+            sizes="100vw"
+          />
+        </ParallaxLayer>
         <div className="absolute inset-0 bg-gradient-to-t from-brand-maroon-deep via-brand-maroon-deep/60 to-transparent" />
         <div className="relative z-10 px-6 md:px-12 lg:px-20 max-w-7xl mx-auto w-full pb-20 pt-40">
           <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
@@ -129,22 +131,22 @@ export default function AboutPage() {
       {/* ════════════════════ ACCREDITATION ════════════════════ */}
       <section className="py-20 bg-brand-cream border-y border-brand-maroon/5">
         <div className="px-6 md:px-12 max-w-5xl mx-auto">
-          <Reveal>
+          <StaggerReveal staggerDelay={0.1}>
             <div className="flex flex-col md:flex-row items-center justify-center gap-12">
               {[
                 { icon: Shield, label: "Karnataka State Board", sub: "Affiliated" },
                 { icon: Award, label: "Pre-University Board", sub: "Recognized" },
               ].map((badge, i) => (
-                <div key={i} className="flex items-center gap-5 px-8 py-6 bg-brand-offwhite rounded-xl border border-brand-maroon/5 shadow-sm">
-                  <badge.icon className="w-10 h-10 text-brand-maroon" />
+                <motion.div key={i} variants={fadeUp} className="flex items-center gap-5 px-8 py-6 bg-brand-offwhite rounded-xl border border-brand-maroon/5 shadow-sm card-lift">
+                  <badge.icon className="w-10 h-10 text-brand-maroon icon-hover-rotate" />
                   <div>
                     <p className="font-semibold text-brand-maroon">{badge.label}</p>
                     <p className="text-xs text-brand-umber/40 ledger-data">{badge.sub}</p>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
-          </Reveal>
+          </StaggerReveal>
         </div>
       </section>
 
@@ -163,7 +165,7 @@ export default function AboutPage() {
             </p>
             <Link
               href="/contact"
-              className="group inline-flex items-center gap-2 px-10 py-4 bg-brand-saffron text-white font-semibold rounded-xl shadow-2xl shadow-brand-saffron/30 hover:shadow-brand-saffron/50 hover:-translate-y-0.5 transition-all duration-300"
+              className="group inline-flex items-center gap-2 px-10 py-4 bg-brand-saffron text-white font-semibold rounded-xl shadow-2xl shadow-brand-saffron/30 hover:shadow-brand-saffron/50 hover:-translate-y-0.5 transition-all duration-300 btn-ripple"
             >
               Schedule a Visit
               <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
