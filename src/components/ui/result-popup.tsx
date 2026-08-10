@@ -23,71 +23,64 @@ export function ResultPopup() {
     setIsOpen(false);
   };
 
-  return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 md:p-12">
-          {/* Backdrop */}
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 md:p-8">
+          {/* Elegant heavily blurred backdrop */}
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            initial={{ opacity: 0, backdropFilter: "blur(0px)" }}
+            animate={{ opacity: 1, backdropFilter: "blur(12px)" }}
+            exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
             onClick={handleClose}
-            className="absolute inset-0 bg-brand-maroon-deep/80 backdrop-blur-md"
+            className="absolute inset-0 bg-black/60 transition-all duration-500"
           />
 
-          {/* Modal */}
+          {/* Borderless Image Container */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            className="relative w-full max-w-5xl bg-brand-cream rounded-2xl shadow-2xl overflow-hidden border-2 border-brand-maroon/20 z-10 flex flex-col max-h-[90vh]"
+            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+            transition={{ type: "spring", damping: 25, stiffness: 200 }}
+            className="relative w-full max-w-6xl z-10 flex flex-col items-center"
           >
-            {/* Close Button */}
-            <button
-              onClick={handleClose}
-              className="absolute top-4 right-4 z-20 p-2 bg-brand-maroon text-brand-cream rounded-full hover:bg-brand-saffron hover:text-brand-maroon transition-all shadow-lg border border-transparent hover:border-brand-maroon/20"
-            >
-              <X className="w-5 h-5" />
-            </button>
+            <div className="relative w-full flex flex-col items-center group">
+              {/* Floating Close Button - absolute to the image container */}
+              <button
+                onClick={handleClose}
+                className="absolute -top-4 -right-4 md:-top-6 md:-right-6 z-20 p-2.5 bg-white text-gray-900 rounded-full hover:bg-brand-saffron hover:text-white transition-all shadow-xl hover:scale-110 duration-300"
+              >
+                <X className="w-5 h-5 md:w-6 md:h-6" />
+              </button>
 
-            {/* Content */}
-            <div className="flex-1 overflow-y-auto custom-scrollbar">
-              <div className="relative w-full bg-white flex justify-center">
+              {/* The Banner Image */}
+              <div className="relative w-full max-h-[85vh] rounded-2xl md:rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] ring-1 ring-white/10">
                 <Image
                   src="/images/collegeresult.png"
                   alt="PU College Results"
                   width={2000}
                   height={1000}
-                  className="w-full h-auto object-contain max-h-[60vh]"
+                  className="w-full h-auto max-h-[85vh] object-contain bg-white"
                   sizes="(max-width: 1200px) 100vw, 1200px"
+                  priority
                   unoptimized
                 />
               </div>
-              <div className="p-6 md:p-8 bg-brand-cream text-center border-t border-brand-maroon/10">
-                <h3 className="text-2xl md:text-3xl font-serif font-bold text-brand-maroon mb-3">
-                  Hearty Congratulations to our Achievers!
-                </h3>
-                <p className="text-brand-umber/70 mb-6 max-w-2xl mx-auto text-sm md:text-base">
-                  We are incredibly proud of our students' outstanding performance in the Board Examinations. Hard work, dedication, and the right environment make all the difference.
-                </p>
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                  <Link
-                    href="/results"
-                    onClick={handleClose}
-                    className="inline-flex items-center justify-center px-8 py-3 rounded-full bg-brand-maroon text-brand-cream font-semibold hover:bg-brand-saffron hover:text-brand-maroon transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
-                  >
-                    View Full Results
-                  </Link>
-                  <button
-                    onClick={handleClose}
-                    className="inline-flex items-center justify-center px-8 py-3 rounded-full bg-transparent border border-brand-maroon/20 text-brand-maroon font-semibold hover:bg-brand-maroon/5 transition-all"
-                  >
-                    Continue to Site
-                  </button>
-                </div>
-              </div>
+              
+              {/* Optional sleek CTA underneath */}
+              <motion.div 
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                className="mt-6 md:mt-8"
+              >
+                <Link
+                  href="/results"
+                  onClick={handleClose}
+                  className="inline-flex items-center justify-center px-8 py-3.5 rounded-full bg-brand-saffron text-white font-semibold hover:bg-white hover:text-brand-maroon transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 duration-300 tracking-wide"
+                >
+                  View Full Academic Results
+                </Link>
+              </motion.div>
             </div>
           </motion.div>
         </div>
