@@ -59,7 +59,7 @@ export default function ResultsPage() {
           ].map((stat, i) => (
             <div key={i} className="py-12 px-6 text-center group">
               <stat.icon className="w-5 h-5 text-brand-saffron mx-auto mb-3 icon-hover-rotate" />
-              <div className="ledger-data text-4xl md:text-5xl font-bold text-white mb-2">
+              <div className="ledger-data text-4xl md:text-5xl font-bold text-brand-maroon mb-2">
                 <AnimatedCounter value={stat.value} suffix={stat.suffix} />
               </div>
               <p className="text-[11px] font-semibold text-brand-umber/60 uppercase tracking-widest">{stat.label}</p>
@@ -79,11 +79,11 @@ export default function ResultsPage() {
                 <Link href="/results/sslc" className="block group h-full">
                   <div className="bg-white rounded-3xl p-10 h-full shadow-xl border-t-4 border-brand-maroon card-lift relative overflow-hidden">
                     <div className="absolute right-0 top-0 opacity-5 group-hover:opacity-10 transition-opacity">
-                      <Trophy className="w-32 h-32 -mt-4 -mr-4 text-white" />
+                      <Trophy className="w-32 h-32 -mt-4 -mr-4 text-brand-maroon" />
                     </div>
-                    <h3 className="text-2xl font-serif font-bold text-white mb-4">SSLC Board Results</h3>
+                    <h3 className="text-2xl font-serif font-bold text-brand-maroon mb-4">SSLC Board Results</h3>
                     <p className="text-brand-umber/60 leading-relaxed mb-8">View the remarkable performance of our high school students in the state board examinations.</p>
-                    <div className="flex items-center text-brand-saffron font-bold text-sm uppercase tracking-widest group-hover:text-white transition-colors">
+                    <div className="flex items-center text-brand-saffron font-bold text-sm uppercase tracking-widest group-hover:text-brand-maroon transition-colors">
                       View Results <ArrowUpRight className="w-4 h-4 ml-2 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                     </div>
                   </div>
@@ -113,9 +113,9 @@ export default function ResultsPage() {
                     <div className="absolute right-0 top-0 opacity-5 group-hover:opacity-10 transition-opacity">
                       <TrendingUp className="w-32 h-32 -mt-4 -mr-4 text-brand-gold" />
                     </div>
-                    <h3 className="text-2xl font-serif font-bold text-white mb-4">Entrance Exams</h3>
+                    <h3 className="text-2xl font-serif font-bold text-brand-maroon mb-4">Entrance Exams</h3>
                     <p className="text-brand-umber/60 leading-relaxed mb-8">Our track record in national competitive examinations including NEET, CET, and JEE Main.</p>
-                    <div className="flex items-center text-brand-saffron font-bold text-sm uppercase tracking-widest group-hover:text-white transition-colors">
+                    <div className="flex items-center text-brand-saffron font-bold text-sm uppercase tracking-widest group-hover:text-brand-maroon transition-colors">
                       View Results <ArrowUpRight className="w-4 h-4 ml-2 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                     </div>
                   </div>

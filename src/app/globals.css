@@ -30,7 +30,7 @@ body {
 
 /* ── Typography Hierarchy ── */
 h1, h2, h3, h4, h5, h6 {
-  color: white;
+  color: var(--color-brand-maroon);
   font-family: var(--font-serif);
   font-weight: 700;
 }

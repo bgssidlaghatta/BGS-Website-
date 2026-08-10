@@ -63,7 +63,7 @@ export default function GalleryPage() {
                     "px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300",
                     activeTab === category 
                       ? "bg-brand-maroon text-brand-cream shadow-lg shadow-brand-maroon/20"
-                      : "bg-white text-brand-umber/70 hover:bg-brand-saffron/10 hover:text-white border border-brand-maroon/10"
+                      : "bg-white text-brand-umber/70 hover:bg-brand-saffron/10 hover:text-brand-maroon border border-brand-maroon/10"
                   )}
                 >
                   {category}
@@ -129,7 +129,7 @@ export default function GalleryPage() {
             onClick={() => setSelectedImage(null)}
           >
             <button 
-              className="absolute top-6 right-6 p-2 bg-brand-cream/10 hover:bg-brand-saffron hover:text-white rounded-full text-brand-cream transition-colors z-50"
+              className="absolute top-6 right-6 p-2 bg-brand-cream/10 hover:bg-brand-saffron hover:text-brand-maroon-deep rounded-full text-brand-cream transition-colors z-50"
               onClick={() => setSelectedImage(null)}
             >
               <X className="w-6 h-6" />

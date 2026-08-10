@@ -44,7 +44,7 @@ export default function AboutPage() {
             <div className="grid md:grid-cols-12 gap-16">
               <div className="md:col-span-4">
                 <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-saffron mb-4">Our Story</p>
-                <h2 className="text-3xl md:text-4xl font-serif font-bold text-white leading-tight">
+                <h2 className="text-3xl md:text-4xl font-serif font-bold text-brand-maroon leading-tight">
                   From a Small Beginning to the Region&apos;s Most Trusted Institution
                 </h2>
               </div>
@@ -52,7 +52,7 @@ export default function AboutPage() {
                 <div className="prose prose-lg text-brand-umber/70 leading-relaxed space-y-6 border-l-2 border-brand-maroon/10 pl-8">
                   <p>
                     BGS Public School & PU College was founded in Sidlaghatta with a single, non-negotiable 
-                    principle: <strong className="text-white">every child who walks through our doors leaves prepared.</strong> Not 
+                    principle: <strong className="text-brand-maroon">every child who walks through our doors leaves prepared.</strong> Not 
                     just for exams — for the real demands of competitive careers and responsible citizenship.
                   </p>
                   <p>
@@ -86,7 +86,7 @@ export default function AboutPage() {
                 <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-saffron mb-4">
                   Principal&apos;s Message
                 </p>
-                <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-8 leading-tight">
+                <h2 className="text-3xl md:text-4xl font-serif font-bold text-brand-maroon mb-8 leading-tight">
                   &ldquo;We don&apos;t produce students. We produce competitors.&rdquo;
                 </h2>
                 <div className="space-y-5 text-brand-umber/60 leading-relaxed">
@@ -103,7 +103,7 @@ export default function AboutPage() {
                     teaching — we believe in knowing exactly where each student stands and pushing 
                     them past their own expectations.
                   </p>
-                  <p className="italic text-white/40 text-sm border-t border-brand-maroon/10 pt-5 mt-5">
+                  <p className="italic text-brand-maroon/40 text-sm border-t border-brand-maroon/10 pt-5 mt-5">
                     Full principal&apos;s message and portrait will be published upon receipt.
                   </p>
                 </div>
@@ -120,7 +120,7 @@ export default function AboutPage() {
                 </div>
               </div>
               <div className="absolute -bottom-6 -left-6 bg-brand-offwhite rounded-xl p-5 shadow-2xl border border-brand-maroon/5">
-                <p className="font-serif text-sm font-bold text-white mb-1">[Principal Name]</p>
+                <p className="font-serif text-sm font-bold text-brand-maroon mb-1">[Principal Name]</p>
                 <p className="text-[10px] text-brand-saffron font-semibold uppercase tracking-widest">Principal</p>
               </div>
             </div>
@@ -138,9 +138,9 @@ export default function AboutPage() {
                 { icon: Award, label: "Pre-University Board", sub: "Recognized" },
               ].map((badge, i) => (
                 <motion.div key={i} variants={fadeUp} className="flex items-center gap-5 px-8 py-6 bg-brand-offwhite rounded-xl border border-brand-maroon/5 shadow-sm card-lift">
-                  <badge.icon className="w-10 h-10 text-white icon-hover-rotate" />
+                  <badge.icon className="w-10 h-10 text-brand-maroon icon-hover-rotate" />
                   <div>
-                    <p className="font-semibold text-white">{badge.label}</p>
+                    <p className="font-semibold text-brand-maroon">{badge.label}</p>
                     <p className="text-xs text-brand-umber/40 ledger-data">{badge.sub}</p>
                   </div>
                 </motion.div>

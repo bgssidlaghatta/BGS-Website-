@@ -40,9 +40,9 @@ export default function TrustPage() {
               </div>
               {/* Name card overlay */}
               <div className="absolute -bottom-6 -right-6 bg-brand-offwhite rounded-xl p-5 shadow-2xl border border-brand-maroon/5 min-w-[200px]">
-                <p className="font-serif text-sm font-bold text-white leading-tight">Sri Sri Sri Dr.</p>
-                <p className="font-serif text-sm font-bold text-white leading-tight">Nirmalanandanatha</p>
-                <p className="font-serif text-sm font-bold text-white leading-tight mb-1">Maha Swamiji</p>
+                <p className="font-serif text-sm font-bold text-brand-maroon leading-tight">Sri Sri Sri Dr.</p>
+                <p className="font-serif text-sm font-bold text-brand-maroon leading-tight">Nirmalanandanatha</p>
+                <p className="font-serif text-sm font-bold text-brand-maroon leading-tight mb-1">Maha Swamiji</p>
                 <p className="text-[10px] text-brand-saffron font-semibold uppercase tracking-widest">President, SAST</p>
               </div>
             </div>
@@ -55,7 +55,7 @@ export default function TrustPage() {
                 <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-saffron mb-4">
                   President&apos;s Message
                 </p>
-                <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-8 leading-tight">
+                <h2 className="text-3xl md:text-4xl font-serif font-bold text-brand-maroon mb-8 leading-tight">
                   &ldquo;Education is not preparation for life — education is life itself.&rdquo;
                 </h2>
                 <div className="space-y-6 text-brand-umber/70 leading-relaxed text-lg">
@@ -65,7 +65,7 @@ export default function TrustPage() {
                   <p>
                     With a background in engineering from a premier institute, Mahaswamiji brings a unique blend of technological foresight and spiritual depth to the Trust's educational initiatives, ensuring that BGS institutions remain at the cutting edge of modern education while staying rooted in timeless values.
                   </p>
-                  <p className="italic text-white/40 text-sm border-t border-brand-maroon/10 pt-6 mt-6">
+                  <p className="italic text-brand-maroon/40 text-sm border-t border-brand-maroon/10 pt-6 mt-6">
                     Full official message will be published upon receipt from the BGS administration.
                   </p>
                 </div>
@@ -80,7 +80,7 @@ export default function TrustPage() {
         <div className="px-6 md:px-12 max-w-6xl mx-auto">
           <Reveal>
             <div className="text-center mb-20">
-              <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-4">
+              <h2 className="text-3xl md:text-4xl font-serif font-bold text-brand-maroon mb-4">
                 A Legacy of Scale and Impact
               </h2>
               <p className="text-brand-umber/60 max-w-2xl mx-auto">
@@ -115,7 +115,7 @@ export default function TrustPage() {
                   <div className="w-20 h-20 bg-brand-cream rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-sm group-hover:-translate-y-2 transition-transform">
                     <item.icon className="w-10 h-10 text-brand-saffron" />
                   </div>
-                  <h3 className="text-4xl font-serif font-bold text-white mb-2">{item.stat}</h3>
+                  <h3 className="text-4xl font-serif font-bold text-brand-maroon mb-2">{item.stat}</h3>
                   <p className="text-sm font-semibold uppercase tracking-widest text-brand-saffron mb-4">{item.label}</p>
                   <p className="text-brand-umber/60 leading-relaxed text-sm">
                     {item.desc}

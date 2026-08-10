@@ -49,7 +49,7 @@ export default function VisionMissionPage() {
                     <div className="w-20 h-20 shrink-0 rounded-2xl bg-gradient-to-br from-brand-cream to-white flex items-center justify-center shadow-lg border border-brand-maroon/5 transform -rotate-6 group-hover:rotate-0 transition-transform duration-500">
                       <Compass className="w-10 h-10 text-brand-gold" />
                     </div>
-                    <h2 className="text-4xl md:text-5xl font-serif font-bold text-white tracking-tight">Our Vision</h2>
+                    <h2 className="text-4xl md:text-5xl font-serif font-bold text-brand-maroon tracking-tight">Our Vision</h2>
                   </div>
                   
                   <p className="text-2xl md:text-3xl text-brand-umber/90 leading-snug font-serif mb-8">
@@ -76,7 +76,7 @@ export default function VisionMissionPage() {
                 <div className="relative z-10">
                   <div className="flex flex-col sm:flex-row sm:items-center gap-6 mb-8 md:mb-10">
                     <div className="w-20 h-20 shrink-0 rounded-2xl bg-gradient-to-br from-brand-saffron to-[#f59e0b] flex items-center justify-center shadow-lg shadow-brand-saffron/20 transform rotate-6 group-hover:rotate-0 transition-transform duration-500">
-                      <Target className="w-10 h-10 text-white" />
+                      <Target className="w-10 h-10 text-brand-maroon-deep" />
                     </div>
                     <h2 className="text-4xl md:text-5xl font-serif font-bold text-brand-cream tracking-tight">Our Mission</h2>
                   </div>
@@ -106,7 +106,7 @@ export default function VisionMissionPage() {
               <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-saffron mb-4">
                 The Pillars
               </p>
-              <h2 className="text-3xl md:text-4xl font-serif font-bold text-white">
+              <h2 className="text-3xl md:text-4xl font-serif font-bold text-brand-maroon">
                 Our Core Values
               </h2>
             </div>
@@ -133,7 +133,7 @@ export default function VisionMissionPage() {
               <Reveal key={i} delay={i * 0.1}>
                 <div className="bg-brand-cream p-10 rounded-2xl border border-brand-maroon/5 hover:border-brand-saffron transition-colors h-full">
                   <value.icon className="w-10 h-10 text-brand-saffron mb-6" />
-                  <h3 className="text-xl font-serif font-bold text-white mb-4">{value.title}</h3>
+                  <h3 className="text-xl font-serif font-bold text-brand-maroon mb-4">{value.title}</h3>
                   <p className="text-brand-umber/60 leading-relaxed text-sm">
                     {value.desc}
                   </p>

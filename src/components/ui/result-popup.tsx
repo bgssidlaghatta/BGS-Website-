@@ -47,7 +47,7 @@ export function ResultPopup() {
             {/* Close Button */}
             <button
               onClick={handleClose}
-              className="absolute top-4 right-4 z-20 p-2 bg-brand-maroon text-brand-cream rounded-full hover:bg-brand-saffron hover:text-white transition-all shadow-lg border border-transparent hover:border-brand-maroon/20"
+              className="absolute top-4 right-4 z-20 p-2 bg-brand-maroon text-brand-cream rounded-full hover:bg-brand-saffron hover:text-brand-maroon transition-all shadow-lg border border-transparent hover:border-brand-maroon/20"
             >
               <X className="w-5 h-5" />
             </button>
@@ -66,7 +66,7 @@ export function ResultPopup() {
                 />
               </div>
               <div className="p-6 md:p-8 bg-brand-cream text-center border-t border-brand-maroon/10">
-                <h3 className="text-2xl md:text-3xl font-serif font-bold text-white mb-3">
+                <h3 className="text-2xl md:text-3xl font-serif font-bold text-brand-maroon mb-3">
                   Hearty Congratulations to our Achievers!
                 </h3>
                 <p className="text-brand-umber/70 mb-6 max-w-2xl mx-auto text-sm md:text-base">
@@ -76,13 +76,13 @@ export function ResultPopup() {
                   <Link
                     href="/results"
                     onClick={handleClose}
-                    className="inline-flex items-center justify-center px-8 py-3 rounded-full bg-brand-maroon text-brand-cream font-semibold hover:bg-brand-saffron hover:text-white transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+                    className="inline-flex items-center justify-center px-8 py-3 rounded-full bg-brand-maroon text-brand-cream font-semibold hover:bg-brand-saffron hover:text-brand-maroon transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
                   >
                     View Full Results
                   </Link>
                   <button
                     onClick={handleClose}
-                    className="inline-flex items-center justify-center px-8 py-3 rounded-full bg-transparent border border-brand-maroon/20 text-white font-semibold hover:bg-brand-maroon/5 transition-all"
+                    className="inline-flex items-center justify-center px-8 py-3 rounded-full bg-transparent border border-brand-maroon/20 text-brand-maroon font-semibold hover:bg-brand-maroon/5 transition-all"
                   >
                     Continue to Site
                   </button>

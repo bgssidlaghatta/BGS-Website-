@@ -155,7 +155,7 @@ export function Header() {
               />
             </div>
             <div className="hidden sm:flex flex-col">
-              <span className="font-serif font-bold text-lg text-white leading-tight tracking-tight">
+              <span className="font-serif font-bold text-lg text-brand-maroon leading-tight tracking-tight">
                 BGS Public School
               </span>
               <span className="text-[11px] font-medium text-brand-saffron uppercase tracking-[0.2em] leading-tight">
@@ -190,7 +190,7 @@ export function Header() {
           {/* Mobile toggle */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="lg:hidden relative z-50 p-2 text-white"
+            className="lg:hidden relative z-50 p-2 text-brand-maroon"
             aria-label="Toggle navigation menu"
           >
             <motion.div

@@ -24,7 +24,7 @@ export default function CompetitiveResultsPage() {
             <motion.p variants={fadeUp} className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-saffron mb-6">
               National Level
             </motion.p>
-            <motion.h1 variants={fadeUp} className="text-4xl md:text-6xl font-serif font-bold text-white mb-6 leading-tight">
+            <motion.h1 variants={fadeUp} className="text-4xl md:text-6xl font-serif font-bold text-brand-maroon mb-6 leading-tight">
               Entrance Exams
             </motion.h1>
             <motion.p variants={fadeUp} className="text-lg text-brand-umber/70 max-w-2xl mx-auto leading-relaxed">
@@ -54,13 +54,13 @@ export default function CompetitiveResultsPage() {
                     {competitiveResults.map((row, i) => (
                       <TableRow key={i} className={`border-b border-brand-maroon/5 hover:bg-brand-saffron/5 transition-colors ${i % 2 === 0 ? 'bg-brand-cream' : 'bg-brand-offwhite'}`}>
                         <TableCell className="px-8 py-6 ledger-data text-base font-bold text-brand-umber/70">{row.year}</TableCell>
-                        <TableCell className="px-8 py-6 text-base font-medium text-white">{row.name}</TableCell>
+                        <TableCell className="px-8 py-6 text-base font-medium text-brand-maroon">{row.name}</TableCell>
                         <TableCell className="px-8 py-6">
-                          <span className="px-4 py-2 bg-brand-gold/10 text-white text-xs font-bold rounded-lg ledger-data uppercase">
+                          <span className="px-4 py-2 bg-brand-gold/10 text-brand-maroon text-xs font-bold rounded-lg ledger-data uppercase">
                             {row.exam}
                           </span>
                         </TableCell>
-                        <TableCell className="px-8 py-6 text-right ledger-data text-xl font-bold text-white">{row.score}</TableCell>
+                        <TableCell className="px-8 py-6 text-right ledger-data text-xl font-bold text-brand-maroon">{row.score}</TableCell>
                       </TableRow>
                     ))}
                   </TableBody>

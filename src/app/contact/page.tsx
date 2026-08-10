@@ -49,7 +49,7 @@ export default function ContactPage() {
               <motion.a variants={fadeUp} key={i} href={c.href} className="group block bg-brand-offwhite rounded-xl p-5 border border-brand-maroon/5 hover:border-brand-saffron/20 card-lift text-center">
                 <c.icon className="w-5 h-5 text-brand-saffron mx-auto mb-3 icon-hover-rotate" />
                 <p className="text-[10px] font-semibold uppercase tracking-widest text-brand-umber/30 mb-1">{c.label}</p>
-                <p className="font-semibold text-white text-xs leading-tight">{c.value}</p>
+                <p className="font-semibold text-brand-maroon text-xs leading-tight">{c.value}</p>
               </motion.a>
             ))}
           </StaggerReveal>
@@ -63,7 +63,7 @@ export default function ContactPage() {
             <div className="lg:col-span-7">
               <Reveal>
                 <div className="bg-brand-offwhite rounded-3xl p-8 md:p-12 border border-brand-maroon/5 shadow-xl shadow-brand-maroon/5">
-                  <h2 className="text-3xl font-serif font-bold text-white mb-2">Admission Inquiry</h2>
+                  <h2 className="text-3xl font-serif font-bold text-brand-maroon mb-2">Admission Inquiry</h2>
                   <p className="text-sm text-brand-umber/40 mb-10">
                     Fill this form and our admissions coordinator will call you back within 24 hours. 
                     No automated responses — a real person, a real conversation.
@@ -175,7 +175,7 @@ export default function ContactPage() {
               <div className="sticky top-28 space-y-8">
                 <Reveal direction="right">
                   <div>
-                    <h3 className="font-serif text-2xl font-bold text-white mb-6">Office Hours</h3>
+                    <h3 className="font-serif text-2xl font-bold text-brand-maroon mb-6">Office Hours</h3>
                     <div className="bg-brand-offwhite rounded-xl border border-brand-maroon/5 overflow-hidden">
                       {[
                         { day: "Monday – Friday", time: "9:00 AM – 4:00 PM", active: true },
@@ -184,7 +184,7 @@ export default function ContactPage() {
                       ].map((slot, i) => (
                         <div key={i} className="flex justify-between items-center px-6 py-4 border-b border-brand-maroon/5 last:border-b-0">
                           <span className="text-sm text-brand-umber/70">{slot.day}</span>
-                          <span className={`ledger-data text-sm font-semibold ${slot.active ? 'text-white' : 'text-brand-umber/30'}`}>{slot.time}</span>
+                          <span className={`ledger-data text-sm font-semibold ${slot.active ? 'text-brand-maroon' : 'text-brand-umber/30'}`}>{slot.time}</span>
                         </div>
                       ))}
                     </div>
@@ -214,7 +214,7 @@ export default function ContactPage() {
 
                 <Reveal direction="right" delay={0.2}>
                   <div className="bg-brand-offwhite rounded-xl p-6 border border-brand-maroon/5">
-                    <h3 className="font-serif text-lg font-bold text-white mb-3">Campus Visit</h3>
+                    <h3 className="font-serif text-lg font-bold text-brand-maroon mb-3">Campus Visit</h3>
                     <p className="text-sm text-brand-umber/50 leading-relaxed">
                       We encourage every parent to visit the campus before making a decision. 
                       Walk through the labs, sit in on a class, meet the teachers. Message us on WhatsApp to 
@@ -231,9 +231,9 @@ export default function ContactPage() {
       {/* ════════════════════ MAP ════════════════════ */}
       <section id="map" className="h-[450px] w-full bg-brand-maroon/5 border-t border-brand-maroon/10 flex items-center justify-center relative">
         <div className="text-center">
-          <MapPin className="w-8 h-8 text-white/15 mx-auto mb-3" />
-          <p className="text-white/25 font-mono text-xs">Google Map embed will be added with API key and exact coordinates</p>
-          <p className="text-white/15 font-mono text-[10px] mt-1">BGS Public School & PU College, Sidlaghatta, Karnataka</p>
+          <MapPin className="w-8 h-8 text-brand-maroon/15 mx-auto mb-3" />
+          <p className="text-brand-maroon/25 font-mono text-xs">Google Map embed will be added with API key and exact coordinates</p>
+          <p className="text-brand-maroon/15 font-mono text-[10px] mt-1">BGS Public School & PU College, Sidlaghatta, Karnataka</p>
         </div>
       </section>
     </>
