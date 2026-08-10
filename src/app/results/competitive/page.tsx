@@ -11,7 +11,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-const competitiveResults = [
+const competitiveResults: any[] = [
 ];
 
 export default function CompetitiveResultsPage() {

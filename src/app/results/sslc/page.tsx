@@ -12,7 +12,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-const sslcResults = [
+const sslcResults: any[] = [
 ];
 
 export default function SSLCResultsPage() {

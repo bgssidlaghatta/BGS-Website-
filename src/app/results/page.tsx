@@ -15,13 +15,13 @@ import {
 import { Reveal, StaggerReveal, ParallaxLayer, AnimatedCounter, motion, staggerContainer, fadeUp } from "@/lib/animations";
 import { Trophy, TrendingUp, Award, Medal, ChevronRight, ArrowUpRight } from "lucide-react";
 
-const sslcResults = [
+const sslcResults: any[] = [
 ];
 
-const puResults = [
+const puResults: any[] = [
 ];
 
-const competitiveResults = [
+const competitiveResults: any[] = [
 ];
 
 export default function ResultsPage() {

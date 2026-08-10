@@ -12,7 +12,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-const puResults = [
+const puResults: any[] = [
 ];
 
 export default function PUResultsPage() {
