@@ -255,7 +255,7 @@ export default function Home() {
       <section className="relative overflow-hidden">
         <div className="grid lg:grid-cols-2 min-h-[700px]">
           {/* Image half */}
-          <ImageReveal className="relative h-[400px] lg:h-auto">
+          <ImageReveal className="relative h-[400px] lg:h-full w-full">
             <Image
               src="/images/classroom.png"
               alt="BGS students in classroom"
