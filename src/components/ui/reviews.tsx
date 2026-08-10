@@ -73,7 +73,7 @@ const sampleReviews: Review[] = [
 
 export function ReviewsSection() {
   return (
-    <section className="py-24 md:py-32 bg-[#0B1A30] relative overflow-hidden">
+    <section className="py-24 md:py-32 bg-brand-maroon-deep relative overflow-hidden">
       {/* Background accents */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_rgba(232,135,30,0.05)_0%,_transparent_50%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_rgba(255,255,255,0.02)_0%,_transparent_50%)]" />
