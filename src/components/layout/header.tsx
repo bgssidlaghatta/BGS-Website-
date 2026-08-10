@@ -141,27 +141,6 @@ export function Header() {
             : "bg-brand-cream/80 backdrop-blur-xl border-brand-maroon/5"
         )}
       >
-        {/* Marquee Banner */}
-        <div className="bg-brand-maroon text-brand-cream overflow-hidden py-1.5 md:py-2 border-b border-brand-saffron/20 w-full flex">
-          <motion.div
-            animate={{ x: ["0%", "-50%"] }}
-            transition={{ repeat: Infinity, ease: "linear", duration: 40 }}
-            className="flex whitespace-nowrap items-center text-[11px] md:text-sm font-semibold tracking-[0.2em] uppercase w-max"
-          >
-            {[...Array(10)].map((_, i) => (
-              <div key={i} className="flex items-center gap-6 md:gap-12 px-3 md:px-6 shrink-0">
-                <span>Karnataka State Board</span>
-                <span className="text-brand-saffron/60 text-[10px] md:text-xs">◆</span>
-                <span>Affiliated</span>
-                <span className="text-brand-saffron/60 text-[10px] md:text-xs">◆</span>
-                <span>Pre-University Board</span>
-                <span className="text-brand-saffron/60 text-[10px] md:text-xs">◆</span>
-                <span>Recognized</span>
-                <span className="text-brand-saffron/60 text-[10px] md:text-xs">◆</span>
-              </div>
-            ))}
-          </motion.div>
-        </div>
 
         <div className="flex h-20 items-center justify-between px-6 md:px-12 max-w-7xl mx-auto">
           {/* Logo */}
