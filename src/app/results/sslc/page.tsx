@@ -13,7 +13,6 @@ import {
 } from "@/components/ui/table";
 
 const sslcResults = [
-  { year: "2026", name: "Results Awaiting", score: "—", pct: "—" },
 ];
 
 export default function SSLCResultsPage() {

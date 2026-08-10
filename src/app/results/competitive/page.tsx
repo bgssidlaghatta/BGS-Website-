@@ -12,9 +12,6 @@ import {
 } from "@/components/ui/table";
 
 const competitiveResults = [
-  { year: "2026", name: "Results Awaiting", exam: "NEET", score: "—" },
-  { year: "2026", name: "Results Awaiting", exam: "CET", score: "—" },
-  { year: "2026", name: "Results Awaiting", exam: "JEE Main", score: "—" },
 ];
 
 export default function CompetitiveResultsPage() {

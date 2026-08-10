@@ -13,9 +13,6 @@ import {
 } from "@/components/ui/table";
 
 const puResults = [
-  { year: "2026", name: "Results Awaiting", stream: "PCMB", score: "—", pct: "—" },
-  { year: "2026", name: "Results Awaiting", stream: "PCMCs", score: "—", pct: "—" },
-  { year: "2026", name: "Results Awaiting", stream: "Commerce", score: "—", pct: "—" },
 ];
 
 export default function PUResultsPage() {

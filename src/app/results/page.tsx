@@ -16,19 +16,12 @@ import { Reveal, StaggerReveal, ParallaxLayer, AnimatedCounter, motion, staggerC
 import { Trophy, TrendingUp, Award, Medal, ChevronRight, ArrowUpRight } from "lucide-react";
 
 const sslcResults = [
-  { year: "2026", name: "Results Awaiting", score: "—", pct: "—" },
 ];
 
 const puResults = [
-  { year: "2026", name: "Results Awaiting", stream: "PCMB", score: "—", pct: "—" },
-  { year: "2026", name: "Results Awaiting", stream: "PCMCs", score: "—", pct: "—" },
-  { year: "2026", name: "Results Awaiting", stream: "Commerce", score: "—", pct: "—" },
 ];
 
 const competitiveResults = [
-  { year: "2026", name: "Results Awaiting", exam: "NEET", score: "—" },
-  { year: "2026", name: "Results Awaiting", exam: "CET", score: "—" },
-  { year: "2026", name: "Results Awaiting", exam: "JEE Main", score: "—" },
 ];
 
 export default function ResultsPage() {
