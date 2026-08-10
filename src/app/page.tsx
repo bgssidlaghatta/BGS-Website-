@@ -255,16 +255,18 @@ export default function Home() {
       <section className="relative overflow-hidden">
         <div className="grid lg:grid-cols-2 min-h-[700px]">
           {/* Image half */}
-          <ImageReveal className="relative h-[400px] lg:h-full w-full">
-            <Image
-              src="/images/classroom.png"
-              alt="BGS students in classroom"
-              fill
-              className="object-cover"
-              sizes="50vw"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent to-brand-maroon-deep/30 lg:hidden" />
-          </ImageReveal>
+          <div className="relative h-[400px] lg:h-auto w-full">
+            <ImageReveal className="lg:absolute lg:inset-0 w-full h-full">
+              <Image
+                src="/images/classroom.png"
+                alt="BGS students in classroom"
+                fill
+                className="object-cover"
+                sizes="50vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent to-brand-maroon-deep/30 lg:hidden" />
+            </ImageReveal>
+          </div>
 
           {/* Content half */}
           <div className="bg-brand-maroon-deep px-8 md:px-16 py-20 flex items-center relative">
