@@ -62,6 +62,15 @@
     "isSeed": false
   },
   {
+    "id": "seed-college-classroom",
+    "public_id": "ChatGPT_Image_Sep_17_2026_04_17_29_PM_bgxgel",
+    "src": "https://res.cloudinary.com/xd8uritd/image/upload/v1789642129/ChatGPT_Image_Sep_17_2026_04_17_29_PM_bgxgel.png",
+    "alt": "BGS Pre-University College Classrooms & Lectures",
+    "category": "Academic",
+    "createdAt": "2026-09-17T10:45:00.000Z",
+    "isSeed": false
+  },
+  {
     "id": "seed-6",
     "public_id": "seed-6",
     "src": "/images/computer-lab.png",

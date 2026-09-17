@@ -59,6 +59,12 @@ const heroImages = [
     subtitle: "Sprawling Tree-Lined Entrance & Courtyard",
     alt: "BGS Campus Central Entrance and Grounds",
   },
+  {
+    src: "https://res.cloudinary.com/xd8uritd/image/upload/v1789642129/ChatGPT_Image_Sep_17_2026_04_17_29_PM_bgxgel.png",
+    title: "College Classrooms",
+    subtitle: "Pre-University Learning & Lecture Halls",
+    alt: "BGS PU College Academic Classrooms and Studies",
+  },
 ];
 
 export default function Home() {
