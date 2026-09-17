@@ -50,6 +50,14 @@ const departments: Department[] = [
         image: "/images/Faculty%20image/Natraj_School_Coordinator.png",
       },
       {
+        name: "Vijay Kumar GT",
+        role: "College Academic Coordinator & Lecturer",
+        subject: "English & College Coordination",
+        qual: "M.A, B.Ed",
+        exp: "12+ years",
+        image: "/images/Faculty%20image/Vijay%20Kumar%20GT_English_college_scince.png",
+      },
+      {
         name: "Ambika",
         role: "Nursery & Pre-Primary Coordinator",
         subject: "Early Childhood Education",
@@ -235,10 +243,10 @@ const departments: Department[] = [
     staff: [
       {
         name: "Vijay Kumar GT",
-        role: "Lecturer in English",
+        role: "Lecturer in English & College Coordinator",
         subject: "English (PU Science)",
         qual: "M.A, B.Ed",
-        exp: "10+ years",
+        exp: "12+ years",
         image: "/images/Faculty%20image/Vijay%20Kumar%20GT_English_college_scince.png",
       },
       {
