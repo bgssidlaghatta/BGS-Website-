@@ -51,8 +51,8 @@ const departments: Department[] = [
       },
       {
         name: "Vijay Kumar GT",
-        role: "College Academic Coordinator & Lecturer",
-        subject: "English & College Coordination",
+        role: "Academic Coordinator",
+        subject: "Lecturer in English",
         qual: "M.A, B.Ed",
         exp: "12+ years",
         image: "/images/Faculty%20image/Vijay%20Kumar%20GT_English_college_scince.png",
@@ -243,7 +243,7 @@ const departments: Department[] = [
     staff: [
       {
         name: "Vijay Kumar GT",
-        role: "Lecturer in English & College Coordinator",
+        role: "Lecturer in English & Academic Coordinator",
         subject: "English (PU Science)",
         qual: "M.A, B.Ed",
         exp: "12+ years",
