@@ -8,10 +8,18 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 
+import { getCookie, setCookie, COOKIE_KEYS } from "@/lib/cookies";
+
 export function AdmissionsPopup() {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
+    // Check if user already dismissed this popup via cookie
+    const isDismissed = getCookie(COOKIE_KEYS.ADMISSIONS_POPUP_DISMISSED);
+    if (isDismissed) {
+      return;
+    }
+
     // 2 minutes = 120,000 milliseconds
     const timer = setTimeout(() => {
       setIsOpen(true);
@@ -22,6 +30,8 @@ export function AdmissionsPopup() {
 
   const handleClose = () => {
     setIsOpen(false);
+    // Remember for 3 days using cookie
+    setCookie(COOKIE_KEYS.ADMISSIONS_POPUP_DISMISSED, "true", 3);
   };
 
   return (
@@ -47,7 +57,7 @@ export function AdmissionsPopup() {
           >
             {/* Full Bleed Background Image */}
             <Image
-              src="/images/campus-hero.png"
+              src="/images/Hero-section.png"
               alt="BGS Campus"
               fill
               className="object-cover transition-transform duration-[20s] ease-out hover:scale-110"
@@ -90,24 +100,24 @@ export function AdmissionsPopup() {
                 </p>
 
                 <div className="flex flex-col sm:flex-row items-center gap-4">
-                  <Link 
-                    href="/contact" 
-                    onClick={handleClose}
-                    className={cn(buttonVariants({ size: "lg" }), "group w-full sm:w-auto justify-center px-8 py-6 text-base transition-all duration-300 hover:-translate-y-1 btn-ripple bg-brand-saffron text-brand-maroon hover:bg-white shadow-[0_10px_20px_rgba(0,0,0,0.2)]")}
-                  >
-                    Start Your Application
-                    <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                  </Link>
-                  
-                  <a
-                    href="https://wa.me/919901923097"
+                  <a 
+                    href="https://forms.gle/TQCsmK1dde6qhaA98" 
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex w-full sm:w-auto items-center justify-center gap-3 px-8 py-5 text-white hover:text-brand-saffron text-sm font-semibold transition-all border border-white/20 rounded-xl hover:bg-white/10 backdrop-blur-md duration-300"
+                    onClick={handleClose}
+                    className={cn(buttonVariants({ size: "lg" }), "group w-full sm:w-auto justify-center px-8 py-6 text-base font-bold transition-all duration-300 hover:-translate-y-1 btn-ripple bg-brand-saffron text-brand-maroon hover:bg-white shadow-[0_10px_20px_rgba(0,0,0,0.2)] inline-flex items-center gap-2")}
                   >
-                    <MessageCircle className="w-5 h-5" />
-                    <span className="ledger-data text-base">+91 99019 23097</span>
+                    Fill Admission Form
+                    <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
                   </a>
+                  
+                  <Link
+                    href="/contact"
+                    onClick={handleClose}
+                    className="flex w-full sm:w-auto items-center justify-center gap-2 px-8 py-5 text-white hover:text-brand-saffron text-sm font-semibold transition-all border border-white/20 rounded-xl hover:bg-white/10 backdrop-blur-md duration-300"
+                  >
+                    Contact School Office
+                  </Link>
                 </div>
               </motion.div>
             </div>

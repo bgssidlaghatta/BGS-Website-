@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button, buttonVariants } from "@/components/ui/button";
@@ -22,10 +23,12 @@ import {
   FlaskConical,
   Monitor,
   Dumbbell,
+  Bus,
   ArrowRight,
   Phone,
   MessageCircle,
   Star,
+  ChevronLeft,
   ChevronRight,
   Quote,
   Award,
@@ -33,17 +36,44 @@ import {
   Lightbulb,
   Library,
 } from "lucide-react";
-import dynamic from "next/dynamic";
-
-const HeroScene = dynamic(() => import("@/components/3d/hero-scene"), {
-  ssr: false,
-});
-
 import { ReviewsSection } from "@/components/ui/reviews";
 import { ResultPopup } from "@/components/ui/result-popup";
 import { AdmissionsPopup } from "@/components/ui/admissions-popup";
 
+const heroImages = [
+  {
+    src: "/images/Hero-section.png",
+    title: "Main Campus Building",
+    subtitle: "Front Entrance & Administrative Portal",
+    alt: "BGS Public School & PU College Main Campus Building",
+  },
+  {
+    src: "/images/Hero-section-2.png",
+    title: "Campus Architecture",
+    subtitle: "Grand Colonnade & Heritage Facade",
+    alt: "BGS Campus Architecture and Courtyard",
+  },
+  {
+    src: "https://res.cloudinary.com/xd8uritd/image/upload/v1789621192/image-clean_fmrqe6.png",
+    title: "Campus Grounds",
+    subtitle: "Sprawling Tree-Lined Entrance & Courtyard",
+    alt: "BGS Campus Central Entrance and Grounds",
+  },
+];
+
 export default function Home() {
+  const [currentHeroIdx, setCurrentHeroIdx] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentHeroIdx((prev) => (prev + 1) % heroImages.length);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const nextHero = () => setCurrentHeroIdx((prev) => (prev + 1) % heroImages.length);
+  const prevHero = () => setCurrentHeroIdx((prev) => (prev - 1 + heroImages.length) % heroImages.length);
+
   return (
     <>
       {/* Popups */}
@@ -52,22 +82,79 @@ export default function Home() {
 
       {/* ════════════════════ HERO ════════════════════ */}
       <section className="relative min-h-screen flex items-center overflow-hidden bg-brand-maroon-deep">
-        {/* Fallback Background image */}
-        <Image
-          src="/images/campus-hero.png"
-          alt="BGS Public School & PU College campus at golden hour"
-          fill
-          priority
-          className="object-cover opacity-60"
-          sizes="100vw"
-        />
-        
-        {/* Interactive 3D Background */}
-        <HeroScene />
+        {/* Real Campus Building Photos Slideshow */}
+        <div className="absolute inset-0 overflow-hidden">
+          {heroImages.map((hero, idx) => (
+            <div
+              key={hero.src}
+              className={cn(
+                "absolute inset-0 transition-all duration-1000 ease-in-out",
+                currentHeroIdx === idx
+                  ? "opacity-100 scale-100 z-[1]"
+                  : "opacity-0 scale-105 pointer-events-none z-0"
+              )}
+            >
+              <Image
+                src={hero.src}
+                alt={hero.alt}
+                fill
+                priority={idx === 0}
+                className="object-cover object-center"
+                sizes="100vw"
+                quality={90}
+              />
+            </div>
+          ))}
+        </div>
 
-        {/* Dark overlay with gradient (acts as a base if 3D doesn't load) */}
-        <div className="absolute inset-0 bg-gradient-to-r from-brand-maroon-deep/95 via-brand-maroon-deep/80 to-transparent pointer-events-none" />
-        <div className="absolute inset-0 bg-gradient-to-t from-brand-maroon-deep via-transparent to-transparent pointer-events-none" />
+        {/* Cinematic gradient overlays: deep contrast on the left for text, building clearly visible on the right */}
+        <div className="absolute inset-0 z-[2] bg-gradient-to-r from-brand-maroon-deep/95 via-brand-maroon-deep/70 to-black/30 pointer-events-none" />
+        <div className="absolute inset-0 z-[2] bg-gradient-to-t from-brand-maroon-deep via-transparent to-black/40 pointer-events-none" />
+
+        {/* Campus Building Slideshow Controls & Badge */}
+        <div className="absolute bottom-8 right-6 md:right-12 z-20 flex items-center gap-3">
+          <div className="hidden sm:flex flex-col items-end mr-2 text-right">
+            <span className="text-[11px] font-bold text-brand-gold uppercase tracking-wider">
+              {heroImages[currentHeroIdx].title}
+            </span>
+            <span className="text-[10px] text-brand-cream/70">
+              Campus View {currentHeroIdx + 1} of {heroImages.length}
+            </span>
+          </div>
+
+          <button
+            type="button"
+            onClick={prevHero}
+            aria-label="Previous building photo"
+            className="w-8 h-8 rounded-full bg-black/50 hover:bg-brand-saffron hover:text-brand-maroon-deep text-white/90 border border-white/20 flex items-center justify-center transition-colors cursor-pointer backdrop-blur-md shadow-md"
+          >
+            <ChevronLeft className="w-4 h-4" />
+          </button>
+
+          <div className="flex items-center gap-1.5">
+            {heroImages.map((_, i) => (
+              <button
+                key={i}
+                type="button"
+                onClick={() => setCurrentHeroIdx(i)}
+                aria-label={`View hero slide ${i + 1}`}
+                className={cn(
+                  "h-1.5 rounded-full transition-all duration-300 cursor-pointer",
+                  currentHeroIdx === i ? "w-7 bg-brand-saffron" : "w-2 bg-white/40 hover:bg-white/70"
+                )}
+              />
+            ))}
+          </div>
+
+          <button
+            type="button"
+            onClick={nextHero}
+            aria-label="Next building photo"
+            className="w-8 h-8 rounded-full bg-black/50 hover:bg-brand-saffron hover:text-brand-maroon-deep text-white/90 border border-white/20 flex items-center justify-center transition-colors cursor-pointer backdrop-blur-md shadow-md"
+          >
+            <ChevronRight className="w-4 h-4" />
+          </button>
+        </div>
 
         {/* Content — left-aligned editorial layout */}
         <div className="relative z-10 px-6 md:px-12 lg:px-20 max-w-7xl mx-auto w-full py-32">
@@ -111,8 +198,8 @@ export default function Home() {
               className="text-base md:text-lg text-brand-cream/60 max-w-xl leading-relaxed mb-10"
             >
               LKG through 2nd PU. Three specialized streams — PCMB, PCMCs, Commerce — 
-              with integrated CET, NEET & JEE coaching that has delivered a 100% pass rate 
-              and 50+ distinctions this year.
+              with integrated CET, NEET & JEE coaching that has delivered 100% results in both SSLC & PUC 
+              and 240+ distinctions this year.
             </motion.p>
 
             {/* CTAs */}
@@ -158,9 +245,9 @@ export default function Home() {
       <section className="bg-brand-maroon-deep border-t border-brand-saffron/20">
         <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-2 md:grid-cols-4 divide-x divide-brand-cream/5">
           {[
-            { value: 100, suffix: "%", label: "Board Pass Rate", sub: "PU Examinations 2024" },
-            { value: 98, suffix: "%", label: "Highest Score", sub: "PCMB Stream" },
-            { value: 50, suffix: "+", label: "Distinctions", sub: "Across All Streams" },
+            { value: 100, suffix: "%", label: "Board Pass Rate", sub: "100% in SSLC & PUC" },
+            { value: 99.16, suffix: "%", label: "Highest Score", sub: "Commerce" },
+            { value: 240, suffix: "+", label: "Distinctions", sub: "Across All Streams" },
             { value: 25, suffix: "+", label: "Years of Trust", sub: "Since Founding" },
           ].map((stat, i) => (
             <Reveal key={i} delay={i * 0.1}>
@@ -263,8 +350,8 @@ export default function Home() {
           {/* Image half */}
           <div className="relative w-full min-h-[400px] h-full lg:min-h-[700px] overflow-hidden">
             <Image
-              src="/images/classroom.png"
-              alt="BGS students in classroom"
+              src="https://res.cloudinary.com/xd8uritd/image/upload/v1789621192/image-clean_fmrqe6.png"
+              alt="BGS campus entrance and tree-lined courtyard"
               fill
               className="object-cover"
               sizes="50vw"
@@ -291,14 +378,14 @@ export default function Home() {
                     <div className="w-1 bg-brand-saffron rounded-full shrink-0" />
                     <div>
                       <h3 className="font-serif text-lg font-bold text-brand-cream mb-1">School — LKG to 10th SSLC</h3>
-                      <p className="text-sm text-brand-cream/40">Strong foundations, critical thinking, regular assessments, and a 99% SSLC pass rate.</p>
+                      <p className="text-sm text-brand-cream/40">Strong foundations, critical thinking, regular assessments, and a 100% SSLC pass rate.</p>
                     </div>
                   </div>
                   <div className="flex gap-4">
                     <div className="w-1 bg-gradient-to-b from-brand-saffron to-brand-gold rounded-full shrink-0" />
                     <div>
                       <h3 className="font-serif text-lg font-bold text-brand-cream mb-2">Pre-University — 1st & 2nd PU</h3>
-                      <p className="text-sm text-brand-cream/40 mb-4">Specialized streams with board + competitive exam coaching integrated.</p>
+                      <p className="text-sm text-brand-cream/40 mb-4">Specialized streams with a 100% PU board pass rate and integrated competitive exam coaching.</p>
                       <div className="flex flex-wrap gap-2">
                         {[
                           { name: "PCMB", sub: "Medical / Bio" },
@@ -338,20 +425,26 @@ export default function Home() {
               </h2>
               <p className="text-brand-umber/50">
                 Every facility is designed to support the curriculum — not for show, but for use. 
-                Our labs run daily practicals, our library sees 200+ check-outs a month.
+                Comprehensive sports grounds, high-tech computing labs, and safe GPS-tracked bus transit across Sidlaghatta.
               </p>
             </div>
           </Reveal>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
-            {/* Large — Science Lab */}
+            {/* Large — Campus Infrastructure */}
             <ImageReveal className="col-span-2 row-span-2">
-              <div className="relative h-full min-h-[400px] overflow-hidden group">
-                <Image src="/images/science-lab.png" alt="BGS science laboratory" fill className="object-cover group-hover:scale-105 transition-transform duration-700" sizes="50vw" />
+              <div className="relative h-full min-h-[400px] overflow-hidden group rounded-2xl">
+                <Image
+                  src="https://res.cloudinary.com/xd8uritd/image/upload/v1789621192/image-clean_fmrqe6.png"
+                  alt="BGS expansive campus infrastructure"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  sizes="50vw"
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-maroon-deep/90 via-brand-maroon-deep/20 to-transparent" />
                 <div className="absolute bottom-0 left-0 p-8 z-10 border-l-4 border-brand-saffron ml-4 mb-4">
-                  <h3 className="font-serif text-2xl font-bold text-brand-cream mb-1">Science Laboratories</h3>
-                  <p className="text-sm text-brand-cream/70 max-w-xs">Fully equipped Physics, Chemistry & Biology labs with daily practical sessions.</p>
+                  <h3 className="font-serif text-2xl font-bold text-brand-cream mb-1">Campus Infrastructure</h3>
+                  <p className="text-sm text-brand-cream/70 max-w-xs">Expansive landscaped learning grounds with serene, distraction-free environment.</p>
                 </div>
               </div>
             </ImageReveal>
@@ -364,32 +457,52 @@ export default function Home() {
                 <div className="absolute bottom-0 left-0 p-5 z-10">
                   <Monitor className="w-6 h-6 text-brand-saffron mb-2 icon-hover-rotate" />
                   <h3 className="font-serif text-base font-bold text-brand-cream">Computer Lab</h3>
+                  <p className="text-[11px] text-brand-cream/40">High-speed networked PCs</p>
                 </div>
               </div>
             </ImageReveal>
 
-            {/* Library */}
+            {/* Academic Classrooms */}
             <ImageReveal delay={0.15}>
               <div className="relative aspect-square rounded-2xl overflow-hidden group">
-                <Image src="/images/library.png" alt="BGS school library" fill className="object-cover group-hover:scale-105 transition-transform duration-700" sizes="25vw" />
+                <Image
+                  src="https://res.cloudinary.com/xd8uritd/image/upload/v1789638235/ChatGPT_Image_Sep_17_2026_03_09_33_PM_vmr3qc.png"
+                  alt="BGS modern classrooms"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  sizes="25vw"
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-maroon-deep/80 to-transparent" />
                 <div className="absolute bottom-0 left-0 p-5 z-10">
-                  <Library className="w-6 h-6 text-brand-saffron mb-2 icon-hover-rotate" />
-                  <h3 className="font-serif text-base font-bold text-brand-cream">Library</h3>
-                  <p className="text-[11px] text-brand-cream/40">5,000+ books</p>
+                  <BookOpen className="w-6 h-6 text-brand-saffron mb-2 icon-hover-rotate" />
+                  <h3 className="font-serif text-base font-bold text-brand-cream">Classrooms</h3>
+                  <p className="text-[11px] text-brand-cream/40">Smart & engaging learning</p>
                 </div>
               </div>
             </ImageReveal>
 
             {/* Sports */}
-            <ImageReveal delay={0.2} className="col-span-2">
-              <div className="relative h-48 md:h-56 rounded-2xl overflow-hidden group">
-                <Image src="/images/sports-ground.png" alt="BGS sports ground" fill className="object-cover group-hover:scale-105 transition-transform duration-700" sizes="50vw" />
+            <ImageReveal delay={0.2} className="col-span-1">
+              <div className="relative aspect-square rounded-2xl overflow-hidden group">
+                <Image src="https://res.cloudinary.com/xd8uritd/image/upload/v1789554940/Sports_tcb3ce.png" alt="BGS sports ground" fill className="object-cover group-hover:scale-105 transition-transform duration-700" sizes="(max-width: 768px) 50vw, 25vw" />
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-maroon-deep/80 to-transparent" />
-                <div className="absolute bottom-0 left-0 p-6 z-10">
+                <div className="absolute bottom-0 left-0 p-5 z-10">
                   <Dumbbell className="w-6 h-6 text-brand-saffron mb-2 icon-hover-rotate" />
-                  <h3 className="font-serif text-lg font-bold text-brand-cream">Sports & Athletics</h3>
-                  <p className="text-xs text-brand-cream/40">Cricket, basketball, athletics — indoor & outdoor facilities</p>
+                  <h3 className="font-serif text-base font-bold text-brand-cream">Sports & Athletics</h3>
+                  <p className="text-[11px] text-brand-cream/40">Indoor & outdoor grounds</p>
+                </div>
+              </div>
+            </ImageReveal>
+
+            {/* School Transport / Bus Fleet */}
+            <ImageReveal delay={0.25} className="col-span-1">
+              <div className="relative aspect-square rounded-2xl overflow-hidden group">
+                <Image src="https://res.cloudinary.com/xd8uritd/image/upload/v1789554938/Bus_fn4rdo.png" alt="BGS school bus fleet" fill className="object-cover group-hover:scale-105 transition-transform duration-700" sizes="(max-width: 768px) 50vw, 25vw" />
+                <div className="absolute inset-0 bg-gradient-to-t from-brand-maroon-deep/80 to-transparent" />
+                <div className="absolute bottom-0 left-0 p-5 z-10">
+                  <Bus className="w-6 h-6 text-brand-saffron mb-2 icon-hover-rotate" />
+                  <h3 className="font-serif text-base font-bold text-brand-cream">Safe Transport</h3>
+                  <p className="text-[11px] text-brand-cream/40">GPS-tracked bus fleet</p>
                 </div>
               </div>
             </ImageReveal>

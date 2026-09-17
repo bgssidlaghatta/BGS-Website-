@@ -6,21 +6,29 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import Link from "next/link";
 
+import { getCookie, setCookie, COOKIE_KEYS } from "@/lib/cookies";
+
 export function ResultPopup() {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    // For testing purposes, we're showing it every time the page loads.
-    // We can add the sessionStorage check back later if you want it to show only once.
+    // Check if user already dismissed this popup via cookie
+    const isDismissed = getCookie(COOKIE_KEYS.RESULT_POPUP_DISMISSED);
+    if (isDismissed) {
+      return;
+    }
+
     const timer = setTimeout(() => {
       setIsOpen(true);
-    }, 500); // reduced delay to half a second
+    }, 1500);
     
     return () => clearTimeout(timer);
   }, []);
 
   const handleClose = () => {
     setIsOpen(false);
+    // Remember for 1 day using cookie
+    setCookie(COOKIE_KEYS.RESULT_POPUP_DISMISSED, "true", 1);
   };
 
   return (
@@ -133,15 +141,18 @@ export function ResultPopup() {
                   {/* Right: Key Highlights Cards */}
                   <div className="w-full lg:w-[320px] shrink-0 grid grid-cols-2 lg:grid-cols-1 gap-3 md:gap-4">
                     {[
-                      { stat: "100%", label: "Overall Result" },
-                      { stat: "99.16%", label: "State Rank Score" },
-                      { stat: "24+", label: "Total Distinctions" },
-                      { stat: "Excellence", label: "Outstanding Performance" },
+                      { stat: "100%", label: "Overall Result", sub: "SSLC & PU Boards" },
+                      { stat: "99.16%", label: "Highest Score", sub: "Commerce" },
+                      { stat: "240+", label: "Distinctions", sub: "Across All Streams" },
+                      { stat: "Excellence", label: "State Rank Achievers", sub: "Outstanding Record" },
                     ].map((item, i) => (
                       <div key={i} className="bg-white p-4 md:p-5 rounded-[12px] border border-[#EEF1F4] shadow-sm relative overflow-hidden group hover:shadow-md transition-shadow">
                         <div className="absolute top-0 left-0 w-1 h-full bg-[#D9A441]" />
-                        <h4 className="text-xl md:text-2xl font-bold text-[#123B63] mb-1">{item.stat}</h4>
-                        <p className="text-[12px] md:text-sm text-[#172033]/60 font-medium">{item.label}</p>
+                        <h4 className="text-xl md:text-2xl font-bold text-[#123B63] mb-0.5">{item.stat}</h4>
+                        <p className="text-[13px] md:text-sm text-[#123B63] font-semibold leading-tight">{item.label}</p>
+                        {item.sub && (
+                          <p className="text-[11px] md:text-xs text-[#172033]/60 font-medium mt-0.5">{item.sub}</p>
+                        )}
                       </div>
                     ))}
                   </div>

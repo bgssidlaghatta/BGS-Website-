@@ -1,30 +1,65 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Reveal, motion, staggerContainer, fadeUp } from "@/lib/animations";
 import { cn } from "@/lib/utils";
-import { Maximize2, X } from "lucide-react";
+import { Maximize2, X, RefreshCw } from "lucide-react";
 import { AnimatePresence } from "framer-motion";
+import { GalleryItem } from "@/lib/gallery-store";
 
-const galleryImages = [
-  { src: "/images/campus-hero.png", alt: "BGS Campus Aerial View", category: "Campus" },
-  { src: "/images/classroom.png", alt: "Interactive Classroom Session", category: "Academic" },
-  { src: "/images/computer-lab.png", alt: "Modern Computer Laboratory", category: "Facilities" },
-  { src: "/images/science-lab.png", alt: "Advanced Science Experiments", category: "Facilities" },
-  { src: "/images/library.png", alt: "Extensive Library Collection", category: "Facilities" },
-  { src: "/images/sports-ground.png", alt: "Sports and Athletics", category: "Activities" },
+const INITIAL_IMAGES: GalleryItem[] = [
+  { id: "seed-1", public_id: "seed-1", src: "/images/Hero-section.png", alt: "BGS Public School & PU College Main Building", category: "Campus", createdAt: "2026-01-01" },
+  { id: "seed-2", public_id: "seed-2", src: "/images/Hero-section-2.png", alt: "Campus Architecture and Courtyard", category: "Campus", createdAt: "2026-01-01" },
+  { id: "seed-3", public_id: "image-clean_fmrqe6", src: "https://res.cloudinary.com/xd8uritd/image/upload/v1789621192/image-clean_fmrqe6.png", alt: "Central Entrance and Tree-Lined Grounds", category: "Campus", createdAt: "2026-01-01" },
+  { id: "seed-4", public_id: "seed-4", src: "/images/Kindergarden.png", alt: "Kindergarten Early Childhood Learning", category: "Academic", createdAt: "2026-01-01" },
+  { id: "seed-5", public_id: "seed-5", src: "/images/primary_class.png", alt: "Primary Classroom Interactive Learning", category: "Academic", createdAt: "2026-01-01" },
+  { id: "seed-high-school", public_id: "ChatGPT_Image_Sep_17_2026_03_09_33_PM_vmr3qc", src: "https://res.cloudinary.com/xd8uritd/image/upload/v1789638235/ChatGPT_Image_Sep_17_2026_03_09_33_PM_vmr3qc.png", alt: "High School Academic Learning & Classroom", category: "Academic", createdAt: "2026-01-01" },
+  { id: "seed-6", public_id: "seed-6", src: "/images/computer-lab.png", alt: "Modern Computer Laboratory", category: "Facilities", createdAt: "2026-01-01" },
+  { id: "sports-ground", public_id: "Sports_tcb3ce", src: "https://res.cloudinary.com/xd8uritd/image/upload/v1789554940/Sports_tcb3ce.png", alt: "Sports & Athletics Grounds", category: "Activities", createdAt: "2026-01-01" },
+  { id: "bgs-school-bus", public_id: "Bus_fn4rdo", src: "https://res.cloudinary.com/xd8uritd/image/upload/v1789554938/Bus_fn4rdo.png", alt: "BGS School Bus Transport Fleet", category: "Facilities", createdAt: "2026-01-01" },
 ];
 
-const categories = ["All", "Campus", "Academic", "Facilities", "Activities"];
+import { getCookie, setCookie, COOKIE_KEYS, hasConsentFor } from "@/lib/cookies";
 
 export default function GalleryPage() {
+  const [images, setImages] = useState<GalleryItem[]>(INITIAL_IMAGES);
   const [activeTab, setActiveTab] = useState("All");
-  const [selectedImage, setSelectedImage] = useState<{src: string; alt: string} | null>(null);
+  const [selectedImage, setSelectedImage] = useState<{ src: string; alt: string; category?: string } | null>(null);
 
-  const filteredImages = activeTab === "All" 
-    ? galleryImages 
-    : galleryImages.filter(img => img.category === activeTab);
+  useEffect(() => {
+    // Restore last visited gallery category from cookie
+    const savedTab = getCookie(COOKIE_KEYS.GALLERY_TAB);
+    if (savedTab) {
+      setActiveTab(savedTab);
+    }
+
+    fetch("/api/gallery")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.items && Array.isArray(data.items) && data.items.length > 0) {
+          setImages(data.items);
+        }
+      })
+      .catch((err) => console.error("Could not fetch gallery items:", err));
+  }, []);
+
+  const handleTabChange = (category: string) => {
+    setActiveTab(category);
+    if (hasConsentFor("analytics")) {
+      setCookie(COOKIE_KEYS.GALLERY_TAB, category, 30);
+    }
+  };
+
+  const categories = [
+    "All",
+    ...Array.from(new Set(images.map((img) => img.category))),
+  ];
+
+  const filteredImages =
+    activeTab === "All"
+      ? images
+      : images.filter((img) => img.category.toLowerCase() === activeTab.toLowerCase());
 
   return (
     <>
@@ -58,10 +93,10 @@ export default function GalleryPage() {
               {categories.map((category) => (
                 <button
                   key={category}
-                  onClick={() => setActiveTab(category)}
+                  onClick={() => handleTabChange(category)}
                   className={cn(
-                    "px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300",
-                    activeTab === category 
+                    "px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 cursor-pointer",
+                    activeTab.toLowerCase() === category.toLowerCase() 
                       ? "bg-brand-maroon text-brand-cream shadow-lg shadow-brand-maroon/20"
                       : "bg-white text-brand-umber/70 hover:bg-brand-saffron/10 hover:text-brand-maroon border border-brand-maroon/10"
                   )}
@@ -80,13 +115,13 @@ export default function GalleryPage() {
             <AnimatePresence mode="popLayout">
               {filteredImages.map((image, idx) => (
                 <motion.div
-                  key={image.src + activeTab}
+                  key={image.id || image.src + activeTab}
                   layout
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.9 }}
                   transition={{ duration: 0.4, delay: idx * 0.05 }}
-                  className="group relative aspect-[4/3] rounded-2xl overflow-hidden cursor-pointer shadow-sm hover:shadow-2xl transition-all duration-500 bg-brand-maroon/5"
+                  className="group relative aspect-[4/3] rounded-2xl overflow-hidden cursor-pointer shadow-xs hover:shadow-2xl transition-all duration-500 bg-brand-maroon/5"
                   onClick={() => setSelectedImage(image)}
                 >
                   <Image
@@ -98,7 +133,7 @@ export default function GalleryPage() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-brand-maroon-deep/90 via-brand-maroon-deep/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
                     <Maximize2 className="w-6 h-6 text-brand-saffron mb-3 translate-y-4 group-hover:translate-y-0 transition-transform duration-300" />
-                    <p className="text-brand-cream font-medium text-lg translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75">
+                    <p className="text-brand-cream font-medium text-lg translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75 line-clamp-2">
                       {image.alt}
                     </p>
                     <p className="text-brand-saffron/80 text-sm uppercase tracking-wider font-semibold mt-1 translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-100">
@@ -129,7 +164,7 @@ export default function GalleryPage() {
             onClick={() => setSelectedImage(null)}
           >
             <button 
-              className="absolute top-6 right-6 p-2 bg-brand-cream/10 hover:bg-brand-saffron hover:text-brand-maroon-deep rounded-full text-brand-cream transition-colors z-50"
+              className="absolute top-6 right-6 p-2 bg-brand-cream/10 hover:bg-brand-saffron hover:text-brand-maroon-deep rounded-full text-brand-cream transition-colors z-50 cursor-pointer"
               onClick={() => setSelectedImage(null)}
             >
               <X className="w-6 h-6" />
@@ -145,12 +180,17 @@ export default function GalleryPage() {
                 src={selectedImage.src}
                 alt={selectedImage.alt}
                 fill
-                className="object-contain bg-black/20"
+                className="object-contain bg-black/40"
                 sizes="100vw"
                 quality={100}
               />
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-brand-maroon-deep/90 to-transparent p-6 pt-20">
                 <p className="text-brand-cream font-serif text-2xl mb-1">{selectedImage.alt}</p>
+                {selectedImage.category && (
+                  <p className="text-brand-saffron text-xs uppercase tracking-widest font-semibold">
+                    {selectedImage.category}
+                  </p>
+                )}
               </div>
             </motion.div>
           </motion.div>

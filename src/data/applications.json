@@ -1,0 +1,26 @@
+[
+  {
+    "id": "app_mu5c1oaqlept",
+    "vacancyId": "vac_maths_puc",
+    "vacancyTitle": "Lecturer in Mathematics (PU College)",
+    "name": "Pooja Hegde",
+    "phone": "+91 99001 12233",
+    "email": "pooja.hegde@gmail.com",
+    "qualification": "M.Sc Mathematics, B.Ed",
+    "experience": "2 Years in PU College",
+    "message": "Excited to apply for the Mathematics lecturer role at BGS.",
+    "submittedAt": "2026-09-17T09:34:04.610Z"
+  },
+  {
+    "id": "app_demo_01",
+    "vacancyId": "vac_maths_puc",
+    "vacancyTitle": "Lecturer in Mathematics (PU College)",
+    "name": "Kavitha Ramesh",
+    "phone": "+91 98451 12345",
+    "email": "kavitha.ramesh@gmail.com",
+    "qualification": "M.Sc Mathematics (First Class), B.Ed",
+    "experience": "3 years teaching PU I & II Maths in Mandya district",
+    "message": "Enthusiastic educator wishing to contribute to BGS institutions. Experienced in CET coaching and student counseling.",
+    "submittedAt": "2026-09-17T08:30:00.000Z"
+  }
+]

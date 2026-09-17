@@ -1,71 +1,108 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { Reveal, StaggerReveal, ParallaxLayer, motion, staggerContainer, fadeUp, AnimatedCounter } from "@/lib/animations";
-import { ArrowRight, GraduationCap, MapPin, Briefcase } from "lucide-react";
+import { ArrowRight, GraduationCap, Briefcase, ArrowUpRight, Search, Sparkles } from "lucide-react";
 
 const alumniData = [
   {
-    name: "Alumni Name",
-    batch: "Class of 2018",
-    role: "Software Engineer",
-    company: "Tech Corp",
-    location: "Bangalore, India",
-    image: "A"
+    name: "Yaseer Pasha",
+    batch: "2006–08",
+    designation: "IT",
   },
   {
-    name: "Alumni Name",
-    batch: "Class of 2016",
-    role: "Doctor",
-    company: "City Hospital",
-    location: "Mysore, India",
-    image: "A"
+    name: "Binduja",
+    batch: "2008–09",
+    designation: "Veterinary",
   },
   {
-    name: "Alumni Name",
-    batch: "Class of 2019",
-    role: "Entrepreneur",
-    company: "Startup Inc",
-    location: "Mumbai, India",
-    image: "A"
+    name: "Dr. Abhishek",
+    batch: "2009–10",
+    designation: "MBBS",
   },
   {
-    name: "Alumni Name",
-    batch: "Class of 2015",
-    role: "Research Scholar",
-    company: "IISc",
-    location: "Bangalore, India",
-    image: "A"
+    name: "Nalina L",
+    batch: "2009–10",
+    designation: "Civil Engineer",
   },
   {
-    name: "Alumni Name",
-    batch: "Class of 2020",
-    role: "CA Finalist",
-    company: "Finance Firm",
-    location: "Chennai, India",
-    image: "A"
+    name: "Deepika",
+    batch: "2010–11",
+    designation: "Physical Design Engineer",
   },
   {
-    name: "Alumni Name",
-    batch: "Class of 2017",
-    role: "Civil Servant",
-    company: "Govt. of Karnataka",
-    location: "Bangalore, India",
-    image: "A"
-  }
+    name: "Lakshmi",
+    batch: "2010–11",
+    designation: "Wireless Software",
+  },
+  {
+    name: "Girish C R",
+    batch: "2010–12",
+    designation: "Ph.D. Scholar",
+  },
+  {
+    name: "Dr. Suma S.B",
+    batch: "2010–12",
+    designation: "MBBS",
+  },
+  {
+    name: "Dr. Jyothi",
+    batch: "2012–13",
+    designation: "Medical Officer",
+  },
+  {
+    name: "Kishor Kumar",
+    batch: "2012–13",
+    designation: "B.Sc. Agriculture",
+  },
+  {
+    name: "Sunil K",
+    batch: "2012–13",
+    designation: "Banker",
+  },
+  {
+    name: "Umesh",
+    batch: "2012–13",
+    designation: "Pharmacy Officer",
+  },
+  {
+    name: "Abhishek Gowda",
+    batch: "2015–16",
+    designation: "B.Com Agriculture",
+  },
+  {
+    name: "Bhargav D",
+    batch: "2015–16",
+    designation: "Team Leader, Excitel",
+  },
+  {
+    name: "Suma V",
+    batch: "2017–18",
+    designation: "Software Engineer",
+  },
 ];
 
 export default function AlumniPage() {
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const filteredAlumni = alumniData.filter((alumni) =>
+    alumni.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    alumni.batch.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    alumni.designation.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <>
       {/* ════════════════════ HERO ════════════════════ */}
       <section className="relative min-h-[60vh] flex items-end overflow-hidden">
         <ParallaxLayer speed={0.3} className="absolute inset-0 w-full h-[120%] -top-[10%]">
           <Image
-            src="/images/campus-hero.png"
+            src="/images/Hero-section-2.png"
             alt="BGS Campus"
             fill
             priority
@@ -82,9 +119,20 @@ export default function AlumniPage() {
             <motion.h1 variants={fadeUp} className="text-5xl md:text-7xl font-serif font-bold text-brand-cream mb-6 leading-tight max-w-3xl">
               Once a BGSian, <br />Always a <span className="text-brand-saffron">BGSian.</span>
             </motion.h1>
-            <motion.p variants={fadeUp} className="text-brand-cream/80 text-lg max-w-xl">
+            <motion.p variants={fadeUp} className="text-brand-cream/80 text-lg max-w-xl mb-8">
               Connect with fellow graduates, give back to your alma mater, and continue to carry the legacy of BGS Public School wherever you go.
             </motion.p>
+            <motion.div variants={fadeUp} className="flex flex-wrap gap-4">
+              <a
+                href="https://forms.gle/kqZzV7jSUaEfsd9N8"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={cn(buttonVariants({ size: "lg" }), "bg-brand-saffron text-brand-maroon-deep hover:bg-white transition-all shadow-xl font-bold px-8 py-6 text-base btn-ripple inline-flex items-center gap-2")}
+              >
+                Register as Alumni
+                <ArrowUpRight className="w-4 h-4" />
+              </a>
+            </motion.div>
           </motion.div>
         </div>
       </section>
@@ -125,8 +173,8 @@ export default function AlumniPage() {
             <Reveal>
               <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
                 <Image
-                  src="/images/classroom.png"
-                  alt="Students in classroom"
+                  src="/images/Hero-section.png"
+                  alt="BGS Campus Building"
                   fill
                   className="object-cover"
                 />
@@ -145,57 +193,109 @@ export default function AlumniPage() {
       <section className="py-20 md:py-32 bg-brand-offwhite">
         <div className="px-6 md:px-12 max-w-7xl mx-auto">
           <Reveal>
-            <div className="text-center max-w-3xl mx-auto mb-20">
+            <div className="text-center max-w-3xl mx-auto mb-12">
               <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-saffron mb-4">
-                Success Stories
+                Distinguished Graduates
               </p>
               <h2 className="text-3xl md:text-5xl font-serif font-bold text-brand-maroon mb-6">
                 Meet Our Notable Alumni
               </h2>
-              <p className="text-brand-umber/60 leading-relaxed text-lg">
-                From pioneering startups to serving the nation, our alumni are making their mark in diverse fields. Here are just a few of our proud graduates.
+              <p className="text-brand-umber/70 leading-relaxed text-lg mb-5">
+                From medical healthcare and software architecture to agriculture and civil services, our alumni continue to uphold the prestigious legacy of BGS.
               </p>
+
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-saffron/10 border border-brand-saffron/25 text-xs md:text-sm font-medium text-brand-maroon mb-8 shadow-sm">
+                <Sparkles className="w-4 h-4 text-brand-saffron shrink-0" />
+                <span>
+                  Please note: These are <strong>less than 0.5% of our students</strong> whose records we have currently compiled.
+                </span>
+              </div>
+
+              {/* Search Bar */}
+              <div className="max-w-md mx-auto relative">
+                <Search className="w-4 h-4 text-brand-umber/40 absolute left-4 top-1/2 -translate-y-1/2" />
+                <Input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder="Search by name, batch, or designation..."
+                  className="pl-11 pr-4 h-12 bg-white rounded-full border-brand-maroon/15 shadow-sm text-sm focus:border-brand-saffron"
+                />
+              </div>
             </div>
           </Reveal>
 
-          <StaggerReveal staggerDelay={0.08}>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {alumniData.map((alumni, idx) => (
-                <motion.div key={idx} variants={fadeUp} className="bg-white rounded-2xl p-6 border border-brand-maroon/5 shadow-sm card-lift group">
-                  <div className="flex items-center gap-4 mb-6">
-                    <div className="w-16 h-16 rounded-full bg-brand-cream flex items-center justify-center shrink-0">
-                      <span className="font-serif text-2xl font-bold text-brand-maroon/20">{alumni.image}</span>
-                    </div>
-                    <div>
-                      <h3 className="font-serif font-bold text-brand-maroon text-lg group-hover:text-brand-saffron transition-colors">{alumni.name}</h3>
-                      <p className="text-sm font-medium text-brand-saffron">{alumni.batch}</p>
-                    </div>
-                  </div>
-                  
-                  <div className="space-y-3">
-                    <div className="flex items-start gap-3">
-                      <Briefcase className="w-4 h-4 text-brand-umber/40 mt-1 shrink-0" />
+          {filteredAlumni.length > 0 ? (
+            <StaggerReveal staggerDelay={0.05}>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {filteredAlumni.map((alumni, idx) => {
+                  const initial = alumni.name.replace(/^Dr\.\s*/i, "").trim().charAt(0);
+                  return (
+                    <motion.div
+                      key={`${alumni.name}-${idx}`}
+                      variants={fadeUp}
+                      className="bg-white rounded-2xl p-6 border border-brand-maroon/10 shadow-sm hover:shadow-md card-lift group flex flex-col justify-between transition-all"
+                    >
                       <div>
-                        <p className="text-sm font-medium text-brand-umber/90">{alumni.role}</p>
-                        <p className="text-xs text-brand-umber/50">{alumni.company}</p>
+                        <div className="flex items-center gap-4 mb-4">
+                          <div className="w-14 h-14 rounded-2xl bg-brand-cream border border-brand-maroon/10 flex items-center justify-center shrink-0 group-hover:bg-brand-saffron/20 transition-colors shadow-sm">
+                            <span className="font-serif text-xl font-bold text-brand-maroon">
+                              {initial}
+                            </span>
+                          </div>
+                          <div>
+                            <h3 className="font-serif font-bold text-brand-maroon text-lg group-hover:text-brand-saffron transition-colors leading-snug">
+                              {alumni.name}
+                            </h3>
+                            <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-saffron bg-brand-saffron/10 px-2.5 py-0.5 rounded-full mt-1">
+                              <GraduationCap className="w-3.5 h-3.5" />
+                              Batch {alumni.batch}
+                            </span>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <MapPin className="w-4 h-4 text-brand-umber/40 mt-0.5 shrink-0" />
-                      <p className="text-sm text-brand-umber/70">{alumni.location}</p>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
+
+                      <div className="pt-4 border-t border-brand-maroon/5 flex items-center gap-3">
+                        <div className="w-8 h-8 rounded-lg bg-brand-maroon/5 flex items-center justify-center text-brand-saffron shrink-0">
+                          <Briefcase className="w-4 h-4" />
+                        </div>
+                        <div>
+                          <p className="text-[10px] text-brand-umber/40 uppercase tracking-wider font-semibold">Designation</p>
+                          <p className="text-sm font-semibold text-brand-maroon leading-tight">{alumni.designation}</p>
+                        </div>
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </div>
+            </StaggerReveal>
+          ) : (
+            <div className="py-12 text-center bg-white rounded-2xl border border-brand-maroon/10 max-w-md mx-auto">
+              <p className="text-sm text-brand-umber/60 mb-4">No alumni found matching &ldquo;{searchQuery}&rdquo;</p>
+              <button
+                type="button"
+                onClick={() => setSearchQuery("")}
+                className="text-xs font-semibold text-brand-saffron hover:underline"
+              >
+                Clear Search Filter
+              </button>
             </div>
-          </StaggerReveal>
+          )}
           
           <Reveal>
             <div className="mt-16 text-center">
-              <p className="text-brand-umber/50 text-sm mb-4">Want to be featured in our alumni spotlight?</p>
-              <Link href="/contact" className={cn(buttonVariants({ variant: "outline" }), "border-brand-maroon/20 hover:bg-brand-maroon hover:text-white transition-colors")}>
-                Share Your Story
-              </Link>
+              <p className="text-brand-umber/70 text-sm mb-4 font-medium">
+                These are less than 0.5% of our students whose records we currently have compiled. Help us complete our records — want to be featured here?
+              </p>
+              <a 
+                href="https://forms.gle/kqZzV7jSUaEfsd9N8" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className={cn(buttonVariants({ variant: "outline" }), "border-brand-maroon/20 hover:bg-brand-maroon hover:text-white transition-colors inline-flex items-center gap-2")}
+              >
+                Share Your Details
+                <ArrowUpRight className="w-4 h-4" />
+              </a>
             </div>
           </Reveal>
         </div>
@@ -212,10 +312,15 @@ export default function AlumniPage() {
             <p className="text-brand-cream/70 mb-10 text-lg max-w-2xl mx-auto leading-relaxed">
               Reconnect with old friends, network with professionals, and stay updated on the latest developments and events at your alma mater. Registration is quick and free.
             </p>
-            <Link href="/contact" className={cn(buttonVariants({ size: "lg" }), "bg-brand-saffron text-brand-maroon-deep hover:bg-white transition-colors shadow-xl group px-8 py-6 text-base btn-ripple")}>
-              Register Now
-              <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-            </Link>
+            <a 
+              href="https://forms.gle/kqZzV7jSUaEfsd9N8" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className={cn(buttonVariants({ size: "lg" }), "bg-brand-saffron text-brand-maroon-deep hover:bg-white transition-colors shadow-xl group px-8 py-6 text-base btn-ripple inline-flex items-center gap-2 font-bold")}
+            >
+              Fill Alumni Form
+              <ArrowUpRight className="w-5 h-5 ml-1 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </a>
           </Reveal>
         </div>
       </section>

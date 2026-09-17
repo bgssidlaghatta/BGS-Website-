@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Phone, MessageCircle } from "lucide-react";
+import { Menu, X, Phone, MessageCircle, Lock } from "lucide-react";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -21,9 +21,10 @@ const navLinks: NavLink[] = [
     href: "/about",
     subItems: [
       { name: "About BGS", href: "/about" },
+      { name: "About Math", href: "/about/math" },
+      { name: "About CAO", href: "/about/cao" },
       { name: "Vision & Mission", href: "/about/vision-mission" },
-      { name: "About the Founder", href: "/about/founder" },
-      { name: "About the Trust", href: "/about/trust" },
+      { name: "Careers & Hiring", href: "/careers" },
     ]
   },
   { 
@@ -31,10 +32,10 @@ const navLinks: NavLink[] = [
     href: "/academics",
     subItems: [
       { name: "Curriculum Overview", href: "/academics#overview" },
-      { name: "Pre School", href: "/academics#pre-school" },
       { name: "Kindergarten", href: "/academics#kindergarten" },
       { name: "Primary School", href: "/academics#primary" },
       { name: "High School", href: "/academics#high-school" },
+      { name: "Assessment & Exams", href: "/academics#assessment" },
       { name: "PU", href: "/academics#pu" },
     ]
   },
@@ -45,7 +46,6 @@ const navLinks: NavLink[] = [
       { name: "Results Overview", href: "/results" },
       { name: "SSLC Board Results", href: "/results/sslc" },
       { name: "PU Board Results", href: "/results/pu" },
-      { name: "Entrance Exams", href: "/results/competitive" },
     ]
   },
   { name: "Faculty", href: "/faculty" },
@@ -158,7 +158,7 @@ export function Header() {
               <span className="font-serif font-bold text-lg text-brand-maroon leading-tight tracking-tight">
                 BGS Public School
               </span>
-              <span className="text-[11px] font-medium text-brand-saffron uppercase tracking-[0.2em] leading-tight">
+              <span className="text-[11px] font-bold text-brand-maroon uppercase tracking-[0.2em] leading-tight">
                 & PU College, Sidlaghatta
               </span>
             </div>
@@ -182,24 +182,43 @@ export function Header() {
               <MessageCircle className="w-3.5 h-3.5" />
               <span className="ledger-data text-xs">+91 99019 23097</span>
             </a>
-            <Link href="/contact" className={cn(buttonVariants(), "ml-2 shadow-md shadow-primary/20 hover:shadow-primary/40 transition-all duration-300 hover:-translate-y-0.5 btn-ripple")}>
+            <Link
+              href="/admin"
+              className="px-2.5 py-1.5 rounded-lg border border-brand-maroon/20 hover:border-brand-maroon text-brand-maroon text-xs font-semibold flex items-center gap-1.5 transition-all duration-200 hover:bg-brand-maroon hover:text-white"
+              title="Admin Login"
+            >
+              <Lock className="w-3 h-3" />
+              <span>Admin</span>
+            </Link>
+            <Link href="/contact" className={cn(buttonVariants(), "ml-1 shadow-md shadow-primary/20 hover:shadow-primary/40 transition-all duration-300 hover:-translate-y-0.5 btn-ripple")}>
               Enquire Now
             </Link>
           </div>
 
-          {/* Mobile toggle */}
-          <button
-            onClick={() => setMobileOpen(!mobileOpen)}
-            className="lg:hidden relative z-50 p-2 text-brand-maroon"
-            aria-label="Toggle navigation menu"
-          >
-            <motion.div
-              animate={{ rotate: mobileOpen ? 90 : 0 }}
-              transition={{ duration: 0.2 }}
+          {/* Mobile actions */}
+          <div className="flex items-center gap-2 lg:hidden">
+            <Link
+              href="/admin"
+              className="px-2.5 py-1.5 rounded-lg border border-brand-maroon/25 text-brand-maroon hover:bg-brand-maroon hover:text-white transition-all flex items-center gap-1 text-xs font-semibold"
+              aria-label="Admin Login"
             >
-              {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </motion.div>
-          </button>
+              <Lock className="w-3 h-3" />
+              <span>Admin</span>
+            </Link>
+
+            <button
+              onClick={() => setMobileOpen(!mobileOpen)}
+              className="relative z-50 p-2 text-brand-maroon"
+              aria-label="Toggle navigation menu"
+            >
+              <motion.div
+                animate={{ rotate: mobileOpen ? 90 : 0 }}
+                transition={{ duration: 0.2 }}
+              >
+                {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              </motion.div>
+            </button>
+          </div>
         </div>
       </header>
 
@@ -255,9 +274,18 @@ export function Header() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: navLinks.length * 0.06, duration: 0.4 }}
+                className="flex flex-col items-center gap-3 w-full max-w-xs mt-4"
               >
-                <Link href="/contact" onClick={() => setMobileOpen(false)} className={cn(buttonVariants({ size: "lg" }), "mt-4 text-lg")}>
+                <Link href="/contact" onClick={() => setMobileOpen(false)} className={cn(buttonVariants({ size: "lg" }), "w-full text-lg justify-center")}>
                   Enquire Now
+                </Link>
+                <Link
+                  href="/admin"
+                  onClick={() => setMobileOpen(false)}
+                  className="w-full py-2.5 rounded-xl border border-brand-saffron/40 text-brand-cream hover:text-brand-saffron hover:border-brand-saffron text-sm font-semibold flex items-center justify-center gap-2 transition-colors"
+                >
+                  <Lock className="w-3.5 h-3.5 text-brand-saffron" />
+                  <span>Admin Portal Login</span>
                 </Link>
               </motion.div>
             </nav>

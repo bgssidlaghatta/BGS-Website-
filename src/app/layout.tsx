@@ -5,6 +5,7 @@ import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { ScrollProgress } from "@/components/layout/scroll-progress";
 import { BackToTop } from "@/components/layout/back-to-top";
+import { CookieConsent } from "@/components/ui/cookie-consent";
 import { cn } from "@/lib/utils";
 
 const dmSans = DM_Sans({
@@ -40,6 +41,14 @@ export const metadata: Metadata = {
     "NEET coaching",
     "best school Sidlaghatta",
   ],
+  icons: {
+    icon: [
+      { url: "/images/logo.jpg" },
+      { url: "https://res.cloudinary.com/xd8uritd/image/upload/v1783504016/Logo_todxfw.jpg" },
+    ],
+    shortcut: "/images/logo.jpg",
+    apple: "/images/logo.jpg",
+  },
 };
 
 export default function RootLayout({
@@ -59,6 +68,7 @@ export default function RootLayout({
         <main className="flex-1">{children}</main>
         <Footer />
         <BackToTop />
+        <CookieConsent />
       </body>
     </html>
   );

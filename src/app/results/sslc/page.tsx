@@ -3,17 +3,7 @@
 import Image from "next/image";
 import { Reveal, staggerContainer, fadeUp } from "@/lib/animations";
 import { motion } from "framer-motion";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-
-const sslcResults: any[] = [
-];
+import { Sparkles, FileCheck, Target, Users } from "lucide-react";
 
 export default function SSLCResultsPage() {
   return (
@@ -29,7 +19,7 @@ export default function SSLCResultsPage() {
               SSLC Board Results
             </motion.h1>
             <motion.p variants={fadeUp} className="text-lg text-brand-umber/70 max-w-2xl mx-auto leading-relaxed">
-              Consistently producing state toppers, our rigorous high school foundation ensures that students enter Pre-University with absolute confidence.
+              Consistently achieving 100% SSLC board results and producing state toppers, our rigorous high school foundation ensures that students enter Pre-University with absolute confidence.
             </motion.p>
           </motion.div>
         </div>
@@ -40,7 +30,7 @@ export default function SSLCResultsPage() {
         <div className="px-6 md:px-12 max-w-6xl mx-auto">
           
           <Reveal>
-            <div className="relative w-full rounded-3xl overflow-hidden shadow-2xl mb-16 border-2 border-brand-maroon/10 bg-white group">
+            <div className="relative w-full rounded-3xl overflow-hidden shadow-2xl mb-12 border-2 border-brand-maroon/10 bg-white group">
               <Image 
                 src="/images/schoolresult.png" 
                 alt="SSLC Board Results Banner" 
@@ -48,37 +38,69 @@ export default function SSLCResultsPage() {
                 height={1000}
                 className="w-full h-auto object-contain" 
                 sizes="100vw"
+                priority
                 unoptimized
               />
             </div>
           </Reveal>
 
-          <Reveal>
-            <div className="rounded-3xl overflow-hidden border border-brand-maroon/10 shadow-xl">
-              <div className="overflow-x-auto">
-                <Table className="w-full min-w-[600px]">
-                  <TableHeader>
-                    <TableRow className="bg-brand-maroon-deep hover:bg-brand-maroon-deep">
-                      <TableHead className="px-8 py-6 text-left text-xs font-semibold uppercase tracking-widest text-brand-cream/60">Year</TableHead>
-                      <TableHead className="px-8 py-6 text-left text-xs font-semibold uppercase tracking-widest text-brand-cream/60">Student Name</TableHead>
-                      <TableHead className="px-8 py-6 text-right text-xs font-semibold uppercase tracking-widest text-brand-cream/60">Score</TableHead>
-                      <TableHead className="px-8 py-6 text-right text-xs font-semibold uppercase tracking-widest text-brand-cream/60">Percentage</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {sslcResults.map((row, i) => (
-                      <TableRow key={i} className={`border-b border-brand-maroon/5 hover:bg-brand-saffron/5 transition-colors ${i % 2 === 0 ? 'bg-brand-cream' : 'bg-brand-offwhite'}`}>
-                        <TableCell className="px-8 py-6 ledger-data text-base font-bold text-brand-umber/70">{row.year}</TableCell>
-                        <TableCell className="px-8 py-6 text-base font-medium text-brand-maroon">{row.name}</TableCell>
-                        <TableCell className="px-8 py-6 text-right ledger-data text-xl font-bold text-brand-maroon">{row.score}</TableCell>
-                        <TableCell className="px-8 py-6 text-right ledger-data text-xl font-bold text-brand-gold">{row.pct}</TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
+          {/* ════════════════════ HOW WE ACHIEVE THESE RESULTS ════════════════════ */}
+          <div className="mt-20">
+            <Reveal>
+              <div className="bg-white rounded-3xl p-8 md:p-12 border border-brand-maroon/10 shadow-xl relative overflow-hidden">
+                <div className="max-w-3xl mb-10">
+                  <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-maroon/5 text-brand-maroon text-xs font-semibold uppercase tracking-wider mb-4 border border-brand-maroon/10">
+                    <Sparkles className="w-3.5 h-3.5 text-brand-gold" />
+                    The Chickballapur Division Advantage
+                  </div>
+                  <h3 className="text-2xl md:text-3xl font-serif font-bold text-brand-maroon mb-4">
+                    The Science Behind Our 100% SSLC Board Results & Distinctions
+                  </h3>
+                  <p className="text-brand-umber/70 text-sm md:text-base leading-relaxed">
+                    Exemplary board performance at BGS is the direct outcome of an uncompromising assessment ecosystem formulated across the Chickballapur Division:
+                  </p>
+                </div>
+
+                <div className="grid md:grid-cols-3 gap-6">
+                  <div className="p-6 rounded-2xl bg-brand-cream/50 border border-brand-maroon/5">
+                    <div className="w-10 h-10 rounded-xl bg-brand-saffron/10 flex items-center justify-center text-brand-saffron mb-4">
+                      <FileCheck className="w-5 h-5" />
+                    </div>
+                    <h4 className="font-serif font-bold text-lg text-brand-maroon mb-2">
+                      External Blind Question Papers
+                    </h4>
+                    <p className="text-xs text-brand-umber/70 leading-relaxed">
+                      From LKG through SSLC, all examination papers are prepared by independent external educators. Class teachers remain unaware of the paper sources, fostering unbiased preparation and high seriousness.
+                    </p>
+                  </div>
+
+                  <div className="p-6 rounded-2xl bg-brand-cream/50 border border-brand-maroon/5">
+                    <div className="w-10 h-10 rounded-xl bg-brand-saffron/10 flex items-center justify-center text-brand-saffron mb-4">
+                      <Target className="w-5 h-5" />
+                    </div>
+                    <h4 className="font-serif font-bold text-lg text-brand-maroon mb-2">
+                      Formative & Summative Precision
+                    </h4>
+                    <p className="text-xs text-brand-umber/70 leading-relaxed">
+                      Frequent continuous diagnostic tests detect micro-learning gaps early, followed by bi-annual summative examinations that evaluate mastery and determine promotion eligibility.
+                    </p>
+                  </div>
+
+                  <div className="p-6 rounded-2xl bg-brand-cream/50 border border-brand-maroon/5">
+                    <div className="w-10 h-10 rounded-xl bg-brand-saffron/10 flex items-center justify-center text-brand-saffron mb-4">
+                      <Users className="w-5 h-5" />
+                    </div>
+                    <h4 className="font-serif font-bold text-lg text-brand-maroon mb-2">
+                      Targeted SSLC Workshops
+                    </h4>
+                    <p className="text-xs text-brand-umber/70 leading-relaxed">
+                      Dedicated academic tracks: advanced problem-solving workshops for high achievers aiming for state ranks, and scaffolded remedial clinics to elevate every student into distinctions.
+                    </p>
+                  </div>
+                </div>
               </div>
-            </div>
-          </Reveal>
+            </Reveal>
+          </div>
 
         </div>
       </section>

@@ -1,0 +1,82 @@
+[
+  {
+    "id": "bgs-school-bus",
+    "public_id": "Bus_fn4rdo",
+    "src": "https://res.cloudinary.com/xd8uritd/image/upload/v1789554938/Bus_fn4rdo.png",
+    "alt": "BGS School Bus Transport Fleet",
+    "category": "Facilities",
+    "createdAt": "2026-09-17T09:19:19.410Z"
+  },
+  {
+    "id": "seed-1",
+    "public_id": "seed-1",
+    "src": "/images/Hero-section.png",
+    "alt": "BGS Public School & PU College Main Building",
+    "category": "Campus",
+    "createdAt": "2026-01-01T00:00:00.000Z",
+    "isSeed": true
+  },
+  {
+    "id": "seed-2",
+    "public_id": "seed-2",
+    "src": "/images/Hero-section-2.png",
+    "alt": "Campus Architecture and Courtyard",
+    "category": "Campus",
+    "createdAt": "2026-01-01T00:00:00.000Z",
+    "isSeed": true
+  },
+  {
+    "id": "seed-3",
+    "public_id": "image-clean_fmrqe6",
+    "src": "https://res.cloudinary.com/xd8uritd/image/upload/v1789621192/image-clean_fmrqe6.png",
+    "alt": "Central Entrance and Tree-Lined Grounds",
+    "category": "Campus",
+    "createdAt": "2026-01-01T00:00:00.000Z",
+    "isSeed": false
+  },
+  {
+    "id": "seed-4",
+    "public_id": "seed-4",
+    "src": "/images/Kindergarden.png",
+    "alt": "Kindergarten Early Childhood Learning",
+    "category": "Academic",
+    "createdAt": "2026-01-01T00:00:00.000Z",
+    "isSeed": true
+  },
+  {
+    "id": "seed-5",
+    "public_id": "seed-5",
+    "src": "/images/primary_class.png",
+    "alt": "Primary Classroom Interactive Learning",
+    "category": "Academic",
+    "createdAt": "2026-01-01T00:00:00.000Z",
+    "isSeed": true
+  },
+  {
+    "id": "seed-high-school",
+    "public_id": "ChatGPT_Image_Sep_17_2026_03_09_33_PM_vmr3qc",
+    "src": "https://res.cloudinary.com/xd8uritd/image/upload/v1789638235/ChatGPT_Image_Sep_17_2026_03_09_33_PM_vmr3qc.png",
+    "alt": "High School Academic Learning & Classroom",
+    "category": "Academic",
+    "createdAt": "2026-09-17T09:45:00.000Z",
+    "isSeed": false
+  },
+  {
+    "id": "seed-6",
+    "public_id": "seed-6",
+    "src": "/images/computer-lab.png",
+    "alt": "Modern Computer Laboratory",
+    "category": "Facilities",
+    "createdAt": "2026-01-01T00:00:00.000Z",
+    "isSeed": true
+  },
+  {
+    "id": "sports-ground",
+    "public_id": "Sports_tcb3ce",
+    "src": "https://res.cloudinary.com/xd8uritd/image/upload/v1789554940/Sports_tcb3ce.png",
+    "alt": "Sports & Athletics Grounds",
+    "category": "Activities",
+    "createdAt": "2026-01-01T00:00:00.000Z",
+    "isSeed": false
+  }
+]

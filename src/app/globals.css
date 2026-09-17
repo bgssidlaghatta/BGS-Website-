@@ -29,10 +29,12 @@ body {
 }
 
 /* ── Typography Hierarchy ── */
-h1, h2, h3, h4, h5, h6 {
-  color: var(--color-brand-maroon);
-  font-family: var(--font-serif);
-  font-weight: 700;
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--color-brand-maroon);
+    font-family: var(--font-serif);
+    font-weight: 700;
+  }
 }
 
 /* ── Ledger Data Style ── */
@@ -128,6 +130,29 @@ h1, h2, h3, h4, h5, h6 {
 @keyframes line-grow {
   from { transform: scaleX(0); }
   to { transform: scaleX(1); }
+}
+
+/* Horizontal marquee */
+@keyframes marquee {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: marquee 45s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation-play-state: paused;
+  }
 }
 
 /* ══════════════════ Animation Utility Classes ══════════════════ */

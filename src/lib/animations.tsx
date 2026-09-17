@@ -352,6 +352,9 @@ export function AnimatedCounter({
   const [displayValue, setDisplayValue] = useState(0);
   const reducedMotion = useReducedMotion();
 
+  const isDecimal = !Number.isInteger(value);
+  const decimals = isDecimal ? (value.toString().split(".")[1] || "").length : 0;
+
   useEffect(() => {
     if (!isInView) return;
     if (reducedMotion) {
@@ -368,14 +371,17 @@ export function AnimatedCounter({
       const progress = Math.min(elapsed / durationMs, 1);
       // ease-out cubic
       const eased = 1 - Math.pow(1 - progress, 3);
-      setDisplayValue(Math.floor(eased * end));
+      const current = eased * end;
+      setDisplayValue(isDecimal ? parseFloat(current.toFixed(decimals)) : Math.floor(current));
       if (progress < 1) requestAnimationFrame(animate);
     }
     requestAnimationFrame(animate);
   }, [isInView, value, duration, reducedMotion]);
 
-  // Format number with commas for thousands
-  const formatted = displayValue >= 1000
+  // Format number with commas for thousands or decimal precision
+  const formatted = isDecimal
+    ? displayValue.toFixed(decimals)
+    : displayValue >= 1000
     ? displayValue.toLocaleString()
     : displayValue.toString();
 

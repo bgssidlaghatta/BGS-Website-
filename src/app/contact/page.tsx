@@ -1,8 +1,9 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import { Reveal, StaggerReveal, ParallaxLayer, motion, staggerContainer, fadeUp } from "@/lib/animations";
-import { MapPin, Phone, Mail, Clock, MessageCircle, Send } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, MessageCircle, Send, CheckCircle2, ArrowUpRight, Loader2, Sparkles } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -10,13 +11,95 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 export default function ContactPage() {
+  const [formData, setFormData] = useState({
+    parentName: "",
+    studentName: "",
+    phone: "",
+    admissionFor: "",
+    currentSchool: "",
+    message: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formData.parentName.trim()) {
+      setErrorMsg("Please enter Parent / Guardian Name.");
+      return;
+    }
+    if (!formData.phone.trim()) {
+      setErrorMsg("Please enter Phone / WhatsApp number.");
+      return;
+    }
+    if (!formData.admissionFor) {
+      setErrorMsg("Please select the class for admission.");
+      return;
+    }
+
+    setErrorMsg("");
+    setIsSubmitting(true);
+
+    try {
+      const formBody = new URLSearchParams();
+      // Google Form fields
+      // entry.861424855 -> Student Name
+      formBody.append("entry.861424855", formData.studentName.trim() || formData.parentName.trim());
+      // entry.1602947175 -> Father's Name
+      formBody.append("entry.1602947175", formData.parentName.trim());
+      // entry.308003396 -> Parents' Contact Number
+      formBody.append("entry.308003396", formData.phone.trim());
+      // entry.924290245 -> Current studying class
+      formBody.append("entry.924290245", formData.admissionFor);
+      // entry.2071457004 -> Current inquiries
+      const enquiryNotes = [
+        formData.message.trim(),
+        formData.currentSchool ? `Current School: ${formData.currentSchool}` : "",
+      ].filter(Boolean).join(" | ");
+      formBody.append("entry.2071457004", enquiryNotes || "Website Admission Enquiry");
+
+      await fetch(
+        "https://docs.google.com/forms/d/e/1FAIpQLSesE37UcXnG8mGUiROCSSpipmBH7Yz4yj26g44U-HHWIqpD4g/formResponse",
+        {
+          method: "POST",
+          mode: "no-cors",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          body: formBody.toString(),
+        }
+      );
+
+      setIsSubmitted(true);
+    } catch (err) {
+      console.error("Submission error:", err);
+      setIsSubmitted(true);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleReset = () => {
+    setFormData({
+      parentName: "",
+      studentName: "",
+      phone: "",
+      admissionFor: "",
+      currentSchool: "",
+      message: "",
+    });
+    setIsSubmitted(false);
+    setErrorMsg("");
+  };
+
   return (
     <>
       {/* ════════════════════ HERO ════════════════════ */}
       <section className="relative min-h-[50vh] flex items-end overflow-hidden">
         <ParallaxLayer speed={0.3} className="absolute inset-0 w-full h-[120%] -top-[10%]">
           <Image
-            src="/images/campus-hero.png"
+            src="https://res.cloudinary.com/xd8uritd/image/upload/v1789621192/image-clean_fmrqe6.png"
             alt="BGS campus entrance"
             fill
             priority
@@ -43,7 +126,7 @@ export default function ContactPage() {
             {[
               { icon: MapPin, label: "Campus", value: "Sidlaghatta, Karnataka", href: "#map" },
               { icon: MessageCircle, label: "WhatsApp", value: "+91 99019 23097", href: "https://wa.me/919901923097" },
-              { icon: Mail, label: "Email", value: "info@bgssidlaghatta.edu.in", href: "mailto:info@bgssidlaghatta.edu.in" },
+              { icon: Mail, label: "Email", value: "bgsadmin5@gmail.com", href: "mailto:bgsadmin5@gmail.com" },
               { icon: Clock, label: "Working Hours", value: "Mon-Sat, 9AM-5PM", href: "#" },
             ].map((c, i) => (
               <motion.a variants={fadeUp} key={i} href={c.href} className="group block bg-brand-offwhite rounded-xl p-5 border border-brand-maroon/5 hover:border-brand-saffron/20 card-lift text-center">
@@ -63,109 +146,201 @@ export default function ContactPage() {
             <div className="lg:col-span-7">
               <Reveal>
                 <div className="bg-brand-offwhite rounded-3xl p-8 md:p-12 border border-brand-maroon/5 shadow-xl shadow-brand-maroon/5">
-                  <h2 className="text-3xl font-serif font-bold text-brand-maroon mb-2">Admission Inquiry</h2>
-                  <p className="text-sm text-brand-umber/40 mb-10">
-                    Fill this form and our admissions coordinator will call you back within 24 hours. 
-                    No automated responses — a real person, a real conversation.
+                  
+                  {/* Official Google Form Banner */}
+                  <div className="mb-8 p-5 rounded-2xl bg-gradient-to-br from-brand-maroon/5 via-brand-saffron/10 to-brand-gold/5 border border-brand-saffron/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-sm">
+                    <div>
+                      <div className="inline-flex items-center gap-1.5 text-xs font-bold text-brand-maroon uppercase tracking-wider mb-1">
+                        <Sparkles className="w-3.5 h-3.5 text-brand-saffron" />
+                        Official Online Admission Form
+                      </div>
+                      <p className="text-xs text-brand-umber/70 leading-relaxed max-w-md">
+                        Prefer the official Google Form? Fill it directly for admission enquiries and swift processing.
+                      </p>
+                    </div>
+                    <a
+                      href="https://forms.gle/TQCsmK1dde6qhaA98"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="shrink-0 px-4 py-2.5 rounded-xl bg-brand-maroon hover:bg-brand-maroon-deep text-brand-cream font-semibold text-xs tracking-wide transition-all shadow-md hover:shadow-lg inline-flex items-center gap-1.5"
+                    >
+                      Open Google Form
+                      <ArrowUpRight className="w-3.5 h-3.5" />
+                    </a>
+                  </div>
+
+                  <h2 className="text-3xl font-serif font-bold text-brand-maroon mb-2">Admission Enquiry</h2>
+                  <p className="text-sm text-brand-umber/70 mb-8 leading-relaxed">
+                    Fill this form and our admissions coordinator will call you back within 24 hours (Monday to Saturday, 9:00 AM – 5:00 PM).
                   </p>
 
-                  <form className="space-y-6">
-                    <div className="grid sm:grid-cols-2 gap-4">
-                      <div className="space-y-2">
-                        <Label htmlFor="parentName" className="text-[10px] font-semibold uppercase tracking-widest text-brand-umber/60">
-                          Parent / Guardian Name <span className="text-brand-saffron">*</span>
-                        </Label>
-                        <Input
-                          id="parentName"
-                          type="text"
-                          className="h-12 bg-white"
-                          placeholder="Full name"
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="studentName" className="text-[10px] font-semibold uppercase tracking-widest text-brand-umber/60">
-                          Student Name
-                        </Label>
-                        <Input
-                          id="studentName"
-                          type="text"
-                          className="h-12 bg-white"
-                          placeholder="Child's name"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="phone" className="text-[10px] font-semibold uppercase tracking-widest text-brand-umber/60">
-                        Phone / WhatsApp <span className="text-brand-saffron">*</span>
-                      </Label>
-                      <Input
-                        id="phone"
-                        type="tel"
-                        className="h-12 bg-white ledger-data"
-                        placeholder="+91 99019 23097"
-                      />
-                    </div>
-
-                    <div className="grid sm:grid-cols-2 gap-4">
-                      <div className="space-y-2">
-                        <Label htmlFor="admissionFor" className="text-[10px] font-semibold uppercase tracking-widest text-brand-umber/60">
-                          Admission For <span className="text-brand-saffron">*</span>
-                        </Label>
-                        <Select>
-                          <SelectTrigger className="h-12 bg-white text-brand-umber">
-                            <SelectValue placeholder="Select class" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="lkg-ukg">LKG / UKG</SelectItem>
-                            <SelectItem value="1-5">1st – 5th Standard</SelectItem>
-                            <SelectItem value="6-8">6th – 8th Standard</SelectItem>
-                            <SelectItem value="9-10">9th – 10th Standard (SSLC)</SelectItem>
-                            <SelectItem value="pcmb">1st PU — PCMB</SelectItem>
-                            <SelectItem value="pcmcs">1st PU — PCMCs</SelectItem>
-                            <SelectItem value="commerce">1st PU — Commerce</SelectItem>
-                            <SelectItem value="2-pu">2nd PU (Transfer)</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="currentSchool" className="text-[10px] font-semibold uppercase tracking-widest text-brand-umber/60">
-                          Current School
-                        </Label>
-                        <Input
-                          id="currentSchool"
-                          type="text"
-                          className="h-12 bg-white"
-                          placeholder="Current school name"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="message" className="text-[10px] font-semibold uppercase tracking-widest text-brand-umber/60">
-                        Questions or Comments
-                      </Label>
-                      <Textarea
-                        id="message"
-                        rows={4}
-                        className="bg-white resize-none"
-                        placeholder="Any specific questions about our programs, fees, or campus?"
-                      />
-                    </div>
-
-                    <Button
-                      type="button"
-                      size="lg"
-                      className="w-full h-14 group shadow-lg shadow-primary/20 hover:shadow-primary/40 hover:-translate-y-0.5 transition-all duration-300 text-base mt-2 btn-ripple"
+                  {isSubmitted ? (
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      className="p-8 text-center bg-white rounded-2xl border border-brand-maroon/10 shadow-lg my-4"
                     >
-                      Submit Inquiry
-                      <Send className="w-4 h-4 ml-2 group-hover:translate-x-1 group-hover:-translate-y-0.5 transition-transform" />
-                    </Button>
+                      <div className="w-16 h-16 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center mx-auto mb-4">
+                        <CheckCircle2 className="w-8 h-8" />
+                      </div>
+                      <span className="text-xs font-bold text-brand-saffron uppercase tracking-[0.25em]">|| Jai Sri Gurudev ||</span>
+                      <h3 className="text-2xl font-serif font-bold text-brand-maroon mt-2 mb-3">
+                        Enquiry Submitted Successfully!
+                      </h3>
+                      <p className="text-sm text-brand-umber/70 max-w-md mx-auto leading-relaxed mb-6">
+                        Thank you for reaching out to BGS Public School & PU College. We have received your inquiry for{" "}
+                        <strong className="text-brand-maroon">{formData.studentName || formData.parentName}</strong> ({formData.admissionFor}).
+                        Our admissions team will contact you at <strong className="text-brand-maroon">{formData.phone}</strong> between 9:00 AM and 5:00 PM, Monday to Saturday.
+                      </p>
+                      <div className="flex flex-wrap items-center justify-center gap-3">
+                        <a
+                          href="https://forms.gle/TQCsmK1dde6qhaA98"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="px-5 py-2.5 rounded-xl bg-brand-saffron text-brand-maroon-deep font-bold text-xs hover:bg-brand-saffron-light transition-all shadow-md inline-flex items-center gap-1.5"
+                        >
+                          View Official Google Form
+                          <ArrowUpRight className="w-3.5 h-3.5" />
+                        </a>
+                        <button
+                          type="button"
+                          onClick={handleReset}
+                          className="px-5 py-2.5 rounded-xl border border-brand-maroon/20 hover:bg-brand-maroon/5 text-brand-maroon font-semibold text-xs transition-all"
+                        >
+                          Submit Another Enquiry
+                        </button>
+                      </div>
+                    </motion.div>
+                  ) : (
+                    <form onSubmit={handleSubmit} className="space-y-6">
+                      {errorMsg && (
+                        <div className="p-3.5 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs font-medium">
+                          {errorMsg}
+                        </div>
+                      )}
 
-                    <p className="text-[10px] text-brand-umber/40 text-center pt-2">
-                      Your information is private and will only be used to respond to your inquiry.
-                    </p>
-                  </form>
+                      <div className="grid sm:grid-cols-2 gap-4">
+                        <div className="space-y-2">
+                          <Label htmlFor="parentName" className="text-[10px] font-semibold uppercase tracking-widest text-brand-umber/60">
+                            Parent / Guardian Name <span className="text-brand-saffron">*</span>
+                          </Label>
+                          <Input
+                            id="parentName"
+                            type="text"
+                            value={formData.parentName}
+                            onChange={(e) => setFormData((prev) => ({ ...prev, parentName: e.target.value }))}
+                            className="h-12 bg-white"
+                            placeholder="Full name"
+                            required
+                          />
+                        </div>
+                        <div className="space-y-2">
+                          <Label htmlFor="studentName" className="text-[10px] font-semibold uppercase tracking-widest text-brand-umber/60">
+                            Student Name
+                          </Label>
+                          <Input
+                            id="studentName"
+                            type="text"
+                            value={formData.studentName}
+                            onChange={(e) => setFormData((prev) => ({ ...prev, studentName: e.target.value }))}
+                            className="h-12 bg-white"
+                            placeholder="Child's name"
+                          />
+                        </div>
+                      </div>
+
+                      <div className="space-y-2">
+                        <Label htmlFor="phone" className="text-[10px] font-semibold uppercase tracking-widest text-brand-umber/60">
+                          Phone / WhatsApp <span className="text-brand-saffron">*</span>
+                        </Label>
+                        <Input
+                          id="phone"
+                          type="tel"
+                          value={formData.phone}
+                          onChange={(e) => setFormData((prev) => ({ ...prev, phone: e.target.value }))}
+                          className="h-12 bg-white ledger-data"
+                          placeholder="+91 99019 23097"
+                          required
+                        />
+                      </div>
+
+                      <div className="grid sm:grid-cols-2 gap-4">
+                        <div className="space-y-2">
+                          <Label htmlFor="admissionFor" className="text-[10px] font-semibold uppercase tracking-widest text-brand-umber/60">
+                            Admission For <span className="text-brand-saffron">*</span>
+                          </Label>
+                          <Select
+                            value={formData.admissionFor}
+                            onValueChange={(val) => setFormData((prev) => ({ ...prev, admissionFor: val || "" }))}
+                          >
+                            <SelectTrigger id="admissionFor" className="h-12 bg-white text-brand-umber">
+                              <SelectValue placeholder="Select class" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="LKG / UKG">LKG / UKG</SelectItem>
+                              <SelectItem value="1st – 5th Standard">1st – 5th Standard</SelectItem>
+                              <SelectItem value="6th – 8th Standard">6th – 8th Standard</SelectItem>
+                              <SelectItem value="9th – 10th Standard (SSLC)">9th – 10th Standard (SSLC)</SelectItem>
+                              <SelectItem value="1st PU — PCMB">1st PU — PCMB</SelectItem>
+                              <SelectItem value="1st PU — PCMCs">1st PU — PCMCs</SelectItem>
+                              <SelectItem value="1st PU — Commerce">1st PU — Commerce</SelectItem>
+                              <SelectItem value="2nd PU (Transfer)">2nd PU (Transfer)</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </div>
+                        <div className="space-y-2">
+                          <Label htmlFor="currentSchool" className="text-[10px] font-semibold uppercase tracking-widest text-brand-umber/60">
+                            Current School
+                          </Label>
+                          <Input
+                            id="currentSchool"
+                            type="text"
+                            value={formData.currentSchool}
+                            onChange={(e) => setFormData((prev) => ({ ...prev, currentSchool: e.target.value }))}
+                            className="h-12 bg-white"
+                            placeholder="Current school name"
+                          />
+                        </div>
+                      </div>
+
+                      <div className="space-y-2">
+                        <Label htmlFor="message" className="text-[10px] font-semibold uppercase tracking-widest text-brand-umber/60">
+                          Current Inquiries / How can we help you?
+                        </Label>
+                        <Textarea
+                          id="message"
+                          rows={4}
+                          value={formData.message}
+                          onChange={(e) => setFormData((prev) => ({ ...prev, message: e.target.value }))}
+                          className="bg-white resize-none"
+                          placeholder="Please write your questions regarding admissions, fees, streams, or campus facilities..."
+                        />
+                      </div>
+
+                      <Button
+                        type="submit"
+                        size="lg"
+                        disabled={isSubmitting}
+                        className="w-full h-14 group shadow-lg shadow-primary/20 hover:shadow-primary/40 hover:-translate-y-0.5 transition-all duration-300 text-base mt-2 btn-ripple"
+                      >
+                        {isSubmitting ? (
+                          <>
+                            <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                            Submitting Enquiry...
+                          </>
+                        ) : (
+                          <>
+                            Submit Enquiry
+                            <Send className="w-4 h-4 ml-2 group-hover:translate-x-1 group-hover:-translate-y-0.5 transition-transform" />
+                          </>
+                        )}
+                      </Button>
+
+                      <p className="text-[10px] text-brand-umber/50 text-center pt-2 leading-relaxed">
+                        The information provided will be collected with your consent and used solely for admission purposes.
+                      </p>
+                    </form>
+                  )}
                 </div>
               </Reveal>
             </div>

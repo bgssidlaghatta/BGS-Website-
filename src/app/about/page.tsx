@@ -12,7 +12,7 @@ export default function AboutPage() {
       <section className="relative min-h-[70vh] flex items-end overflow-hidden">
         <ParallaxLayer speed={0.3} className="absolute inset-0 w-full h-[120%] -top-[10%]">
           <Image
-            src="/images/campus-hero.png"
+            src="/images/Hero-section.png"
             alt="BGS Public School & PU College campus"
             fill
             priority
@@ -103,25 +103,31 @@ export default function AboutPage() {
                     teaching — we believe in knowing exactly where each student stands and pushing 
                     them past their own expectations.
                   </p>
-                  <p className="italic text-brand-maroon/40 text-sm border-t border-brand-maroon/10 pt-5 mt-5">
-                    Full principal&apos;s message and portrait will be published upon receipt.
-                  </p>
                 </div>
               </Reveal>
             </div>
           </div>
 
           {/* Portrait side */}
-          <div className="relative h-[500px] lg:h-auto bg-brand-maroon flex items-center justify-center p-16 order-1 lg:order-2">
-            <div className="relative w-full max-w-xs">
-              <div className="aspect-[3/4] rounded-2xl overflow-hidden bg-brand-maroon-deep border-2 border-brand-cream/10 shadow-2xl">
-                <div className="w-full h-full flex items-center justify-center text-brand-cream/15 font-mono text-xs p-6 text-center bg-gradient-to-br from-brand-maroon-deep to-brand-maroon">
-                  Principal&apos;s official portrait will be placed here upon receipt
-                </div>
+          <div className="relative min-h-[400px] lg:min-h-full bg-brand-maroon-deep flex items-center justify-center p-8 sm:p-12 lg:p-16 order-1 lg:order-2 overflow-hidden">
+            {/* Ambient gold glow */}
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(232,135,30,0.15)_0%,_transparent_60%)] pointer-events-none" />
+
+            <div className="relative w-full max-w-lg z-10 my-4">
+              <div className="relative aspect-[16/10] sm:aspect-[4/3] rounded-2xl overflow-hidden bg-brand-maroon-deep border-2 border-brand-saffron/30 shadow-2xl group">
+                <Image
+                  src="/images/principal.png"
+                  alt="Principal, BGS Public School & PU College, Sidlaghatta"
+                  fill
+                  priority
+                  className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-brand-maroon-deep/70 via-transparent to-transparent pointer-events-none" />
               </div>
-              <div className="absolute -bottom-6 -left-6 bg-brand-offwhite rounded-xl p-5 shadow-2xl border border-brand-maroon/5">
-                <p className="font-serif text-sm font-bold text-brand-maroon mb-1">[Principal Name]</p>
-                <p className="text-[10px] text-brand-saffron font-semibold uppercase tracking-widest">Principal</p>
+              <div className="absolute -bottom-6 -left-4 sm:-left-6 bg-brand-offwhite rounded-xl p-4 sm:p-5 shadow-2xl border border-brand-maroon/10 z-20">
+                <p className="font-serif text-base font-bold text-brand-maroon mb-0.5">Principal</p>
+                <p className="text-[10px] text-brand-saffron font-bold uppercase tracking-widest">BGS Public School & PU College</p>
               </div>
             </div>
           </div>
@@ -152,7 +158,7 @@ export default function AboutPage() {
 
       {/* ════════════════════ CTA ════════════════════ */}
       <section className="relative py-28 md:py-36 overflow-hidden">
-        <Image src="/images/campus-hero.png" alt="BGS campus" fill className="object-cover" sizes="100vw" />
+        <Image src="https://res.cloudinary.com/xd8uritd/image/upload/v1789621192/image-clean_fmrqe6.png" alt="BGS campus" fill className="object-cover" sizes="100vw" />
         <div className="absolute inset-0 bg-brand-maroon-deep/90" />
         <div className="relative z-10 px-6 md:px-12 max-w-3xl mx-auto text-center">
           <Reveal>

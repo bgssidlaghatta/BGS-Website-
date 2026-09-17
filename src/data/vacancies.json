@@ -1,0 +1,28 @@
+[
+  {
+    "id": "vac_maths_puc",
+    "title": "Lecturer in Mathematics",
+    "department": "PU College",
+    "subject": "Mathematics",
+    "qualifications": "M.Sc in Mathematics, B.Ed preferred",
+    "experience": "2+ years teaching Karnataka PU Board / CBSE Class 11-12",
+    "type": "Full-Time",
+    "deadline": "Open until filled",
+    "description": "Deliver engaging higher-secondary mathematics curriculum, coach students for board exams and competitive entrance examinations (KCET/JEE), and conduct remedial academic mentoring.",
+    "status": "open",
+    "postedAt": "2026-09-17T10:00:00.000Z"
+  },
+  {
+    "id": "vac_science_hs",
+    "title": "High School Science & Biology Teacher",
+    "department": "High School",
+    "subject": "Science & Biology",
+    "qualifications": "B.Sc / M.Sc with B.Ed",
+    "experience": "1-3 years in CBSE or Karnataka State Board secondary grades",
+    "type": "Full-Time",
+    "deadline": "Open until filled",
+    "description": "Guide grades 8-10 in general science and biological sciences, conduct practical laboratory demonstrations, and cultivate scientific inquiry.",
+    "status": "open",
+    "postedAt": "2026-09-17T10:00:00.000Z"
+  }
+]

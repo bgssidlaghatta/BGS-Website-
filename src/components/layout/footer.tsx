@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { MapPin, Phone, Mail, ArrowUpRight, MessageCircle } from "lucide-react";
+import { MapPin, Phone, Mail, ArrowUpRight, MessageCircle, Lock } from "lucide-react";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Reveal, StaggerReveal, StaggerItem } from "@/lib/animations";
@@ -48,9 +48,12 @@ export function Footer() {
             <ul className="space-y-3">
               {[
                 { name: "About Us", href: "/about" },
+                { name: "About Math", href: "/about/math" },
+                { name: "About CAO", href: "/about/cao" },
                 { name: "Academics", href: "/academics" },
                 { name: "Results", href: "/results" },
                 { name: "Faculty", href: "/faculty" },
+                { name: "Careers", href: "/careers" },
                 { name: "Gallery", href: "/gallery" },
                 { name: "Alumni", href: "/alumni" },
                 { name: "Contact", href: "/contact" },
@@ -80,31 +83,75 @@ export function Footer() {
 
           {/* Contact */}
           <StaggerItem className="lg:col-span-4">
-            <h4 className="text-xs font-semibold uppercase tracking-[0.25em] text-brand-saffron mb-6">Get in Touch</h4>
+            <h4 className="text-xs font-semibold uppercase tracking-[0.25em] text-white mb-6">Get in Touch</h4>
             <div className="space-y-4 mb-8">
               <a href="https://wa.me/919901923097" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-sm text-brand-cream/60 hover:text-brand-cream transition-colors duration-200">
                 <MessageCircle className="w-4 h-4 text-brand-saffron" /> +91 99019 23097
               </a>
-              <a href="mailto:info@bgssidlaghatta.edu.in" className="flex items-center gap-3 text-sm text-brand-cream/60 hover:text-brand-cream transition-colors duration-200">
-                <Mail className="w-4 h-4 text-brand-saffron" /> info@bgssidlaghatta.edu.in
+              <a href="mailto:bgsadmin5@gmail.com" className="flex items-center gap-3 text-sm text-brand-cream/60 hover:text-brand-cream transition-colors duration-200">
+                <Mail className="w-4 h-4 text-brand-saffron" /> bgsadmin5@gmail.com
               </a>
             </div>
-            <Link href="/contact" className={cn(buttonVariants({ size: "lg" }), "shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-0.5 btn-ripple")}>
-              Enquire for Admission
-            </Link>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <a 
+                href="https://forms.gle/TQCsmK1dde6qhaA98" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className={cn(buttonVariants({ size: "lg" }), "shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-0.5 btn-ripple inline-flex items-center gap-1.5")}
+              >
+                Admission Form
+                <ArrowUpRight className="w-4 h-4" />
+              </a>
+              <a 
+                href="https://forms.gle/kqZzV7jSUaEfsd9N8" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="px-4 py-3 rounded-md border border-brand-cream/20 hover:border-brand-saffron text-brand-cream hover:text-brand-saffron text-sm font-semibold transition-all inline-flex items-center justify-center gap-1.5"
+              >
+                Alumni Form
+                <ArrowUpRight className="w-4 h-4" />
+              </a>
+            </div>
           </StaggerItem>
         </StaggerReveal>
       </div>
 
       {/* Bottom bar */}
       <div className="border-t border-brand-cream/5">
-        <div className="px-6 md:px-12 max-w-7xl mx-auto py-6 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-xs text-brand-cream/30 ledger-data">
+        <div className="px-6 md:px-12 max-w-7xl mx-auto py-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-brand-cream/40 text-center md:text-left">
+          <p className="ledger-data text-brand-cream/30">
             &copy; {new Date().getFullYear()} BGS Public School & PU College. All rights reserved.
           </p>
-          <div className="flex gap-6">
+
+          <p className="text-brand-cream/50">
+            Developed by{" "}
+            <a
+              href="https://opti-x.in"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-brand-saffron font-medium hover:underline hover:text-brand-saffron-light transition-colors"
+            >
+              Mudasir Shariff (opti-x.in)
+            </a>
+          </p>
+
+          <div className="flex items-center gap-6">
             <Link href="/privacy" className="text-xs text-brand-cream/30 hover:text-brand-cream/60 transition-colors">Privacy</Link>
             <Link href="/terms" className="text-xs text-brand-cream/30 hover:text-brand-cream/60 transition-colors">Terms</Link>
+            <button
+              onClick={() => {
+                if (typeof window !== "undefined") {
+                  window.dispatchEvent(new Event("open-cookie-preferences"));
+                }
+              }}
+              className="text-xs text-brand-cream/30 hover:text-brand-cream/60 transition-colors cursor-pointer"
+            >
+              Cookies
+            </button>
+            <Link href="/admin" className="text-xs text-brand-cream/30 hover:text-brand-saffron transition-colors inline-flex items-center gap-1">
+              <Lock className="w-3 h-3" />
+              <span>Admin</span>
+            </Link>
           </div>
         </div>
       </div>

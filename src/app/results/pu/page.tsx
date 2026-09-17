@@ -29,7 +29,7 @@ export default function PUResultsPage() {
               PU Board Results
             </motion.h1>
             <motion.p variants={fadeUp} className="text-lg text-brand-umber/70 max-w-2xl mx-auto leading-relaxed">
-              Excellence across all streams. Our PU students don't just clear the boards—they dominate them, setting the stage for top-tier professional courses.
+              100% Board Pass Rate across all streams. Our PU students consistently deliver 100% results with distinctions and state-level competitive exam ranks, setting the stage for premier professional courses.
             </motion.p>
           </motion.div>
         </div>
