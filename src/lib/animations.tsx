@@ -229,25 +229,25 @@ export function ImageReveal({
   direction?: "up" | "down" | "left" | "right";
 }) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-60px" });
+  const isInView = useInView(ref, { once: true, margin: "0px" });
   const reducedMotion = useReducedMotion();
 
   const clipVariants: Record<string, Variants> = {
     up: {
-      hidden: { clipPath: "inset(100% 0% 0% 0%)", opacity: 0 },
-      visible: { clipPath: "inset(0% 0% 0% 0%)", opacity: 1 },
+      hidden: { opacity: 0, y: 24 },
+      visible: { opacity: 1, y: 0 },
     },
     down: {
-      hidden: { clipPath: "inset(0% 0% 100% 0%)", opacity: 0 },
-      visible: { clipPath: "inset(0% 0% 0% 0%)", opacity: 1 },
+      hidden: { opacity: 0, y: -24 },
+      visible: { opacity: 1, y: 0 },
     },
     left: {
-      hidden: { clipPath: "inset(0% 100% 0% 0%)", opacity: 0 },
-      visible: { clipPath: "inset(0% 0% 0% 0%)", opacity: 1 },
+      hidden: { opacity: 0, x: -24 },
+      visible: { opacity: 1, x: 0 },
     },
     right: {
-      hidden: { clipPath: "inset(0% 0% 0% 100%)", opacity: 0 },
-      visible: { clipPath: "inset(0% 0% 0% 0%)", opacity: 1 },
+      hidden: { opacity: 0, x: 24 },
+      visible: { opacity: 1, x: 0 },
     },
   };
 

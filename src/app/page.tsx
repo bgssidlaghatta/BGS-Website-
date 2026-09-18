@@ -34,6 +34,7 @@ import {
   Award,
   Target,
   Lightbulb,
+  Building2,
   Library,
 } from "lucide-react";
 import { ReviewsSection } from "@/components/ui/reviews";
@@ -436,82 +437,138 @@ export default function Home() {
             </div>
           </Reveal>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
-            {/* Large — Campus Infrastructure */}
-            <ImageReveal className="col-span-2 row-span-2">
-              <div className="relative h-full min-h-[400px] overflow-hidden group rounded-2xl">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* 1. Campus Infrastructure */}
+            <Reveal delay={0}>
+              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden group shadow-md hover:shadow-2xl transition-all duration-500 border border-brand-maroon/10">
                 <Image
                   src="https://res.cloudinary.com/xd8uritd/image/upload/v1789621192/image-clean_fmrqe6.png"
                   alt="BGS expansive campus infrastructure"
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-700"
-                  sizes="50vw"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-maroon-deep/90 via-brand-maroon-deep/20 to-transparent" />
-                <div className="absolute bottom-0 left-0 p-8 z-10 border-l-4 border-brand-saffron ml-4 mb-4">
-                  <h3 className="font-serif text-2xl font-bold text-brand-cream mb-1">Campus Infrastructure</h3>
-                  <p className="text-sm text-brand-cream/70 max-w-xs">Expansive landscaped learning grounds with serene, distraction-free environment.</p>
+                <div className="absolute inset-0 bg-gradient-to-t from-brand-maroon-deep/90 via-brand-maroon-deep/25 to-transparent group-hover:from-brand-maroon-deep/95 transition-all duration-300" />
+                <div className="absolute bottom-0 left-0 right-0 p-6 z-10 border-b-2 border-transparent group-hover:border-brand-saffron transition-all duration-300">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Building2 className="w-5 h-5 text-brand-saffron icon-hover-rotate" />
+                    <span className="text-[11px] font-semibold uppercase tracking-wider text-brand-saffron">Campus</span>
+                  </div>
+                  <h3 className="font-serif text-xl font-bold text-brand-cream mb-1">Campus Infrastructure</h3>
+                  <p className="text-xs text-brand-cream/70">Expansive landscaped grounds with serene, distraction-free environment.</p>
                 </div>
               </div>
-            </ImageReveal>
+            </Reveal>
 
-            {/* Computer Lab */}
-            <ImageReveal delay={0.1}>
-              <div className="relative aspect-square rounded-2xl overflow-hidden group">
-                <Image src="/images/computer-lab.png" alt="BGS computer laboratory" fill className="object-cover group-hover:scale-105 transition-transform duration-700" sizes="25vw" />
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-maroon-deep/80 to-transparent" />
-                <div className="absolute bottom-0 left-0 p-5 z-10">
-                  <Monitor className="w-6 h-6 text-brand-saffron mb-2 icon-hover-rotate" />
-                  <h3 className="font-serif text-base font-bold text-brand-cream">Computer Lab</h3>
-                  <p className="text-[11px] text-brand-cream/40">High-speed networked PCs</p>
-                </div>
-              </div>
-            </ImageReveal>
-
-            {/* Academic Classrooms */}
-            <ImageReveal delay={0.15}>
-              <div className="relative aspect-square rounded-2xl overflow-hidden group">
+            {/* 2. Computer Lab */}
+            <Reveal delay={0.1}>
+              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden group shadow-md hover:shadow-2xl transition-all duration-500 border border-brand-maroon/10">
                 <Image
-                  src="https://res.cloudinary.com/xd8uritd/image/upload/v1789638235/ChatGPT_Image_Sep_17_2026_03_09_33_PM_vmr3qc.png"
-                  alt="BGS modern classrooms"
+                  src="/images/computer-lab.png"
+                  alt="BGS computer laboratory"
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-700"
-                  sizes="25vw"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-maroon-deep/80 to-transparent" />
-                <div className="absolute bottom-0 left-0 p-5 z-10">
-                  <BookOpen className="w-6 h-6 text-brand-saffron mb-2 icon-hover-rotate" />
-                  <h3 className="font-serif text-base font-bold text-brand-cream">Classrooms</h3>
-                  <p className="text-[11px] text-brand-cream/40">Smart & engaging learning</p>
+                <div className="absolute inset-0 bg-gradient-to-t from-brand-maroon-deep/90 via-brand-maroon-deep/25 to-transparent group-hover:from-brand-maroon-deep/95 transition-all duration-300" />
+                <div className="absolute bottom-0 left-0 right-0 p-6 z-10 border-b-2 border-transparent group-hover:border-brand-saffron transition-all duration-300">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Monitor className="w-5 h-5 text-brand-saffron icon-hover-rotate" />
+                    <span className="text-[11px] font-semibold uppercase tracking-wider text-brand-saffron">Technology</span>
+                  </div>
+                  <h3 className="font-serif text-xl font-bold text-brand-cream mb-1">Computer Lab</h3>
+                  <p className="text-xs text-brand-cream/70">High-speed networked PC workstations with modern digital tools.</p>
                 </div>
               </div>
-            </ImageReveal>
+            </Reveal>
 
-            {/* Sports */}
-            <ImageReveal delay={0.2} className="col-span-1">
-              <div className="relative aspect-square rounded-2xl overflow-hidden group">
-                <Image src="https://res.cloudinary.com/xd8uritd/image/upload/v1789554940/Sports_tcb3ce.png" alt="BGS sports ground" fill className="object-cover group-hover:scale-105 transition-transform duration-700" sizes="(max-width: 768px) 50vw, 25vw" />
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-maroon-deep/80 to-transparent" />
-                <div className="absolute bottom-0 left-0 p-5 z-10">
-                  <Dumbbell className="w-6 h-6 text-brand-saffron mb-2 icon-hover-rotate" />
-                  <h3 className="font-serif text-base font-bold text-brand-cream">Sports & Athletics</h3>
-                  <p className="text-[11px] text-brand-cream/40">Indoor & outdoor grounds</p>
+            {/* 3. PU College Classrooms */}
+            <Reveal delay={0.2}>
+              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden group shadow-md hover:shadow-2xl transition-all duration-500 border border-brand-maroon/10">
+                <Image
+                  src="https://res.cloudinary.com/xd8uritd/image/upload/v1789642129/ChatGPT_Image_Sep_17_2026_04_17_29_PM_bgxgel.png"
+                  alt="BGS PU College Classrooms and Lecture Halls"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-brand-maroon-deep/90 via-brand-maroon-deep/25 to-transparent group-hover:from-brand-maroon-deep/95 transition-all duration-300" />
+                <div className="absolute bottom-0 left-0 right-0 p-6 z-10 border-b-2 border-transparent group-hover:border-brand-saffron transition-all duration-300">
+                  <div className="flex items-center gap-2 mb-2">
+                    <GraduationCap className="w-5 h-5 text-brand-saffron icon-hover-rotate" />
+                    <span className="text-[11px] font-semibold uppercase tracking-wider text-brand-saffron">Pre-University</span>
+                  </div>
+                  <h3 className="font-serif text-xl font-bold text-brand-cream mb-1">College Classrooms</h3>
+                  <p className="text-xs text-brand-cream/70">Spacious lecture halls engineered for board and competitive coaching.</p>
                 </div>
               </div>
-            </ImageReveal>
+            </Reveal>
 
-            {/* School Transport / Bus Fleet */}
-            <ImageReveal delay={0.25} className="col-span-1">
-              <div className="relative aspect-square rounded-2xl overflow-hidden group">
-                <Image src="https://res.cloudinary.com/xd8uritd/image/upload/v1789554938/Bus_fn4rdo.png" alt="BGS school bus fleet" fill className="object-cover group-hover:scale-105 transition-transform duration-700" sizes="(max-width: 768px) 50vw, 25vw" />
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-maroon-deep/80 to-transparent" />
-                <div className="absolute bottom-0 left-0 p-5 z-10">
-                  <Bus className="w-6 h-6 text-brand-saffron mb-2 icon-hover-rotate" />
-                  <h3 className="font-serif text-base font-bold text-brand-cream">Safe Transport</h3>
-                  <p className="text-[11px] text-brand-cream/40">GPS-tracked bus fleet</p>
+            {/* 4. High School Classrooms */}
+            <Reveal delay={0.1}>
+              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden group shadow-md hover:shadow-2xl transition-all duration-500 border border-brand-maroon/10">
+                <Image
+                  src="https://res.cloudinary.com/xd8uritd/image/upload/v1789638235/ChatGPT_Image_Sep_17_2026_03_09_33_PM_vmr3qc.png"
+                  alt="BGS High School Classrooms"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-brand-maroon-deep/90 via-brand-maroon-deep/25 to-transparent group-hover:from-brand-maroon-deep/95 transition-all duration-300" />
+                <div className="absolute bottom-0 left-0 right-0 p-6 z-10 border-b-2 border-transparent group-hover:border-brand-saffron transition-all duration-300">
+                  <div className="flex items-center gap-2 mb-2">
+                    <BookOpen className="w-5 h-5 text-brand-saffron icon-hover-rotate" />
+                    <span className="text-[11px] font-semibold uppercase tracking-wider text-brand-saffron">Schooling</span>
+                  </div>
+                  <h3 className="font-serif text-xl font-bold text-brand-cream mb-1">School Classrooms</h3>
+                  <p className="text-xs text-brand-cream/70">Interactive smart learning spaces fostering collaborative participation.</p>
                 </div>
               </div>
-            </ImageReveal>
+            </Reveal>
+
+            {/* 5. Sports & Athletics */}
+            <Reveal delay={0.2}>
+              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden group shadow-md hover:shadow-2xl transition-all duration-500 border border-brand-maroon/10">
+                <Image
+                  src="https://res.cloudinary.com/xd8uritd/image/upload/v1789554940/Sports_tcb3ce.png"
+                  alt="BGS sports ground"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-brand-maroon-deep/90 via-brand-maroon-deep/25 to-transparent group-hover:from-brand-maroon-deep/95 transition-all duration-300" />
+                <div className="absolute bottom-0 left-0 right-0 p-6 z-10 border-b-2 border-transparent group-hover:border-brand-saffron transition-all duration-300">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Dumbbell className="w-5 h-5 text-brand-saffron icon-hover-rotate" />
+                    <span className="text-[11px] font-semibold uppercase tracking-wider text-brand-saffron">Physical Education</span>
+                  </div>
+                  <h3 className="font-serif text-xl font-bold text-brand-cream mb-1">Sports & Athletics</h3>
+                  <p className="text-xs text-brand-cream/70">Indoor & outdoor courts for cricket, volleyball, badminton, and athletics.</p>
+                </div>
+              </div>
+            </Reveal>
+
+            {/* 6. Safe Transport */}
+            <Reveal delay={0.3}>
+              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden group shadow-md hover:shadow-2xl transition-all duration-500 border border-brand-maroon/10">
+                <Image
+                  src="https://res.cloudinary.com/xd8uritd/image/upload/v1789554938/Bus_fn4rdo.png"
+                  alt="BGS school bus fleet"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-brand-maroon-deep/90 via-brand-maroon-deep/25 to-transparent group-hover:from-brand-maroon-deep/95 transition-all duration-300" />
+                <div className="absolute bottom-0 left-0 right-0 p-6 z-10 border-b-2 border-transparent group-hover:border-brand-saffron transition-all duration-300">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Bus className="w-5 h-5 text-brand-saffron icon-hover-rotate" />
+                    <span className="text-[11px] font-semibold uppercase tracking-wider text-brand-saffron">Transit</span>
+                  </div>
+                  <h3 className="font-serif text-xl font-bold text-brand-cream mb-1">Safe School Transport</h3>
+                  <p className="text-xs text-brand-cream/70">GPS-tracked fleet with certified drivers providing safe daily transit across Sidlaghatta.</p>
+                </div>
+              </div>
+            </Reveal>
           </div>
         </div>
       </section>
