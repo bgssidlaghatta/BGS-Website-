@@ -75,6 +75,72 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* ════════════════════ TRADITION & EXCELLENCE — visual showcase ════════════════════ */}
+      <section className="py-16 md:py-24 bg-white border-y border-brand-maroon/5">
+        <div className="px-6 md:px-12 max-w-7xl mx-auto">
+          <Reveal>
+            <div className="text-center max-w-2xl mx-auto mb-12">
+              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-saffron mb-3">
+                Tradition & Leadership
+              </p>
+              <h2 className="text-3xl md:text-4xl font-serif font-bold text-brand-maroon">
+                Where Values Meet Accomplishment
+              </h2>
+            </div>
+          </Reveal>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            <Reveal delay={0.1}>
+              <div className="relative aspect-[16/10] rounded-2xl overflow-hidden shadow-lg group border border-brand-maroon/10">
+                <Image
+                  src="https://res.cloudinary.com/xd8uritd/image/upload/v1789707100/image-clean_4_lwdr7w.png"
+                  alt="BGS Annual Graduation Ceremony blessed by Swamiji"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-brand-maroon-deep/90 via-brand-maroon-deep/30 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-6 z-10">
+                  <span className="text-[11px] font-semibold uppercase tracking-wider text-brand-saffron block mb-1">
+                    Divine Blessings & Convocation
+                  </span>
+                  <h3 className="font-serif text-xl font-bold text-brand-cream mb-1">
+                    Annual Graduation Ceremony
+                  </h3>
+                  <p className="text-xs text-brand-cream/70">
+                    Students step into the future adorned in graduation regalia, blessed by His Holiness and revered dignitaries.
+                  </p>
+                </div>
+              </div>
+            </Reveal>
+
+            <Reveal delay={0.2}>
+              <div className="relative aspect-[16/10] rounded-2xl overflow-hidden shadow-lg group border border-brand-maroon/10">
+                <Image
+                  src="https://res.cloudinary.com/xd8uritd/image/upload/v1789707076/image-clean_3_xaceol.png"
+                  alt="BGS Ceremonial March Past and Brass Band"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-brand-maroon-deep/90 via-brand-maroon-deep/30 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-6 z-10">
+                  <span className="text-[11px] font-semibold uppercase tracking-wider text-brand-saffron block mb-1">
+                    Discipline & Athletics
+                  </span>
+                  <h3 className="font-serif text-xl font-bold text-brand-cream mb-1">
+                    Ceremonial March Past & Brass Band
+                  </h3>
+                  <p className="text-xs text-brand-cream/70">
+                    Instilling discipline, synchronised teamwork, and ceremonial dignity through our dedicated student brass band.
+                  </p>
+                </div>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
 
       {/* ════════════════════ PRINCIPAL MESSAGE ════════════════════ */}
       <section className="relative overflow-hidden">

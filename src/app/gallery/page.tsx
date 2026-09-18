@@ -18,6 +18,8 @@ const INITIAL_IMAGES: GalleryItem[] = [
   { id: "seed-college-classroom", public_id: "ChatGPT_Image_Sep_17_2026_04_17_29_PM_bgxgel", src: "https://res.cloudinary.com/xd8uritd/image/upload/v1789642129/ChatGPT_Image_Sep_17_2026_04_17_29_PM_bgxgel.png", alt: "BGS Pre-University College Classrooms & Lectures", category: "Academic", createdAt: "2026-01-01" },
   { id: "seed-6", public_id: "seed-6", src: "/images/computer-lab.png", alt: "Modern Computer Laboratory", category: "Facilities", createdAt: "2026-01-01" },
   { id: "sports-ground", public_id: "Sports_tcb3ce", src: "https://res.cloudinary.com/xd8uritd/image/upload/v1789554940/Sports_tcb3ce.png", alt: "Sports & Athletics Grounds", category: "Activities", createdAt: "2026-01-01" },
+  { id: "bgs-school-band-marchpast", public_id: "image-clean_3_xaceol", src: "https://res.cloudinary.com/xd8uritd/image/upload/v1789707076/image-clean_3_xaceol.png", alt: "BGS Ceremonial March Past & Brass Band", category: "Activities", createdAt: "2026-09-18" },
+  { id: "bgs-graduation-ceremony", public_id: "image-clean_4_lwdr7w", src: "https://res.cloudinary.com/xd8uritd/image/upload/v1789707100/image-clean_4_lwdr7w.png", alt: "Annual Graduation & Convocation Ceremony Blessed by His Holiness", category: "Events", createdAt: "2026-09-18" },
   { id: "bgs-school-bus", public_id: "Bus_fn4rdo", src: "https://res.cloudinary.com/xd8uritd/image/upload/v1789554938/Bus_fn4rdo.png", alt: "BGS School Bus Transport Fleet", category: "Facilities", createdAt: "2026-01-01" },
 ];
 

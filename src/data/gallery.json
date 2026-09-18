@@ -87,5 +87,23 @@
     "category": "Activities",
     "createdAt": "2026-01-01T00:00:00.000Z",
     "isSeed": false
+  },
+  {
+    "id": "bgs-school-band-marchpast",
+    "public_id": "image-clean_3_xaceol",
+    "src": "https://res.cloudinary.com/xd8uritd/image/upload/v1789707076/image-clean_3_xaceol.png",
+    "alt": "BGS Ceremonial March Past & Brass Band",
+    "category": "Activities",
+    "createdAt": "2026-09-18T05:00:00.000Z",
+    "isSeed": false
+  },
+  {
+    "id": "bgs-graduation-ceremony",
+    "public_id": "image-clean_4_lwdr7w",
+    "src": "https://res.cloudinary.com/xd8uritd/image/upload/v1789707100/image-clean_4_lwdr7w.png",
+    "alt": "Annual Graduation & Convocation Ceremony Blessed by His Holiness",
+    "category": "Events",
+    "createdAt": "2026-09-18T05:00:00.000Z",
+    "isSeed": false
   }
 ]

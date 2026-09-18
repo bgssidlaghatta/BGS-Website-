@@ -49,6 +49,24 @@ const heroImages = [
     alt: "BGS Public School & PU College Main Campus Building",
   },
   {
+    src: "https://res.cloudinary.com/xd8uritd/image/upload/v1789707076/image-clean_3_xaceol.png",
+    title: "Ceremonial March Past & Brass Band",
+    subtitle: "Discipline, Student Leadership & Athletic Pride",
+    alt: "BGS Ceremonial Brass Band and March Past on Sports Grounds",
+  },
+  {
+    src: "https://res.cloudinary.com/xd8uritd/image/upload/v1789707100/image-clean_4_lwdr7w.png",
+    title: "Annual Graduation Ceremony",
+    subtitle: "Young Scholars Blessed by Revered Swamiji & Dignitaries",
+    alt: "BGS Annual Graduation Ceremony and Convocation with Swamiji",
+  },
+  {
+    src: "https://res.cloudinary.com/xd8uritd/image/upload/v1789642129/ChatGPT_Image_Sep_17_2026_04_17_29_PM_bgxgel.png",
+    title: "College Classrooms",
+    subtitle: "Pre-University Learning & Lecture Halls",
+    alt: "BGS PU College Academic Classrooms and Studies",
+  },
+  {
     src: "/images/Hero-section-2.png",
     title: "Campus Architecture",
     subtitle: "Grand Colonnade & Heritage Facade",
@@ -59,12 +77,6 @@ const heroImages = [
     title: "Campus Grounds",
     subtitle: "Sprawling Tree-Lined Entrance & Courtyard",
     alt: "BGS Campus Central Entrance and Grounds",
-  },
-  {
-    src: "https://res.cloudinary.com/xd8uritd/image/upload/v1789642129/ChatGPT_Image_Sep_17_2026_04_17_29_PM_bgxgel.png",
-    title: "College Classrooms",
-    subtitle: "Pre-University Learning & Lecture Halls",
-    alt: "BGS PU College Academic Classrooms and Studies",
   },
 ];
 
